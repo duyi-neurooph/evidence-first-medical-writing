@@ -1,0 +1,51 @@
+name: Public rights concern
+description: Request correction or removal without posting sensitive evidence
+title: "[Rights] "
+labels:
+  - rights-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for a non-sensitive initial notice. Do not publish personal documents, identity evidence, confidential material, or source texts. For private evidence, email duyinapoleon@gmail.com.
+  - type: dropdown
+    id: concern
+    attributes:
+      label: Concern type
+      options:
+        - Copyright
+        - Attribution or identity
+        - Trademark or misleading affiliation
+        - Privacy or confidential information
+        - Other rights concern
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Repository location
+      description: Provide the exact file path, heading, release, or URL.
+      placeholder: https://github.com/duyi-neurooph/evidence-first-medical-writing/blob/main/path/to/file
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Non-sensitive summary
+      description: Explain the concern without posting private evidence or source content.
+    validations:
+      required: true
+  - type: textarea
+    id: remedy
+    attributes:
+      label: Requested remedy
+      placeholder: Correct, clarify, remove, or contact privately.
+    validations:
+      required: true
+  - type: checkboxes
+    id: good_faith
+    attributes:
+      label: Good-faith declaration
+      options:
+        - label: I believe this report is accurate to the best of my knowledge and am submitting it in good faith.
+          required: true

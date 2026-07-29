@@ -1,0 +1,11 @@
+.DS_Store
+*.docx
+*.html
+*.pdf
+*.zip
+
+private-source-audit/
+raw-sources/
+release-kit/
+source-corpus/
+source-inventory/

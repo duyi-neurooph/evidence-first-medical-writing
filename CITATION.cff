@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this workflow in noncommercial research or teaching, cite this release."
+title: "Evidence-First Medical Writing"
+type: software
+authors:
+  - family-names: "Yi"
+    email: "duyinapoleon@gmail.com"
+version: "0.3.0"
+date-released: 2026-07-29
+license: "PolyForm-Noncommercial-1.0.0"
+url: "https://github.com/duyi-neurooph/evidence-first-medical-writing"
+repository-code: "https://github.com/duyi-neurooph/evidence-first-medical-writing"
+abstract: "A bilingual, evidence-first Codex workflow for planning, diagnosing, revising, and auditing medical research manuscripts."
+keywords:
+  - medical writing
+  - scientific writing
+  - clinical research
+  - research integrity
+  - manuscript review

@@ -1,0 +1,40 @@
+{
+  "name": "evidence-first-medical-writing",
+  "version": "0.3.0",
+  "description": "A bilingual, evidence-first workflow for planning, diagnosing, and revising medical research manuscripts.",
+  "author": {
+    "name": "Yi",
+    "email": "duyinapoleon@gmail.com",
+    "url": "https://github.com/duyi-neurooph"
+  },
+  "homepage": "https://github.com/duyi-neurooph/evidence-first-medical-writing",
+  "repository": "https://github.com/duyi-neurooph/evidence-first-medical-writing",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "keywords": [
+    "medical-writing",
+    "scientific-writing",
+    "manuscript-review",
+    "research-integrity",
+    "evidence-based-writing",
+    "clinical-research"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evidence-First Medical Writing",
+    "shortDescription": "Evidence-first workflow for medical research manuscripts",
+    "longDescription": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and auditing medical research manuscripts. It connects research questions, study design, outcomes, integrity checks, evidence boundaries, manuscript structure, language, submission, and reviewer responses without reproducing third-party materials or impersonating real people.",
+    "developerName": "Yi",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "websiteURL": "https://github.com/duyi-neurooph/evidence-first-medical-writing",
+    "privacyPolicyURL": "https://github.com/duyi-neurooph/evidence-first-medical-writing/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/duyi-neurooph/evidence-first-medical-writing/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Audit this medical manuscript using an evidence-first workflow.",
+      "Build a title, abstract plan, and IMRaD outline for this study.",
+      "Rewrite these results without changing any facts or numbers."
+    ]
+  }
+}

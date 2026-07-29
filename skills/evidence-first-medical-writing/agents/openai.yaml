@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence-First Medical Writing"
+  short_description: "Evidence-first medical manuscript workflow"
+  default_prompt: "Use $evidence-first-medical-writing to audit and revise this medical manuscript without changing facts or numbers."
