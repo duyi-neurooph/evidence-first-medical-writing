@@ -22,6 +22,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 - Checks alignment across the question, design, endpoint, analysis, results, and conclusion.
 - Flags research-integrity and reporting risks before language polishing.
 - Revises titles, abstracts, sections, tables, figures, cover letters, and reviewer responses.
+- Runs independent multi-reviewer simulated peer review with a separate editor, iterative revision, a Decision Ledger, and non-regression checks.
 - Supports randomized, observational, diagnostic, prediction, systematic review/meta-analysis, case-based, and short-form work.
 - Prioritizes findings as `P0 credibility blocker`, `P1 research logic`, `P2 structure and self-evidence`, and `P3 language and format`.
 
@@ -74,6 +75,39 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
+### Independent multi-reviewer workflow
+
+Use this workflow when you want isolated clinical, methodological, statistical, evidence, or editorial assessments followed by editor adjudication and revision. The defaults are two rounds, three to four reviewers selected for the article type, one separate editor, journal-compliance review, a Citation Audit, and a clean revision plus Issue Matrix. All reports are explicitly labeled as simulated peer review.
+
+For genuinely independent parallel assessments, use a multi-agent or Ultra-capable mode when available. If it is unavailable, the skill continues with isolated sequential passes and discloses that reviewer independence is approximate.
+
+Copyable request template:
+
+```text
+Please perform an independent multi-reviewer peer review and iterative revision
+of the attached clinical manuscript. Treat every report and decision as simulated
+peer review.
+
+Target journal:
+Article type:
+Manuscript version:
+Journal guidelines:
+Reviewer roles:
+Number of review rounds: 2
+External literature search allowed:
+Protected author decisions or unpublished data:
+Required outputs:
+
+Each reviewer must assess the same frozen manuscript independently and must not
+see the other reviewers' comments. A separate editor should reconcile the reports,
+reject weak or conflicting suggestions where appropriate, supervise revision, and
+initiate a fresh second-round review. Preserve a Decision Ledger so corrected
+problems are not reintroduced. Audit claim-citation fit, citation placement,
+self-contained wording, statistical interpretation, tables, figures, journal
+compliance, and AI-like or slogan-based prose. Do not alter data or scientific
+meaning without explicit author approval.
+```
+
 Do not paste confidential manuscripts, identifiable health information, unpublished data, or private reviewer correspondence into public GitHub issues.
 
 ## Repository layout
@@ -110,6 +144,6 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: `0.3.0`.
+Current release: `0.4.0`.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

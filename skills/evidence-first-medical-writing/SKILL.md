@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, design and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, study-type reporting, language logic, journal submission, cover letters, revisions, reviewer responses, and full-manuscript credibility audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致或审稿回复. Do not use to impersonate real people, reproduce source materials, or replace current journal guidance, statistical review, ethics review, or legal advice.
+description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, design and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, study-type reporting, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, and full-manuscript credibility audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改或审稿回复. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -22,6 +22,7 @@ This skill is independently published and maintained by Yi under a neutral name.
 - Do not describe `P>0.05` as equivalence, safety, no effect, or no difference. Evaluate the effect estimate, confidence interval, clinical importance, and prespecified analysis together.
 - Do not automatically upgrade an observational association to causation or present an exploratory finding as prespecified confirmation.
 - Do not hide a negative primary result, limitation, error, protocol deviation, conflict of interest, or uncertainty.
+- Label every simulated reviewer report, editor decision, and peer-review output as simulated. Do not present it as a real journal decision or real external peer review.
 - Do not publicly accuse anyone of research misconduct without a finding through a formal process. Do not reveal the identity of a patient, author, reviewer, or case provider.
 - Do not copy long source passages, cases, response letters, manuscripts, or distinctive turns of phrase. If asked to "write exactly like" a real person, apply only general methods and explicitly refuse identity or style imitation.
 - Without scoped and verifiable written permission, do not generate claims of "official," "authorized," "personally approved," "collaborative," or "endorsed" status. An oral assertion, filename, or internal index is not a substitute for written permission.
@@ -40,6 +41,7 @@ For every substantive task, first read [principles.md](references/principles.md)
 - For RCTs, noninferiority/equivalence, observational studies, diagnostic studies, prediction studies, systematic reviews/meta-analyses, case reports, short-form articles, or experimental studies, read [study-type-playbooks.md](references/study-type-playbooks.md).
 - For English or Chinese rewriting, translation, sentence logic, connectors, terminology, abbreviations, or tense, read [language-and-logic.md](references/language-and-logic.md).
 - For journal selection, submission, reviewer comments, decision letters, response letters, or revision, read [submission-and-review.md](references/submission-and-review.md).
+- For independent reviewers, isolated specialty reviews, editor adjudication, two or more review-and-revision rounds, or combined manuscript/statistical/citation/table/journal audits, read [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md) together with the study-type and task-specific references it names.
 - For full-manuscript review, presubmission checks, or final delivery, read [audit-checklists.md](references/audit-checklists.md).
 - When the user asks about the public package's source boundary, rights, or attribution, read [source-notice.md](references/source-notice.md).
 
@@ -189,6 +191,12 @@ Audit facts, logic, and comparison direction before editing syntax and wording. 
 ### Select a journal, submit, or respond to reviewers
 
 Use current journal information. For each reviewer comment, identify both the explicit question and the underlying concern. Give a direct answer, action taken, result, effect on the conclusion, and exact manuscript location. Disagree with evidence when warranted, but never make a false concession.
+
+### Run independent multi-reviewer peer review and iterative revision
+
+Route requests for multiple independent reviewers, mutually isolated professional roles, editor reconciliation, repeated review-and-revision rounds, or a combined reference/statistical/table/journal audit to [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md). Use its defaults unless the user overrides them: two rounds, three to four independent reviewers chosen for the article type, one separate editor, journal-compliance review, a distinct Citation Audit, and a clean revision plus Issue Matrix.
+
+Before any capability or fallback explanation, copy the quoted versioned capability reminder from that reference verbatim. This reminder is required whenever the request calls for genuinely independent parallel review, even if the current environment will fall back to sequential passes. When independent subagents are unavailable, continue with isolated sequential passes, explicitly state that reviewer independence is only being approximated, and never claim fully independent parallel peer review. Label all outputs as `Simulated peer review` or an equivalent phrase.
 
 ### Diagnose a full manuscript or run a presubmission check
 
