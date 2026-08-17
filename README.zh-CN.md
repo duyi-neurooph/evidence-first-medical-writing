@@ -142,6 +142,6 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前包版本：`0.4.0`（尚未发布 release）。
+当前版本：`0.4.0`。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

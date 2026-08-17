@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.0 — Unreleased
+## 0.4.0 — 2026-08-17
 
 - Added an article-type-aware independent multi-reviewer simulated peer-review workflow with a separate editor and a sequential fallback when isolated subagents are unavailable.
 - Added a Manuscript Contract, Decision Ledger, Non-Regression Checklist, Issue Matrix, response matrix, frozen-version rules, two-round defaults, and explicit stopping criteria.
