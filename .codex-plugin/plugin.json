@@ -1,7 +1,7 @@
 {
   "name": "evidence-first-medical-writing",
   "version": "0.3.0",
-  "description": "A bilingual, evidence-first workflow for planning, diagnosing, and revising medical research manuscripts.",
+  "description": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and simulating independent peer review of medical research manuscripts.",
   "author": {
     "name": "Yi",
     "email": "duyinapoleon@gmail.com",
@@ -16,13 +16,15 @@
     "manuscript-review",
     "research-integrity",
     "evidence-based-writing",
-    "clinical-research"
+    "clinical-research",
+    "simulated-peer-review",
+    "multi-reviewer"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Evidence-First Medical Writing",
     "shortDescription": "Evidence-first workflow for medical research manuscripts",
-    "longDescription": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and auditing medical research manuscripts. It connects research questions, study design, outcomes, integrity checks, evidence boundaries, manuscript structure, language, submission, and reviewer responses without reproducing third-party materials or impersonating real people.",
+    "longDescription": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and auditing medical research manuscripts. It connects research questions, study design, outcomes, integrity checks, evidence boundaries, manuscript structure, language, submission, reviewer responses, and independent multi-reviewer simulated peer review with editor adjudication and non-regression checks.",
     "developerName": "Yi",
     "category": "Productivity",
     "capabilities": [
@@ -34,7 +36,8 @@
     "defaultPrompt": [
       "Audit this medical manuscript using an evidence-first workflow.",
       "Build a title, abstract plan, and IMRaD outline for this study.",
-      "Rewrite these results without changing any facts or numbers."
+      "Rewrite these results without changing any facts or numbers.",
+      "Run two rounds of independent simulated peer review with a separate editor, citation audit, and non-regression check."
     ]
   }
 }

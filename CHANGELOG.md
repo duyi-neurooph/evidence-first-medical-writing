@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added an article-type-aware independent multi-reviewer simulated peer-review workflow with a separate editor and a sequential fallback when isolated subagents are unavailable.
+- Added a Manuscript Contract, Decision Ledger, Non-Regression Checklist, Issue Matrix, response matrix, frozen-version rules, two-round defaults, and explicit stopping criteria.
+- Added dedicated statistical, claim-to-citation, self-contained-writing, table, journal-compliance, and AI-like-residue audit requirements.
+- Added bilingual activation guidance, a copyable end-user template, and adversarial evaluation cases for randomized, diagnostic, critical-review, and systematic-review/meta-analysis manuscripts.
+
 ## 0.3.0 — 2026-07-29
 
 - Published and maintained under the name Yi.
