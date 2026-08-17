@@ -4,7 +4,9 @@ Date: 2026-08-17
 
 Branch: `feature/independent-multi-reviewer-workflow`
 
-Status: working-branch evidence, not a release baseline
+Target version: `0.4.0`
+
+Status: release-candidate evidence, not a published release baseline
 
 ## Static validation
 
@@ -56,4 +58,4 @@ All three rejected the unsupported efficacy claim without inventing data. Their 
 - The fixtures contained no full manuscript, journal template, protocol, raw analysis, or verifiable full references.
 - Tracked-change document generation and journal-specific formatting were therefore not tested.
 - Most article-type tests intentionally exercised the documented sequential fallback; the isolation probe separately tested actual parallel reviewer isolation.
-- Release-version metadata remains `0.3.0`; this file should be renamed or superseded by a versioned baseline only after approval and release preparation.
+- Package metadata is prepared for `0.4.0`; this file should be renamed or superseded by a versioned baseline only after the release is actually published.

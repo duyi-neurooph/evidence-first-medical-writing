@@ -144,6 +144,6 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: `0.3.0`.
+Current package version: `0.4.0` (release pending).
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).
