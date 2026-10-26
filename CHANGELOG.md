@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — proposed 0.5.0
+
+- Added runtime EQUATOR discovery and official guideline/checklist retrieval before substantive manuscript writing, revision, and single- or multi-reviewer assessment.
+- Added study-type and extension selection, live version verification, journal-edition reconciliation, readable-download checks, and bounded offline/access-failure handling.
+- Added a Guideline Manifest and item-level Reporting Guideline Matrix with manuscript locations, specific improvements, author queries, and explicit assessment scope.
+- Integrated the clean guideline package with reviewer isolation, frozen versions, editor adjudication, and non-regression checks; separated reporting completeness from study validity and risk of bias.
+- Added bilingual usage guidance and evaluation cases without bundling third-party guidelines or adding runtime dependencies.
+
 ## 0.4.0 — 2026-08-17
 
 - Added an article-type-aware independent multi-reviewer simulated peer-review workflow with a separate editor and a sequential fallback when isolated subagents are unavailable.

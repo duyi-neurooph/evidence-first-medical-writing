@@ -38,6 +38,7 @@ For every substantive task, first read [principles.md](references/principles.md)
 - For research questions, outcomes, design, statistics, registration, ethics, or credibility, read [design-and-integrity.md](references/design-and-integrity.md).
 - For outlines, content selection, paragraph jobs, figure/table narrative, critical reading, or citations, read [architecture-and-evidence.md](references/architecture-and-evidence.md).
 - For titles, abstracts, introductions, methods, results, discussions, conclusions, figures/tables, or cover letters, read [section-playbooks.md](references/section-playbooks.md).
+- Before substantive manuscript planning, writing, rewriting, or review, read [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) and retrieve current applicable guidance through EQUATOR and official sources. This includes ordinary single-reviewer requests; users need not name EQUATOR. Pure copyediting or literal translation follows the scope exceptions in that reference.
 - For RCTs, noninferiority/equivalence, observational studies, diagnostic studies, prediction studies, systematic reviews/meta-analyses, case reports, short-form articles, or experimental studies, read [study-type-playbooks.md](references/study-type-playbooks.md).
 - For English or Chinese rewriting, translation, sentence logic, connectors, terminology, abbreviations, or tense, read [language-and-logic.md](references/language-and-logic.md).
 - For journal selection, submission, reviewer comments, decision letters, response letters, or revision, read [submission-and-review.md](references/submission-and-review.md).
@@ -68,6 +69,12 @@ Extract directly from the available material:
 - facts, numbers, comparison directions, and terms that must not change.
 
 In this skill's title framework, PICO-T defines `T` as `type of study`; record outcome time points separately. If the user or target standard explicitly uses another PICO(T) convention, do not treat the notation difference as a scientific error. State the definition being used and ensure that neither study type nor outcome timing is omitted.
+
+### 1a. Retrieve the applicable reporting guidance
+
+Before substantive drafting or review, use [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) to search EQUATOR, verify the current official main guideline and relevant extensions, and download/read the actual checklist and supporting guidance with the available tools. Honor external-access restrictions. Record a Guideline Manifest with source links, versions, retrieval dates, read coverage, and any limitation; briefly state the selection before proceeding. Read supplied journal templates first and reconcile version differences explicitly. If live access or full text is unavailable, disclose that and keep any assessment provisional.
+
+Use a Reporting Guideline Matrix to turn applicable items into drafting slots or location-specific review findings and improvements. Reporting completeness does not establish scientific validity; do not invent missing methods or data to satisfy a checklist. For multi-reviewer tasks, freeze the clean guidance package before dispatch and keep annotated findings private until editor adjudication.
 
 ### 2. Write the core proposition card
 
@@ -150,6 +157,8 @@ Unless the task requires a different format, deliver:
 4. `Key changes and reasons`
 5. `Items the author must confirm`
 
+For guideline-based writing or assessment, also provide the Guideline Manifest and the relevant Reporting Guideline Matrix (or linked files), with scope and unresolved items clearly stated.
+
 Use equivalent headings in the user's language.
 
 ### 8. Recheck
@@ -164,7 +173,8 @@ After rewriting, verify that:
 - no secondary, subgroup, or exploratory result has displaced the primary outcome;
 - the conclusion stays within the design, effect estimate, and uncertainty;
 - abbreviations are defined at first use, and group names, tables, and figure legends are independently understandable;
-- protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened.
+- protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened;
+- the Reporting Guideline Matrix matches the revised manuscript, selected versions, and actual assessment scope; unavailable sources and unresolved omissions are not marked as passed.
 
 ## Task routing
 
@@ -178,11 +188,11 @@ Decompose the paper into question, design, sample, outcomes, analysis, results, 
 
 ### Rewrite one section
 
-Load only the matching playbook. State the section's function within the manuscript before revising it; identify upstream design or downstream conclusion problems when necessary.
+After the common reporting-guideline step for substantive rewriting, load the matching section playbook. Pure copyediting follows the scope exception in the retrieval reference. State the section's function within the manuscript before revising it; identify upstream design or downstream conclusion problems when necessary.
 
 ### Handle a special study or article type
 
-Identify the actual study design rather than applying the label the author prefers. Use the matching playbook and consult the latest official reporting standard when a compliance check is needed.
+Identify the actual study design rather than applying the label the author prefers. Run the reporting-guideline retrieval step before applying the matching playbook; do not treat a remembered guideline name or version as a current compliance check.
 
 ### Polish language or translate
 

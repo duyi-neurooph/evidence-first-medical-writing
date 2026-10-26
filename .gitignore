@@ -9,3 +9,7 @@ raw-sources/
 release-kit/
 source-corpus/
 source-inventory/
+
+# Task-local guideline downloads and manuscript audit records are not distributable assets.
+guidelines/
+guideline-audits/

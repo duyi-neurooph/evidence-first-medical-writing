@@ -33,6 +33,7 @@ Unless the user overrides them, use:
 - three to four independent reviewers selected for the article type;
 - one separate editor who is not counted as a reviewer;
 - journal-specific compliance review;
+- runtime EQUATOR/official reporting-guideline retrieval, a Guideline Manifest, and a Reporting Guideline Matrix;
 - a distinct claim-to-citation audit;
 - a clean revision plus an Issue Matrix.
 
@@ -64,7 +65,7 @@ Before review, build an internal Manuscript Contract from the supplied files and
 | Language | manuscript language; British or American English |
 | Limits | word limit; mandatory sections |
 | Journal rules | abstract, highlights, tables, figures, supplements, and reference requirements |
-| Reporting standard | applicable current guideline, such as CONSORT, STROBE, STARD, PRISMA, TRIPOD, or SPIRIT |
+| Reporting standard | Guideline Manifest: retrieved main guideline, extensions, journal-required editions, source links, versions, read coverage, and currency limitations |
 | Version | manuscript version and date or other stable identifier |
 | Source package | manuscript files, tables, supplements, journal guidelines, template, protocol, registration, and other supplied sources |
 | External research | allowed or not allowed; permitted scope |
@@ -75,6 +76,8 @@ Before review, build an internal Manuscript Contract from the supplied files and
 
 If journal guidance or a template is supplied, read it before applying general experience. For requirements that may have changed, consult current official sources only when external research is permitted, and record the date checked.
 
+Before freezing the package or starting any reviewer, run [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md). Public guideline lookup is on by default when tools permit, unless the user restricts it; distinguish it from broader literature research. If access fails or is prohibited, disclose the limitation and use supplied guidance provisionally. Do not mark current-guideline compliance as verified without the necessary sources.
+
 Use conservative defaults for noncritical omissions and disclose them in the output. Ask the user only when an omission would change the scientific interpretation, the protected content, or a material journal requirement. Never infer unpublished facts.
 
 ## 2. Freeze the review package
@@ -84,12 +87,14 @@ Create a stable, versioned copy of the material to be reviewed. Never overwrite 
 Each reviewer receives the same frozen package:
 
 - frozen manuscript and associated tables, figures, and supplements;
-- journal guidelines and required reporting standard;
+- journal guidelines, the Guideline Manifest, and the same unannotated reporting-guideline source documents;
 - relevant source package permitted by the Manuscript Contract;
 - the Manuscript Contract;
 - one reviewer-specific remit.
 
 The remit may define the reviewer’s expertise and priority checks. It must not contain a prewritten list of manuscript defects or conclusions designed to make reviewers agree.
+
+Reporting checklists are common factual criteria, not a shared diagnosis. Do not give reviewers an editor-filled Reporting Guideline Matrix or a checklist annotated with prior findings. Assign reporting completeness to an appropriate reviewer; consolidate item-level results only after the independent reports arrive. Keep the source versions frozen across rounds as specified in the retrieval reference.
 
 In multi-agent mode:
 
@@ -216,6 +221,7 @@ Create a Decision Ledger when the workflow starts and update it after every edit
 | Confidential evidence | author-provided unpublished information and its allowed use |
 | Language conventions | terminology, abbreviations, British/American English, and naming preferences |
 | Citation decisions | source-status labels, numbering method, and accepted citation placement |
+| Reporting decisions | guideline editions and verified item IDs, justified non-applicability, journal-version conflicts, unresolved omissions, and source-access limits |
 | Known failure patterns | recurring ambiguity, citation clustering, hierarchy, tone, or table problems |
 | Open uncertainty | unresolved facts and required author decisions |
 | Round constraints | every new restriction accepted after each review round |
@@ -234,12 +240,17 @@ Before every revision and before final delivery, run the Non-Regression Check:
 - [ ] Table rows and columns remain parallel and independently understandable.
 - [ ] Citation callouts, numbering, and the reference list remain synchronized.
 - [ ] No protected number, definition, scientific meaning, authorship, funding, conflict disclosure, or unpublished information has changed without approval.
+- [ ] Guideline item IDs still match the frozen editions; resolved reporting gaps have not returned, and unverified items have not become compliance passes.
 
 Any failed check reopens or creates an Issue Matrix item. Do not silently waive it.
 
 ## 7. Independent audit workstreams
 
 Run the following audits as named workstreams. Citation integrity is not a by-product of language polishing.
+
+### Reporting Guideline Audit
+
+Apply the retrieved checklists item by item using [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md). Record guideline/version/item, manuscript location, reporting status, concrete improvement, and owner. Keep partial-document scope and justified exclusions visible. Separate reporting completeness from methodological quality and risk of bias. The editor links adjudicated omissions to Issue Matrix IDs and rechecks them after revision.
 
 ### Self-Contained Writing Audit
 
@@ -319,11 +330,13 @@ Create a point-by-point response matrix linking issue ID, editor decision, actio
 3. Have the editor separately audit Round 1 issue closure against the response matrix.
 4. Identify residual issues, new issues, and revision-induced regressions.
 5. Adjudicate and revise again.
-6. Complete final citation, statistical, self-contained-writing, table/figure, AI-residue, and journal-compliance audits.
+6. Complete final reporting-guideline, citation, statistical, self-contained-writing, table/figure, AI-residue, and journal-compliance audits.
 
 Start Round 3 only if a Critical issue remains; a Major issue may change the main interpretation; reference or data integrity is unresolved; journal compliance still fails; or the user explicitly requests another round.
 
 Stop when there are no unresolved Critical or Major issues; central claims are appropriately supported or qualified; journal and reference checks pass; the Non-Regression Check passes; and further changes would be unbounded style optimization rather than correction.
+
+A reporting-guideline pass additionally requires the applicable item-level checks to be complete and resolved. If unavailable guidance or author information prevents closure, deliver the bounded revision with those items explicitly pending; do not declare full compliance or repeat rounds solely to retry inaccessible sources.
 
 ## 10. Deliverables and file safety
 
@@ -340,7 +353,8 @@ Provide only the deliverables relevant to the user’s request:
 9. Non-Regression Checklist;
 10. final journal-compliance checklist;
 11. remaining author decisions;
-12. a version manifest with filenames.
+12. a version manifest with filenames;
+13. a Guideline Manifest and Reporting Guideline Matrix, including unresolved access or reporting items.
 
 Never overwrite source files. Use explicit versioned names, for example:
 
