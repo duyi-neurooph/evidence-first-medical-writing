@@ -1,6 +1,6 @@
 {
   "name": "evidence-first-medical-writing",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and simulating independent peer review of medical research manuscripts.",
   "author": {
     "name": "Yi",
@@ -18,7 +18,12 @@
     "evidence-based-writing",
     "clinical-research",
     "simulated-peer-review",
-    "multi-reviewer"
+    "multi-reviewer",
+    "reporting-guidelines",
+    "equator",
+    "submission-checklist",
+    "study-design",
+    "data-consistency"
   ],
   "skills": "./skills/",
   "interface": {
@@ -37,7 +42,9 @@
       "Audit this medical manuscript using an evidence-first workflow.",
       "Build a title, abstract plan, and IMRaD outline for this study.",
       "Rewrite these results without changing any facts or numbers.",
-      "Run two rounds of independent simulated peer review with a separate editor, citation audit, and non-regression check."
+      "Run two rounds of independent simulated peer review with a separate editor, citation audit, and non-regression check.",
+      "Retrieve the current applicable reporting guideline through EQUATOR and review this manuscript item by item.",
+      "Run the final submission check across this manuscript, tables, figures, references, and reviewer responses."
     ]
   }
 }

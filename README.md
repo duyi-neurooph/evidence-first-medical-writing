@@ -21,8 +21,12 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 - Builds a research task card, PICO-T frame, core claim, and IMRaD outline.
 - Checks alignment across the question, design, endpoint, analysis, results, and conclusion.
 - Flags research-integrity and reporting risks before language polishing.
+- Confirms the actual study design with the author before applying a design-specific guideline, resolving decisive missing facts instead of trusting labels.
+- Retrieves applicable reporting guidelines through EQUATOR and official sources before substantive drafting or review, then records versions and item-level improvements.
 - Revises titles, abstracts, sections, tables, figures, cover letters, and reviewer responses.
 - Runs independent multi-reviewer simulated peer review with a separate editor, iterative revision, a Decision Ledger, and non-regression checks.
+- Reconciles the final submission package across data, references, numbering, participant flow, registration, terminology, statistical summaries, eligibility, contributions, and reviewer responses.
+- Offers optional authorized, de-identified data reconciliation and statistical-method checks, with anomaly triage rather than claims of fraud detection.
 - Supports randomized, observational, diagnostic, prediction, systematic review/meta-analysis, case-based, and short-form work.
 - Prioritizes findings as `P0 credibility blocker`, `P1 research logic`, `P2 structure and self-evidence`, and `P3 language and format`.
 
@@ -75,6 +79,48 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
+### Current reporting guidelines at task time
+
+For substantive manuscript planning, drafting, rewriting, or review, the skill first discusses the actual study design with you. It explains the evidence for a proposed classification and asks only the decisive missing questions, for example who assigned treatment, how allocation worked, how participants were selected, and when study planning and outcome collection occurred. It does not assume that "random," "prospective," or "retrospective" in a title establishes the design. It reuses facts already confirmed in the task, without repeating the interview.
+
+Once the design is confirmed, it searches the [EQUATOR library](https://www.equator-network.org/reporting-guidelines/) and follows the record to current official checklists and applicable extensions. While a design remains unresolved, only design-neutral work or provisional exploration proceeds. You do not need to request EQUATOR separately. It downloads and reads official files when supported, or reads the full official document online and states that no local file was saved.
+
+The output includes a **Guideline Manifest** (selection, version, source links, retrieval date, read coverage, and limitations) and a **Reporting Guideline Matrix** (item, manuscript location, reporting status, concrete improvement, and author query). Journal-required older checklists are reconciled with current guidance; narrative reviews are not automatically assessed as systematic reviews. A completed checklist does not establish study validity or low risk of bias.
+
+This needs browsing/file capabilities in the host assistant. The skill does not bundle guidelines or add a downloader dependency. If external access is prohibited or unavailable, it uses supplied material provisionally and cannot certify the latest version. Pure copyediting does not trigger a fresh retrieval. Within the same review task, reviewers share one frozen, unannotated guideline package; prior findings stay with the editor.
+
+```text
+Help me write or review this manuscript. Identify the study type, retrieve the
+current applicable reporting guideline and extensions through EQUATOR, state the
+version and source links, and give item-by-item improvements. Preserve my facts;
+mark missing information for author confirmation.
+```
+
+### Final submission or resubmission check
+
+Ask for a "final check before submission" to run ten cross-file checks with exact locations, proposed fixes, and a coverage matrix. Supply the current manuscript and available tables, figures, supplements, references, journal instructions, and revision correspondence. The same checks run at the end of a full-manuscript revision or multi-reviewer workflow.
+
+The audit is discipline-neutral. Missing materials remain **Cannot verify**, not passed. It does not silently reconcile conflicting data, relabel a range as IQR, assume authorship from author order, or rewrite the whole manuscript. Journal-specific reference systems and task-specific terminology take priority over generic formatting preferences.
+
+```text
+Please run the final submission check on this version and the attached files.
+Reconcile repeated numbers, citations, labels and flow counts; check registration,
+abbreviations, statistical summaries, eligibility and factual contributions.
+For a resubmission, verify every reviewer-comment subpart against the response and
+actual revision. Give locations, smallest fixes, author confirmations and a
+coverage matrix. Preserve original files and do not change data on my behalf.
+```
+
+### Optional data and statistical checks
+
+You may provide an authorized, de-identified source/analysis dataset, data dictionary and relevant analysis outputs or code for a bounded read-only check against tables and figures. This is optional: declining or being unable to share data does not prevent writing or review. Do not upload identifying records or data you are not permitted to share; de-identification alone does not establish permission to use a hosted service.
+
+The skill records what was actually calculated, where discrepancies occur, the analysis population and rounding rules, and what remains unverified. It can flag repeated value patterns or records across groups for source verification, but identical numbers can have legitimate explanations and are not proof of fabrication. Statistical comments distinguish wording fixes from changes requiring author approval or specialist reanalysis. Originals are preserved; no automatic exclusions, new significance-seeking analyses, external uploads or authenticity certificates are produced.
+
+Source-data agreement and within-manuscript logic are separate results. Even when values reproduce correctly, the skill checks whether text, tables and figures use compatible populations, denominators, time points, units, directions and conclusions. The internal check still runs when raw data are unavailable.
+
+If deeper statistical reproduction or image/data forensics is needed, it describes the required capability and suggests a human specialist or a suitable skill only after checking what is actually available. It does not install software or transfer data without permission.
+
 ### Independent multi-reviewer workflow
 
 Use this workflow when you want isolated clinical, methodological, statistical, evidence, or editorial assessments followed by editor adjudication and revision. The defaults are two rounds, three to four reviewers selected for the article type, one separate editor, journal-compliance review, a Citation Audit, and a clean revision plus Issue Matrix. All reports are explicitly labeled as simulated peer review.
@@ -92,10 +138,13 @@ Target journal:
 Article type:
 Manuscript version:
 Journal guidelines:
+Public reporting-guideline lookup allowed: yes
 Reviewer roles:
 Number of review rounds: 2
-External literature search allowed:
+Broader literature search allowed:
 Protected author decisions or unpublished data:
+Confirmed study design and supporting facts (if known):
+Optional de-identified data check: yes / no / not available
 Required outputs:
 
 Each reviewer must assess the same frozen manuscript independently and must not
@@ -144,6 +193,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: `0.4.0`.
+Current release: [0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0).
+
+This release adds author-confirmed study design, runtime reporting-guideline retrieval, optional data checks and a ten-part final submission audit. It retains the five quality gates and independent multi-reviewer workflow. See [CHANGELOG.md](CHANGELOG.md).
+
+Download the [complete 0.5.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

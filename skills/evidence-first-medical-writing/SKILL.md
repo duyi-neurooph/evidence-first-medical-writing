@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, design and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, study-type reporting, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, and full-manuscript credibility audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改或审稿回复. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
+description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, study-design confirmation and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, EQUATOR reporting-guideline checks, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, full-manuscript credibility audits, and final submission checks, and optional authorized data audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改、审稿回复或投稿前最后核查. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -36,13 +36,17 @@ Mark missing information as `[Author to provide / 待作者补充: specific cont
 For every substantive task, first read [principles.md](references/principles.md), then load only the relevant references:
 
 - For research questions, outcomes, design, statistics, registration, ethics, or credibility, read [design-and-integrity.md](references/design-and-integrity.md).
+- Before choosing design-specific reporting guidance, read [study-design-confirmation.md](references/study-design-confirmation.md): discuss the supported classification with the author, resolve decisive gaps, and record confirmation instead of trusting a study label.
+- Briefly offer optional, authorized de-identified source-data checks during substantive writing/review. If accepted or data verification is requested, read [optional-data-integrity-audit.md](references/optional-data-integrity-audit.md). Declining data sharing does not prevent writing or review.
 - For outlines, content selection, paragraph jobs, figure/table narrative, critical reading, or citations, read [architecture-and-evidence.md](references/architecture-and-evidence.md).
 - For titles, abstracts, introductions, methods, results, discussions, conclusions, figures/tables, or cover letters, read [section-playbooks.md](references/section-playbooks.md).
+- Before substantive manuscript planning, writing, rewriting, or review, read [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) and retrieve current applicable guidance through EQUATOR and official sources. This includes ordinary single-reviewer requests; users need not name EQUATOR. Pure copyediting or literal translation follows the scope exceptions in that reference.
 - For RCTs, noninferiority/equivalence, observational studies, diagnostic studies, prediction studies, systematic reviews/meta-analyses, case reports, short-form articles, or experimental studies, read [study-type-playbooks.md](references/study-type-playbooks.md).
 - For English or Chinese rewriting, translation, sentence logic, connectors, terminology, abbreviations, or tense, read [language-and-logic.md](references/language-and-logic.md).
 - For journal selection, submission, reviewer comments, decision letters, response letters, or revision, read [submission-and-review.md](references/submission-and-review.md).
 - For independent reviewers, isolated specialty reviews, editor adjudication, two or more review-and-revision rounds, or combined manuscript/statistical/citation/table/journal audits, read [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md) together with the study-type and task-specific references it names.
 - For full-manuscript review, presubmission checks, or final delivery, read [audit-checklists.md](references/audit-checklists.md).
+- For a final submission/resubmission check or delivery of a revised full manuscript, also read [final-submission-audit.md](references/final-submission-audit.md) to reconcile data, references, numbering, flow counts, registration, terminology, statistical summaries, eligibility, contributions, and reviewer-response closure.
 - When the user asks about the public package's source boundary, rights, or attribution, read [source-notice.md](references/source-notice.md).
 
 Do not load every reference for an ordinary single-paragraph rewrite.
@@ -68,6 +72,18 @@ Extract directly from the available material:
 - facts, numbers, comparison directions, and terms that must not change.
 
 In this skill's title framework, PICO-T defines `T` as `type of study`; record outcome time points separately. If the user or target standard explicitly uses another PICO(T) convention, do not treat the notation difference as a scientific error. State the definition being used and ensure that neither study type nor outcome timing is omitted.
+
+### 1a. Confirm the actual study design with the author
+
+Use [study-design-confirmation.md](references/study-design-confirmation.md) to state the proposed design and its evidence, then resolve material uncertainty with focused author questions before finalizing a design-specific checklist. Record the Design Confirmation Card in the task card/Manuscript Contract. Reuse already confirmed facts, but do not accept an unsupported RCT or prospective/retrospective label. While awaiting decisive facts, continue only design-neutral work or explicitly provisional candidate-guideline exploration.
+
+At intake, offer optional source-data reconciliation once: authorized de-identified data, a dictionary and relevant analysis outputs can support checks against tables/figures and statistical methods. No data is required to proceed; record accepted/declined/not available and its coverage limit. Do not request identifiable patient records or equate data anomalies with misconduct. Follow [optional-data-integrity-audit.md](references/optional-data-integrity-audit.md) if accepted.
+
+### 1b. Retrieve the applicable reporting guidance
+
+After design confirmation and before design-dependent drafting or review, use [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) to search EQUATOR, verify the current official main guideline and relevant extensions, and download/read the actual checklist and supporting guidance with the available tools. Honor external-access restrictions. Record a Guideline Manifest with source links, versions, retrieval dates, read coverage, and any limitation; briefly state the selection before proceeding. Read supplied journal templates first and reconcile version differences explicitly. If live access or full text is unavailable, disclose that and keep any assessment provisional.
+
+Use a Reporting Guideline Matrix to turn applicable items into drafting slots or location-specific review findings and improvements. Reporting completeness does not establish scientific validity; do not invent missing methods or data to satisfy a checklist. For multi-reviewer tasks, freeze the clean guidance package before dispatch and keep annotated findings private until editor adjudication.
 
 ### 2. Write the core proposition card
 
@@ -150,21 +166,26 @@ Unless the task requires a different format, deliver:
 4. `Key changes and reasons`
 5. `Items the author must confirm`
 
+For guideline-based writing or assessment, also provide the Guideline Manifest and the relevant Reporting Guideline Matrix (or linked files), with scope and unresolved items clearly stated.
+
 Use equivalent headings in the user's language.
 
 ### 8. Recheck
+
+Treat source-data reconciliation and within-manuscript logical consistency as separate checks. Even after supplied data reproduce the tables/figures, apply the F1 logic layer in [final-submission-audit.md](references/final-submission-audit.md) across the available text, figures and tables. Without source data, still perform that internal check and disclose the unavailable source-data layer.
 
 After rewriting, verify that:
 
 - no number, unit, denominator, time point, group order, or comparison direction changed;
 - every effect measure identifies the estimand, reference group, and comparison direction; if any is missing, use a placeholder instead of inferring it only from the OR/HR magnitude;
-- mutually exclusive group counts sum to the total and each event numerator does not exceed its denominator; do not apply an addition check to overlapping analysis sets;
+- mutually exclusive group counts sum to the matching total; a numerator counting people with an event does not exceed the participant denominator for the same population/window, while repeat-event counts may exceed people and rates use their stated exposure/time denominator; do not add overlapping analysis sets;
 - every analysis promised in Methods appears in Results, and every result judgment has a methodological basis;
 - abstract and main text, main text and figures/tables, and title and study type agree;
 - no secondary, subgroup, or exploratory result has displaced the primary outcome;
 - the conclusion stays within the design, effect estimate, and uncertainty;
 - abbreviations are defined at first use, and group names, tables, and figure legends are independently understandable;
-- protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened.
+- protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened;
+- the Reporting Guideline Matrix matches the revised manuscript, selected versions, and actual assessment scope; unavailable sources and unresolved omissions are not marked as passed.
 
 ## Task routing
 
@@ -178,11 +199,11 @@ Decompose the paper into question, design, sample, outcomes, analysis, results, 
 
 ### Rewrite one section
 
-Load only the matching playbook. State the section's function within the manuscript before revising it; identify upstream design or downstream conclusion problems when necessary.
+After the common reporting-guideline step for substantive rewriting, load the matching section playbook. Pure copyediting follows the scope exception in the retrieval reference. State the section's function within the manuscript before revising it; identify upstream design or downstream conclusion problems when necessary.
 
 ### Handle a special study or article type
 
-Identify the actual study design rather than applying the label the author prefers. Use the matching playbook and consult the latest official reporting standard when a compliance check is needed.
+Identify the actual study design rather than applying the label the author prefers. Run the reporting-guideline retrieval step before applying the matching playbook; do not treat a remembered guideline name or version as a current compliance check.
 
 ### Polish language or translate
 
@@ -200,7 +221,7 @@ Before any capability or fallback explanation, copy the quoted versioned capabil
 
 ### Diagnose a full manuscript or run a presubmission check
 
-Prioritize the title, abstract, primary outcome, participant flow, Table 1, main results, first discussion paragraph, limitations, and conclusion. Return three columns—`Must change`, `Recommended change`, and `Author verification`—and highlight P0 items.
+Prioritize the title, abstract, primary outcome, participant flow, Table 1, main results, first discussion paragraph, limitations, and conclusion. Return three columns—`Must change`, `Recommended change`, and `Author verification`—and highlight P0 items. For “投稿前最后一遍检查,” “修回稿最终检查,” or “final check before submission,” run [final-submission-audit.md](references/final-submission-audit.md) and return its coverage and ten-check matrix. A final-check request alone does not authorize a whole-manuscript rewrite or multiple reviewer rounds.
 
 ## Public identity and source boundary
 
