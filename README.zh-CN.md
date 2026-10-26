@@ -189,8 +189,10 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：`0.4.0`。
+当前版本：[0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0)。
 
-开发中升级：与作者确认研究类型、使用时获取报告指南、可选数据核查，以及十项投稿前最终核查，建议纳入 `0.5.0`（尚未发布）。详见 [CHANGELOG.md](CHANGELOG.md)。
+本版新增：与作者确认研究类型、使用时获取报告指南、可选数据核查，以及十项投稿前最终核查；保留原有五道质量门和独立多审稿人工作流。详见 [CHANGELOG.md](CHANGELOG.md)。
+
+下载 [0.5.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

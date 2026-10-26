@@ -193,8 +193,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: `0.4.0`.
+Current release: [0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0).
 
-Development changes: author-confirmed study design, runtime reporting-guideline retrieval, optional data checks and a ten-part final submission audit, proposed for `0.5.0` (not yet released). See [CHANGELOG.md](CHANGELOG.md).
+This release adds author-confirmed study design, runtime reporting-guideline retrieval, optional data checks and a ten-part final submission audit. It retains the five quality gates and independent multi-reviewer workflow. See [CHANGELOG.md](CHANGELOG.md).
+
+Download the [complete 0.5.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

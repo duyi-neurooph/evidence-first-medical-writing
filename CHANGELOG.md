@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — proposed 0.5.0
+## 0.5.0 — 2026-10-26
 
 - Added an author-facing study-design confirmation gate before final guideline selection, including focused questions on allocation, selection and chronology and protection against unsupported design labels.
 - Added an optional authorized, de-identified data/figure/table reconciliation and statistical-method audit, with reproducible findings, cautious anomaly triage and scoped specialist/skill escalation; data sharing is not a prerequisite and anomalies are not findings of misconduct.
