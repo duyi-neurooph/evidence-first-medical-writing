@@ -24,6 +24,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 - Retrieves applicable reporting guidelines through EQUATOR and official sources before substantive drafting or review, then records versions and item-level improvements.
 - Revises titles, abstracts, sections, tables, figures, cover letters, and reviewer responses.
 - Runs independent multi-reviewer simulated peer review with a separate editor, iterative revision, a Decision Ledger, and non-regression checks.
+- Reconciles the final submission package across data, references, numbering, participant flow, registration, terminology, statistical summaries, eligibility, contributions, and reviewer responses.
 - Supports randomized, observational, diagnostic, prediction, systematic review/meta-analysis, case-based, and short-form work.
 - Prioritizes findings as `P0 credibility blocker`, `P1 research logic`, `P2 structure and self-evidence`, and `P3 language and format`.
 
@@ -89,6 +90,21 @@ Help me write or review this manuscript. Identify the study type, retrieve the
 current applicable reporting guideline and extensions through EQUATOR, state the
 version and source links, and give item-by-item improvements. Preserve my facts;
 mark missing information for author confirmation.
+```
+
+### Final submission or resubmission check
+
+Ask for a "final check before submission" to run ten cross-file checks with exact locations, proposed fixes, and a coverage matrix. Supply the current manuscript and available tables, figures, supplements, references, journal instructions, and revision correspondence. The same checks run at the end of a full-manuscript revision or multi-reviewer workflow.
+
+The audit is discipline-neutral. Missing materials remain **Cannot verify**, not passed. It does not silently reconcile conflicting data, relabel a range as IQR, assume authorship from author order, or rewrite the whole manuscript. Journal-specific reference systems and task-specific terminology take priority over generic formatting preferences.
+
+```text
+Please run the final submission check on this version and the attached files.
+Reconcile repeated numbers, citations, labels and flow counts; check registration,
+abbreviations, statistical summaries, eligibility and factual contributions.
+For a resubmission, verify every reviewer-comment subpart against the response and
+actual revision. Give locations, smallest fixes, author confirmations and a
+coverage matrix. Preserve original files and do not change data on my behalf.
 ```
 
 ### Independent multi-reviewer workflow
@@ -163,6 +179,6 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 Current release: `0.4.0`.
 
-Development change: runtime reporting-guideline retrieval and auditing, proposed for `0.5.0` (not yet released). See [CHANGELOG.md](CHANGELOG.md).
+Development changes: runtime reporting-guideline retrieval and a ten-part final submission audit, proposed for `0.5.0` (not yet released). See [CHANGELOG.md](CHANGELOG.md).
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

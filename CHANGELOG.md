@@ -6,6 +6,8 @@
 - Added study-type and extension selection, live version verification, journal-edition reconciliation, readable-download checks, and bounded offline/access-failure handling.
 - Added a Guideline Manifest and item-level Reporting Guideline Matrix with manuscript locations, specific improvements, author queries, and explicit assessment scope.
 - Integrated the clean guideline package with reviewer isolation, frozen versions, editor adjudication, and non-regression checks; separated reporting completeness from study validity and risk of bias.
+- Added a discipline-neutral final submission/resubmission audit: cross-file fact and citation reconciliation, first-mention numbering, flow counts, registry history, terminology, statistical summaries, eligibility, factual contributions, and reviewer-response closure.
+- Added explicit coverage statuses and safeguards against false passes for missing files, silent data reconciliation, range-to-IQR relabelling, authorship assumptions from author order, and unverified claims of completed revisions.
 - Added bilingual usage guidance and evaluation cases without bundling third-party guidelines or adding runtime dependencies.
 
 ## 0.4.0 — 2026-08-17

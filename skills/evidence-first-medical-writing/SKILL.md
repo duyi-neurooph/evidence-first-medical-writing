@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, design and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, study-type reporting, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, and full-manuscript credibility audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改或审稿回复. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
+description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, design and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, EQUATOR reporting-guideline checks, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, full-manuscript credibility audits, and final submission checks. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改、审稿回复或投稿前最后核查. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -44,6 +44,7 @@ For every substantive task, first read [principles.md](references/principles.md)
 - For journal selection, submission, reviewer comments, decision letters, response letters, or revision, read [submission-and-review.md](references/submission-and-review.md).
 - For independent reviewers, isolated specialty reviews, editor adjudication, two or more review-and-revision rounds, or combined manuscript/statistical/citation/table/journal audits, read [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md) together with the study-type and task-specific references it names.
 - For full-manuscript review, presubmission checks, or final delivery, read [audit-checklists.md](references/audit-checklists.md).
+- For a final submission/resubmission check or delivery of a revised full manuscript, also read [final-submission-audit.md](references/final-submission-audit.md) to reconcile data, references, numbering, flow counts, registration, terminology, statistical summaries, eligibility, contributions, and reviewer-response closure.
 - When the user asks about the public package's source boundary, rights, or attribution, read [source-notice.md](references/source-notice.md).
 
 Do not load every reference for an ordinary single-paragraph rewrite.
@@ -210,7 +211,7 @@ Before any capability or fallback explanation, copy the quoted versioned capabil
 
 ### Diagnose a full manuscript or run a presubmission check
 
-Prioritize the title, abstract, primary outcome, participant flow, Table 1, main results, first discussion paragraph, limitations, and conclusion. Return three columns—`Must change`, `Recommended change`, and `Author verification`—and highlight P0 items.
+Prioritize the title, abstract, primary outcome, participant flow, Table 1, main results, first discussion paragraph, limitations, and conclusion. Return three columns—`Must change`, `Recommended change`, and `Author verification`—and highlight P0 items. For “投稿前最后一遍检查,” “修回稿最终检查,” or “final check before submission,” run [final-submission-audit.md](references/final-submission-audit.md) and return its coverage and ten-check matrix. A final-check request alone does not authorize a whole-manuscript rewrite or multiple reviewer rounds.
 
 ## Public identity and source boundary
 

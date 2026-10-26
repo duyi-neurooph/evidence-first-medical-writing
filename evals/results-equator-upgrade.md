@@ -6,7 +6,7 @@ Base: `7642b9e` (published 0.4.0). Branch: `feature/equator-guideline-retrieval`
 
 Status: development validation for proposed 0.5.0; not a release announcement.
 
-## Static and integration checks
+## Static and integration checks (initial guideline-retrieval batch)
 
 - Skill frontmatter/structure validation: passed.
 - Plugin JSON parsing and Git whitespace checks: passed.

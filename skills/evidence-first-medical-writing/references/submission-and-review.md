@@ -27,6 +27,8 @@
 
 ## 2. 投稿前
 
+对最终稿执行 [final-submission-audit.md](final-submission-audit.md)，记录十项检查的通过、问题、无法核实或不适用状态及依据；修回稿须逐条核对回复与实际修改。
+
 - 按最新版作者指南核对文章类型、结构、字数、图表和补充材料。
 - 按 [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md) 核对适用报告指南和逐项清单；同一任务复用已核实的指南记录，换期刊或再次投稿时重新核实版本。期刊指定旧版时保留其提交要求并说明差异。
 - 确认注册、伦理、同意、数据共享、利益冲突和作者贡献信息真实一致。

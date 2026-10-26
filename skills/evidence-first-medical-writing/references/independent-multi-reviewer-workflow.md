@@ -340,6 +340,8 @@ A reporting-guideline pass additionally requires the applicable item-level check
 
 ## 10. Deliverables and file safety
 
+Before final manuscript delivery, run [final-submission-audit.md](final-submission-audit.md) against the revised files. Reuse editor Issue Matrix IDs and existing guideline/citation records. It adds the final ten-check reconciliation; it does not start another reviewer round by itself.
+
 Provide only the deliverables relevant to the user’s request:
 
 1. revised clean manuscript;
@@ -354,7 +356,8 @@ Provide only the deliverables relevant to the user’s request:
 10. final journal-compliance checklist;
 11. remaining author decisions;
 12. a version manifest with filenames;
-13. a Guideline Manifest and Reporting Guideline Matrix, including unresolved access or reporting items.
+13. a Guideline Manifest and Reporting Guideline Matrix, including unresolved access or reporting items;
+14. final submission audit coverage and check matrix, with unresolved author decisions.
 
 Never overwrite source files. Use explicit versioned names, for example:
 

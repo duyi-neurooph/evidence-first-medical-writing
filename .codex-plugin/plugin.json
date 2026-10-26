@@ -20,7 +20,8 @@
     "simulated-peer-review",
     "multi-reviewer",
     "reporting-guidelines",
-    "equator"
+    "equator",
+    "submission-checklist"
   ],
   "skills": "./skills/",
   "interface": {
@@ -40,7 +41,8 @@
       "Build a title, abstract plan, and IMRaD outline for this study.",
       "Rewrite these results without changing any facts or numbers.",
       "Run two rounds of independent simulated peer review with a separate editor, citation audit, and non-regression check.",
-      "Retrieve the current applicable reporting guideline through EQUATOR and review this manuscript item by item."
+      "Retrieve the current applicable reporting guideline through EQUATOR and review this manuscript item by item.",
+      "Run the final submission check across this manuscript, tables, figures, references, and reviewer responses."
     ]
   }
 }
