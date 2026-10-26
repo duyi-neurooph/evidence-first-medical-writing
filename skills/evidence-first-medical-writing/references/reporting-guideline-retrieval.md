@@ -10,6 +10,8 @@ This is a runtime procedure for an assistant with browsing and, where available,
 
 ## 1. Select by actual design and reporting purpose
 
+First run [study-design-confirmation.md](study-design-confirmation.md). Explain the proposed classification to the author and obtain or reuse fact-based confirmation. If decisive facts remain unresolved, ask focused questions and keep guidance selection provisional; do not finalize a compliance assessment from the title, author-preferred label, routine follow-up, or use of historical records alone.
+
 Read supplied journal instructions, templates, and checklists first. Identify whether the document reports completed research, a protocol, an evidence synthesis, a narrative argument, or guideline/consensus development. Record design features that may require extensions: cluster allocation, noninferiority, routinely collected data, diagnostic AI, prediction modelling, scoping review, and similar features.
 
 Use the [EQUATOR reporting-guideline library](https://www.equator-network.org/reporting-guidelines/) and its [selection toolkit](https://www.equator-network.org/toolkits/selecting-the-appropriate-reporting-guideline/) as discovery entry points. Search by study type, relevant clinical area, and report section; prefer English search terms. Follow the selected record to the issuing group's official site or original publication.
@@ -29,7 +31,7 @@ These families are search starting points, not a version registry or exhaustive 
 | Clinical guideline or consensus development | Search RIGHT/AGREE reporting guidance or ACCORD according to the actual development methods; distinguish reporting guidance from appraisal instruments |
 | Narrative review, Critical Review, Perspective, Expert Opinion, policy article | Search for genre-specific guidance and journal requirements; do not impose PRISMA solely because the article is called a review |
 
-Select a main guideline plus only relevant extensions. A generic table cannot replace the live search. If the available description leaves a material design ambiguity, ask one targeted question; otherwise record a provisional classification and continue with clearly bounded work. If no applicable guideline is found after a targeted search, record the search scope and `No applicable guideline identified`; do not invent an EQUATOR checklist or a compliance score. Use the journal's genre rules and the skill's evidence/argument checks.
+Select a main guideline plus only relevant extensions after the design gate. A generic table cannot replace author clarification or the live search. Candidate-guideline exploration can inform the discussion, but unresolved classifications remain explicit and cannot support a final checklist pass. If no applicable guideline is found after a targeted search, record the search scope and `No applicable guideline identified`; do not invent an EQUATOR checklist or a compliance score. Use the journal's genre rules and the skill's evidence/argument checks.
 
 ## 2. Retrieve, read, and verify the version
 

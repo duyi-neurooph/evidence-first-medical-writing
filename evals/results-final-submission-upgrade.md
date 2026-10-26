@@ -16,6 +16,8 @@ The source checklist was generalized into methods, not redistributed as a docume
 
 Fresh read-only contexts received the skill path and synthetic user requests without the expected outcomes, evaluation files, or other reviewers' findings. Both requests prohibited external access and did not authorize manuscript edits.
 
+These runs preceded the later design-confirmation and optional data-audit additions. They record the final-check module's behavior at that stage, not a rerun of the complete final intake. The later additions have separate results in [results-design-and-data-upgrade.md](results-design-and-data-upgrade.md).
+
 ### S1 — Cross-file counts, references, order, and summaries: pass
 
 The evaluator located the 118/120 randomized-count conflict and the five-person screening-to-randomization discrepancy, without choosing a corrected value or inventing exclusions. It explicitly avoided summing overlapping analysis sets. It identified the table first-mention problem and the false IQR heading, proposed a truthful range label without changing values, and requested quartiles if an IQR display is needed.
@@ -28,7 +30,7 @@ The evaluator located the 12/24-week endpoint discrepancy and did not infer orig
 
 The response checked comment 1(a) and 1(b) separately, identified insufficient missing-data reporting, and treated a sensitivity-table caption as insufficient evidence of the promised results rather than proof that no analysis occurred. It accepted a reasoned scope-based disagreement on comment 2 within the supplied response, preserved the deleted-background constraint and British English, and did not impose numeric citation ordering on an author-date journal. It returned F1–F10 coverage without networking, automatic editing, new analysis, or extra reviewer rounds.
 
-## Combined static validation
+## Combined static validation (before the later design/data additions)
 
 - Skill frontmatter/structure validation and plugin JSON parsing: passed.
 - Local Markdown links: 33 files checked, no missing targets.

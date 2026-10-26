@@ -62,6 +62,7 @@ Before review, build an internal Manuscript Contract from the supplied files and
 | Field | Required content |
 |---|---|
 | Target | journal, article type, target audience |
+| Study design | Design Confirmation Card: actual design/analysis, supporting facts, unresolved gaps, author confirmation and date/version |
 | Language | manuscript language; British or American English |
 | Limits | word limit; mandatory sections |
 | Journal rules | abstract, highlights, tables, figures, supplements, and reference requirements |
@@ -69,6 +70,7 @@ Before review, build an internal Manuscript Contract from the supplied files and
 | Version | manuscript version and date or other stable identifier |
 | Source package | manuscript files, tables, supplements, journal guidelines, template, protocol, registration, and other supplied sources |
 | External research | allowed or not allowed; permitted scope |
+| Optional data audit | offered/accepted/declined/unavailable; authorized files, dictionary, allowed computations, privacy limits and raw-versus-derived provenance |
 | Protected decisions | author positions, terminology, data, and structure that must be retained |
 | Immutable facts | facts, numbers, endpoint definitions, unpublished information, and other material that must not be altered |
 | Rejected content | material the user has deleted, rejected, or instructed the workflow not to restore |
@@ -76,7 +78,9 @@ Before review, build an internal Manuscript Contract from the supplied files and
 
 If journal guidance or a template is supplied, read it before applying general experience. For requirements that may have changed, consult current official sources only when external research is permitted, and record the date checked.
 
-Before freezing the package or starting any reviewer, run [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md). Public guideline lookup is on by default when tools permit, unless the user restricts it; distinguish it from broader literature research. If access fails or is prohibited, disclose the limitation and use supplied guidance provisionally. Do not mark current-guideline compliance as verified without the necessary sources.
+Before selecting design-specific reviewers or freezing the package, run [study-design-confirmation.md](study-design-confirmation.md) with the author, then [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md). Public guideline lookup is on by default when tools permit, unless the user restricts it; distinguish it from broader literature research. If access fails or is prohibited, disclose the limitation and use supplied guidance provisionally. Do not mark current-guideline compliance as verified without the necessary sources.
+
+Offer [optional-data-integrity-audit.md](optional-data-integrity-audit.md) without making data sharing a prerequisite. If accepted, freeze only the authorized, de-identified data subset/dictionary and assign suitable factual/statistical checks. Do not distribute precomputed anomaly accusations or another agent's Data Audit Ledger to independent reviewers; the editor reconciles the separate findings later. Keep declined/unavailable checks visible without penalizing the author or claiming data authenticity.
 
 Use conservative defaults for noncritical omissions and disclose them in the output. Ask the user only when an omission would change the scientific interpretation, the protected content, or a material journal requirement. Never infer unpublished facts.
 

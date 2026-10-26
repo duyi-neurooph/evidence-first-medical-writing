@@ -10,8 +10,10 @@ See:
 - [multi-reviewer-test-cases.md](multi-reviewer-test-cases.md) for article-type and adversarial tests of the independent multi-reviewer workflow;
 - [reporting-guideline-test-cases.md](reporting-guideline-test-cases.md) for live retrieval, selection, scope, version, and reviewer-isolation behavior;
 - [final-submission-test-cases.md](final-submission-test-cases.md) for cross-file reconciliation, revision closure, missing-file boundaries, and discipline-neutral final checks;
+- [design-and-data-test-cases.md](design-and-data-test-cases.md) for author-facing design clarification, optional data checks, statistical scope and cautious anomaly handling;
 - [results-equator-upgrade.md](results-equator-upgrade.md) for the unreleased guideline-retrieval upgrade's actual checks and coverage limits;
 - [results-final-submission-upgrade.md](results-final-submission-upgrade.md) for the generalized final-check module's actual checks and coverage limits;
+- [results-design-and-data-upgrade.md](results-design-and-data-upgrade.md) for the author-dialogue and optional data-audit forward runs;
 - [results-0.4.0.md](results-0.4.0.md) for the version 0.4.0 validation baseline;
 - [results-0.3.0.md](results-0.3.0.md) for the release baseline.
 

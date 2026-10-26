@@ -8,11 +8,27 @@ Use the current manuscript version and supplied abstract, tables, figures, legen
 
 Keep the audit discipline-neutral. Store author-specific terminology and formatting preferences in the task card or Decision Ledger, not as universal specialty rules. Use [audit-checklists.md](audit-checklists.md) for credibility grading and [architecture-and-evidence.md](architecture-and-evidence.md) for claim support; the checks below add the final cross-file reconciliation.
 
+Reuse the confirmed study design and optional data-check decision from intake. If no decision exists, briefly offer [optional-data-integrity-audit.md](optional-data-integrity-audit.md) without requiring data sharing. Distinguish cross-file consistency from reconciliation with source/analysis data; a manuscript-only pass does not verify the underlying data.
+
 ## Ten checks
 
 ### F1 — Abstract, text, tables, and supplements agree
 
 Compare repeated study facts in both directions: population and analysis-set counts, groups, outcome definitions and time points, units, denominators, effect directions, estimates, confidence intervals, and P values. Record both conflicting values and their exact locations. Explain genuine differences in population or timing before calling them contradictions. Do not choose the “right” value by majority vote or silently make one section match another; unresolved data conflicts require author/source confirmation.
+
+Run two distinct layers: **source/analysis-data reconciliation** when authorized data are available, and **within-manuscript logical consistency** for the supplied text, tables and figures regardless of data access. Passing the first layer never substitutes for the second: a correctly copied result can still be mislabeled, compared with an incompatible denominator, or interpreted in the wrong direction. Report separate statuses and coverage for each layer.
+
+After any data reconciliation, and independently in a manuscript-only check, examine:
+
+- whether mutually exclusive component counts match their stated total and percentages match the stated denominator within declared rounding tolerance; do not sum overlapping subgroups or analysis sets;
+- whether an event numerator counts people or repeat events before comparing it with a participant denominator; totals of repeat events may legitimately exceed the number of people;
+- whether population, analysis set, comparator, outcome definition, time point and follow-up window match across each comparison; flag unexplained changes rather than forcing different populations to agree;
+- whether units, group order, axis labels/scales, transformations, error-bar definitions and legends agree with the table values and prose; do not infer exact raw values from plotted pixels;
+- whether the effect measure, reference group, outcome scoring direction and written benefit/harm conclusion agree; a higher score is not automatically improvement;
+- whether summaries obey the same-variable mathematical constraints, such as minimum ≤ median ≤ maximum or stated quartiles in order, allowing declared rounding; do not derive absent quartiles or demand that adjusted effects equal crude averages;
+- whether confidence intervals, P values and significance claims concern the same estimand, test, uncertainty level and analysis; apparent disagreements require checking sidedness, adjustment, methods and rounding, not an automatic correction.
+
+For each logic finding state the two locations, the expected relationship, the observed contradiction and any plausible scope/rounding explanation. Mark unreadable figures or missing legends unverified. A logic pass is limited to inspected material and is neither an authenticity certificate nor a reanalysis.
 
 ### F2 — Citation callouts and reference entries reconcile
 

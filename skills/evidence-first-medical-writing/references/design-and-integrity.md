@@ -33,6 +33,8 @@
 
 ## 2. 研究问题与设计对齐
 
+应用设计特异的报告指南前，按 [study-design-confirmation.md](study-design-confirmation.md) 与作者确认实际研究设计。不能把标题或作者使用的“随机”“前瞻性”“回顾性”直接当作事实。核查原始数据属于可选范围，须先取得授权并按 [optional-data-integrity-audit.md](optional-data-integrity-audit.md) 记录可复现的异常、可能解释和核实责任，不能据异常认定造假。
+
 ### 选题筛选
 
 先问“临床或研究决策缺什么答案”，再问“手里有什么数据”。一个可推进的问题通常同时满足：

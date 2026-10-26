@@ -2,6 +2,9 @@
 
 ## Unreleased — proposed 0.5.0
 
+- Added an author-facing study-design confirmation gate before final guideline selection, including focused questions on allocation, selection and chronology and protection against unsupported design labels.
+- Added an optional authorized, de-identified data/figure/table reconciliation and statistical-method audit, with reproducible findings, cautious anomaly triage and scoped specialist/skill escalation; data sharing is not a prerequisite and anomalies are not findings of misconduct.
+- Separated source-data agreement from within-manuscript logical consistency: even reproduced values require independent cross-text/table/figure checks of populations, denominators, timing, units, directions and interpretation; the internal layer also runs without raw data.
 - Added runtime EQUATOR discovery and official guideline/checklist retrieval before substantive manuscript writing, revision, and single- or multi-reviewer assessment.
 - Added study-type and extension selection, live version verification, journal-edition reconciliation, readable-download checks, and bounded offline/access-failure handling.
 - Added a Guideline Manifest and item-level Reporting Guideline Matrix with manuscript locations, specific improvements, author queries, and explicit assessment scope.

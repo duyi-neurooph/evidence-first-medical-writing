@@ -19,6 +19,8 @@ Status: development validation for proposed 0.5.0; not a release announcement.
 
 Two fresh evaluator contexts received the skill path and realistic synthetic user requests, without evaluation criteria, expected answers, or other reviewers' findings. They did not edit the repository.
 
+These runs preceded the later author-confirmed design gate and optional data-audit additions. They validate the initial retrieval behavior, not the complete final intake sequence. The reusable G1/G2 specifications now include an author-confirmation exchange for future runs; see [results-design-and-data-upgrade.md](results-design-and-data-upgrade.md) for the separately executed intake/data tests.
+
 ### G1 — Live randomized-trial Methods revision: pass
 
 The request did not mention EQUATOR. The evaluator identified the trial-report scope and opened EQUATOR, the issuing group's site, the extensions listing, and the published statement before producing a revision.

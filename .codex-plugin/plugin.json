@@ -21,7 +21,9 @@
     "multi-reviewer",
     "reporting-guidelines",
     "equator",
-    "submission-checklist"
+    "submission-checklist",
+    "study-design",
+    "data-consistency"
   ],
   "skills": "./skills/",
   "interface": {
