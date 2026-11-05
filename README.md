@@ -79,7 +79,7 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
-### Over-defensive scientific writing (unreleased)
+### Over-defensive scientific writing
 
 Substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, and final audits now distinguish necessary scientific qualifications from repetitive disclaimers. The workflow checks semantic repetition across available sections, tables, supplements, and legends, rather than counting negative words. It complements the existing AI-Like Residue Audit.
 
@@ -93,7 +93,7 @@ necessary evidence boundaries. Record retained and deleted caveats so they do
 not regress in later rounds. Do not invent missing facts or limitations.
 ```
 
-This feature is on the review branch, not in the published 0.5.0 ZIP below.
+Included from version 0.6.0.
 
 ### Current reporting guidelines at task time
 
@@ -209,10 +209,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0).
+Current release: [0.6.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.6.0).
 
-This release adds author-confirmed study design, runtime reporting-guideline retrieval, optional data checks and a ten-part final submission audit. It retains the five quality gates and independent multi-reviewer workflow. See [CHANGELOG.md](CHANGELOG.md).
+This release adds evidence-preserving detection and revision of over-defensive scientific writing, including repetitive caveats across sections, tables, and legends. It also improves audience-specific explanation, critical-methods completeness, and limitation–remedy fit. It retains the five quality gates, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.5.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.6.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.6.0/evidence-first-medical-writing-0.6.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

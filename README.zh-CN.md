@@ -80,7 +80,7 @@ skills/evidence-first-medical-writing/SKILL.md
 以及稿件中的修改位置。
 ```
 
-### 过度防御性科学写作检查（尚未发布）
+### 过度防御性科学写作检查
 
 实质性起草、语言改写、手稿修订、整稿审查、模拟同行评审及最终核查时，区分“必要的科学限定”和“反复免责声明”。检查跨章节、正文与表格、补充表及图注的语义重复，不统计否定词数量，也不强行改写准确自然的句子。它补充现有“去 AI 化”检查，不取代该检查。
 
@@ -93,7 +93,7 @@ skills/evidence-first-medical-writing/SKILL.md
 防止后续审稿重新加入。不要编造缺失的事实或局限。
 ```
 
-此功能目前属于待审阅更新，下方已发布的 0.5.0 ZIP 尚不包含它。
+此功能从 0.6.0 版本开始提供。
 
 ### 使用时自动获取适用报告指南
 
@@ -204,10 +204,10 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：[0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0)。
+当前版本：[0.6.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.6.0)。
 
-本版新增：与作者确认研究类型、使用时获取报告指南、可选数据核查，以及十项投稿前最终核查；保留原有五道质量门和独立多审稿人工作流。详见 [CHANGELOG.md](CHANGELOG.md)。
+本版新增：在保留证据边界的前提下识别和修订过度防御性科学写作，检查跨章节、表格和图注的重复限定；补强按读者需要分配解释篇幅、关键方法完整性，以及局限与后续研究建议的匹配。保留原有五道质量门、独立多审稿人工作流、研究类型确认、实时报告指南、可选数据核查及投稿前最终核查。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [0.5.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [0.6.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.6.0/evidence-first-medical-writing-0.6.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

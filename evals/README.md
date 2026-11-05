@@ -8,6 +8,7 @@ See:
 
 - [anti-defensive-test-cases.md](anti-defensive-test-cases.md) for contextual caveat editing, necessary-boundary controls, cross-section repetition, genre fit, and non-regression behavior;
 - [results-anti-defensive-upgrade.md](results-anti-defensive-upgrade.md) for actual synthetic forward runs, the observed correction and retest, package checks, and coverage limits;
+- [results-0.6.0.md](results-0.6.0.md) for the version 0.6.0 release baseline and its validation limits;
 - [test-cases.md](test-cases.md) for reusable prompts and criteria;
 - [multi-reviewer-test-cases.md](multi-reviewer-test-cases.md) for article-type and adversarial tests of the independent multi-reviewer workflow;
 - [reporting-guideline-test-cases.md](reporting-guideline-test-cases.md) for live retrieval, selection, scope, version, and reviewer-isolation behavior;
