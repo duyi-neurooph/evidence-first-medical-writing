@@ -72,6 +72,8 @@ For a resubmission, map each editor/reviewer comment and its subparts to a direc
 
 ## Output and closure
 
+Complete the companion [Over-Defensive Writing Audit](anti-defensive-scientific-writing.md) on the same available package. Reuse its findings and Decision Ledger entries if already completed; recheck affected passages after edits. Keep F1–F10 stable and report this companion audit separately, with missing-material limits. Necessary disclosures, negative primary outcomes, safety constraints, and standalone qualifications must survive compression. Do not add another review round merely for stylistic preferences.
+
 Return a compact final-audit report:
 
 1. **Coverage:** manuscript/file versions examined, journal and guideline sources, access limits, and missing materials.

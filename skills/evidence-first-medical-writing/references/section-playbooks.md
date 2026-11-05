@@ -70,6 +70,10 @@
 
 写“怎么测、什么时候测、谁来测、如何判定”，少写“评价了 A、B、C”。统计方法应与变量分布、结局类型和研究目的相匹配，但不要在没有数据证据时擅自改模型。
 
+### Critical-methods completeness triage
+
+Check the defining comparison before polishing routine procedural detail: what intervention or exposure actually occurred in each group; what the comparator received; how, when, and by whom the primary outcome was determined; and which analysis estimates the intended effect. A long list of assays or instruments does not compensate for missing core methods. Do not collapse different group-specific doses or schedules into a range that hides the comparison. If essential details belong in a supplement under the journal's rules, provide a precise, accessible cross-reference; do not simply omit them or defer them to Results. Mark unavailable information for author confirmation rather than inferring it from common practice.
+
 ## 结果
 
 ### 推荐顺序
@@ -119,12 +123,16 @@
 
 不要只列“单中心、回顾性、样本小”。说明具体信息缺失或选择机制怎样影响结果，例如治疗指征混杂、时间记录误差、随访不完整、结局定义不稳定或缺乏外部验证。
 
+### Limitation–remedy fit
+
+For each proposed remedy, trace `limitation → affected inference → appropriate verification or study design → decision resolved`. Explain why the proposed work addresses that particular uncertainty. A larger sample may improve precision without removing confounding; additional centres do not by themselves correct measurement bias; missing external prediction-model validation does not automatically call for a randomized trial. Distinguish a feasible correction in the current manuscript, a reanalysis requiring author or statistical approval, and a genuinely new study. Do not retrospectively alter participants, outcomes, or the design to make a limitation disappear. Use the existing future-research specification in [independent-multi-reviewer-workflow.md](independent-multi-reviewer-workflow.md) when more detail is warranted, without requiring every manuscript to propose a new study.
+
 ## 结论
 
 1. 找到结果中直接支撑结论的句子和数据。
 2. 删除结果中未分析的人群、机制、疗效和实践建议。
 3. 按设计和不确定性选择动词：`associated with`、`estimated`、`did not demonstrate evidence of improvement`、`supports further evaluation` 等。只有估计量和 CI 足以排除有临床意义的获益时，才使用更强的 `did not improve`。
-4. 主要结局阴性时明确承认；次要或亚组发现标为探索性。
+4. 主要结局阴性时明确承认；次要或亚组发现按预设层级和多重性框架标注，不一概视为探索性，也不得取代主要结局。
 5. 写出适用人群、时间和证据强度中最重要的边界。
 
 ## Cover letter

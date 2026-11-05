@@ -93,6 +93,8 @@
 
 ### 第 7 轮：叙事与语言
 
+Run a named **Over-Defensive Writing Audit** using [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md), alongside the AI-Like Residue Audit. Cover available abstracts, highlights, introduction, discussion, limitations, conclusions, expert opinion, tables, supplementary tables, and legends. Report missing coverage, semantic repetition and necessary boundaries separately. An audit alone proposes edits; it does not authorize rewriting.
+
 - 每段首句能说明本段任务；每段只推进一个逻辑单元。
 - 一句话只承载一个主要命题，并列内容处于同一层级。
 - 代词、缩写、组别、分母和比较方向无需读者回查。

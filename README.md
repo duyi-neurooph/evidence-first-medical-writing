@@ -79,6 +79,22 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
+### Over-defensive scientific writing (unreleased)
+
+Substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, and final audits now distinguish necessary scientific qualifications from repetitive disclaimers. The workflow checks semantic repetition across available sections, tables, supplements, and legends, rather than counting negative words. It complements the existing AI-Like Residue Audit.
+
+Actions are **Keep, Consolidate, Reframe, Delete, or Author decision**. Each finding identifies its location, wording, issue, scientific risk if removed, and proposed revision. Negative primary outcomes, causal limits, analysis hierarchy, safety/ethics disclosures, and qualifications needed by a standalone abstract or table are protected. No defect means no forced rewrite; no missing limitation is invented to fill a table cell. Spelling, formatting, and literal translation do not launch a full-manuscript audit.
+
+```text
+Use $evidence-first-medical-writing to revise this manuscript for over-defensive
+writing. Identify repetitive caveats across sections and tables. Explain the
+scientific risk before deleting any qualification; preserve my conclusions and
+necessary evidence boundaries. Record retained and deleted caveats so they do
+not regress in later rounds. Do not invent missing facts or limitations.
+```
+
+This feature is on the review branch, not in the published 0.5.0 ZIP below.
+
 ### Current reporting guidelines at task time
 
 For substantive manuscript planning, drafting, rewriting, or review, the skill first discusses the actual study design with you. It explains the evidence for a proposed classification and asks only the decisive missing questions, for example who assigned treatment, how allocation worked, how participants were selected, and when study planning and outcome collection occurred. It does not assume that "random," "prospective," or "retrospective" in a title establishes the design. It reuses facts already confirmed in the task, without repeating the interview.

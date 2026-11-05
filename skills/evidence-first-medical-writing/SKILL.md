@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Evidence-first planning, diagnosis, rewriting, and quality control for medical research and manuscripts in English or Chinese. Use for research questions, PICO-T, study-design confirmation and outcomes, research integrity, critical reading and citations, titles, abstracts, IMRaD sections, tables and figures, EQUATOR reporting-guideline checks, language logic, journal submission, cover letters, revisions, reviewer responses, independent multi-reviewer simulated peer review, editor adjudication, iterative revision, full-manuscript credibility audits, and final submission checks, and optional authorized data audits. Also use for Chinese requests about SCI 医学论文写作、研究设计与表达、论文可信度、自明性、主线一致、多个独立审稿人、两轮审稿修改、审稿回复或投稿前最后核查. Do not use to impersonate real people, reproduce source materials, claim that simulated review is real external peer review, or replace current journal guidance, statistical review, ethics review, or legal advice.
+description: Plan, draft, revise, and audit medical research manuscripts in English or Chinese with evidence fidelity first. Use for study-design clarification, EQUATOR reporting checks, research integrity, IMRaD and review structure, citations, tables/figures, over-defensive scientific writing and repetitive caveats, language revision, submission and reviewer responses, independent multi-reviewer simulated peer review, iterative editor-led revision, final submission checks, and optional authorized data reconciliation. Also use for SCI 医学论文写作、论文可信度、自明性、主线一致、过度防御性写作、重复限定、独立审稿及投稿前核查. Not a substitute for current journal instructions, professional statistical or ethics review, or real external peer review; never impersonate people or reproduce source materials.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -43,6 +43,7 @@ For every substantive task, first read [principles.md](references/principles.md)
 - Before substantive manuscript planning, writing, rewriting, or review, read [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) and retrieve current applicable guidance through EQUATOR and official sources. This includes ordinary single-reviewer requests; users need not name EQUATOR. Pure copyediting or literal translation follows the scope exceptions in that reference.
 - For RCTs, noninferiority/equivalence, observational studies, diagnostic studies, prediction studies, systematic reviews/meta-analyses, case reports, short-form articles, or experimental studies, read [study-type-playbooks.md](references/study-type-playbooks.md).
 - For English or Chinese rewriting, translation, sentence logic, connectors, terminology, abbreviations, or tense, read [language-and-logic.md](references/language-and-logic.md).
+- For substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, final audits, or requests to reduce repetitive caveats, read [anti-defensive-scientific-writing.md](references/anti-defensive-scientific-writing.md). Apply its local check to excerpts and its cross-section audit only to available full-manuscript materials; spelling, formatting, and literal translation do not trigger a full audit.
 - For journal selection, submission, reviewer comments, decision letters, response letters, or revision, read [submission-and-review.md](references/submission-and-review.md).
 - For independent reviewers, isolated specialty reviews, editor adjudication, two or more review-and-revision rounds, or combined manuscript/statistical/citation/table/journal audits, read [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md) together with the study-type and task-specific references it names.
 - For full-manuscript review, presubmission checks, or final delivery, read [audit-checklists.md](references/audit-checklists.md).
@@ -151,6 +152,7 @@ Give the 3–7 most important issues first, then expand into details.
 ### 7. Rewrite
 
 - Preserve every fact, value, denominator, unit, direction, and uncertainty. Do not change the scientific conclusion on the author's behalf.
+- Prefer evidence, interpretation, and implication over repeated disclaimers. Consolidate only redundant wording, not necessary evidence boundaries; accurate, natural prose may remain unchanged. Preserve qualifications needed by independently read abstracts, tables, and legends.
 - Report only the observed evidence in Results; place interpretation, comparison, and meaning in Discussion.
 - State the comparator first, then the direction, value, effect estimate, confidence interval, and any necessary exact P value.
 - Keep primary, secondary, subgroup, sensitivity, and exploratory analyses clearly labeled.
@@ -185,6 +187,7 @@ After rewriting, verify that:
 - the conclusion stays within the design, effect estimate, and uncertainty;
 - abbreviations are defined at first use, and group names, tables, and figure legends are independently understandable;
 - protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened;
+- caveat edits preserve the author's scientific position and necessary boundaries without restoring rejected repetition; no new limitation, explanation, or clinical implication was invented to replace a deleted sentence;
 - the Reporting Guideline Matrix matches the revised manuscript, selected versions, and actual assessment scope; unavailable sources and unresolved omissions are not marked as passed.
 
 ## Task routing

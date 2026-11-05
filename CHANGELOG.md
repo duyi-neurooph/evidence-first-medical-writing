@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — proposed 0.6.0
+
+- Refined audience-calibrated explanation, critical-methods completeness, and limitation–remedy fit within the existing architecture and section playbooks. Preserved mandatory reporting information and study-specific details; corrected an overbroad rule that treated every secondary or subgroup finding as exploratory.
+- Added an over-defensive scientific-writing module with eight contextual detection patterns, six decision checks, and Keep / Consolidate / Reframe / Delete / Author decision outcomes.
+- Integrated prevention during drafting, minimum-change excerpt revision, semantic cross-section/table/legend audits, independent reviewer remits, editor adjudication, and persistent caveat decisions.
+- Preserved scientific strength, safety/ethics disclosures, standalone reading-unit qualifications, reporting requirements, source fidelity, and the existing AI-Like Residue Audit.
+- Added original general-medical paired evaluation cases, including no-edit controls and safeguards against invented limitations and regression across rounds.
+- Release metadata and published download links remain at 0.5.0 until release approval; no tag or release is created by this update.
+
 ## 0.5.0 — 2026-10-26
 
 - Added an author-facing study-design confirmation gate before final guideline selection, including focused questions on allocation, selection and chronology and protection against unsupported design labels.
