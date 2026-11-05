@@ -79,6 +79,22 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
+### Over-defensive scientific writing
+
+Substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, and final audits now distinguish necessary scientific qualifications from repetitive disclaimers. The workflow checks semantic repetition across available sections, tables, supplements, and legends, rather than counting negative words. It complements the existing AI-Like Residue Audit.
+
+Actions are **Keep, Consolidate, Reframe, Delete, or Author decision**. Each finding identifies its location, wording, issue, scientific risk if removed, and proposed revision. Negative primary outcomes, causal limits, analysis hierarchy, safety/ethics disclosures, and qualifications needed by a standalone abstract or table are protected. No defect means no forced rewrite; no missing limitation is invented to fill a table cell. Spelling, formatting, and literal translation do not launch a full-manuscript audit.
+
+```text
+Use $evidence-first-medical-writing to revise this manuscript for over-defensive
+writing. Identify repetitive caveats across sections and tables. Explain the
+scientific risk before deleting any qualification; preserve my conclusions and
+necessary evidence boundaries. Record retained and deleted caveats so they do
+not regress in later rounds. Do not invent missing facts or limitations.
+```
+
+Included from version 0.6.0.
+
 ### Current reporting guidelines at task time
 
 For substantive manuscript planning, drafting, rewriting, or review, the skill first discusses the actual study design with you. It explains the evidence for a proposed classification and asks only the decisive missing questions, for example who assigned treatment, how allocation worked, how participants were selected, and when study planning and outcome collection occurred. It does not assume that "random," "prospective," or "retrospective" in a title establishes the design. It reuses facts already confirmed in the task, without repeating the interview.
@@ -193,10 +209,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.5.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.5.0).
+Current release: [0.6.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.6.0).
 
-This release adds author-confirmed study design, runtime reporting-guideline retrieval, optional data checks and a ten-part final submission audit. It retains the five quality gates and independent multi-reviewer workflow. See [CHANGELOG.md](CHANGELOG.md).
+This release adds evidence-preserving detection and revision of over-defensive scientific writing, including repetitive caveats across sections, tables, and legends. It also improves audience-specific explanation, critical-methods completeness, and limitation–remedy fit. It retains the five quality gates, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.5.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.5.0/evidence-first-medical-writing-0.5.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.6.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.6.0/evidence-first-medical-writing-0.6.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

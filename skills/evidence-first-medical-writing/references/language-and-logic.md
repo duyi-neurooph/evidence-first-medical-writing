@@ -1,5 +1,7 @@
 # 科学语言与逻辑编辑
 
+For substantive rewriting, use [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md) to distinguish necessary evidence boundaries from repetitive caveats. For a supplied sentence or paragraph, use a local check only; do not infer repetition in unseen sections. Preserve mature wording when no meaningful defect exists. This complements the AI-Like Residue Audit, not a ban on negative words or cautious language.
+
 ## 目录
 
 1. 编辑顺序

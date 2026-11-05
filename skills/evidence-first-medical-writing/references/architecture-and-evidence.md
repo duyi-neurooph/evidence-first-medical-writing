@@ -1,5 +1,7 @@
 # 论文架构、批判性阅读与引用链
 
+For substantive drafting or revision, apply [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md): map repeated scientific propositions to their section jobs before cutting caveats. Each occurrence must either add an inference or preserve a necessary boundary for a standalone reading unit. Keep claim-specific citations attached when consolidating; a distant Limitations section cannot qualify a misleading abstract or table on its own.
+
 ## 目录
 
 1. 从命题到大纲
@@ -46,6 +48,10 @@
 - 不改变判断的重复图表。
 
 “简练”不是少交代关键事实；是删去低信息内容，把篇幅留给定义、样本流、主要结局、效应量和不确定性。
+
+### Audience-calibrated explanatory budget
+
+Classify each explanation as (1) background the intended readers can reasonably be expected to know, (2) information needed to interpret this study, or (3) mandatory reporting information. Compress category 1 first. Retain study-specific operational definitions, comparison directions, outcome timing, and required disclosures even for expert readers. For a broader audience, explain unfamiliar concepts at first use without adding a textbook digression. When the audience is unclear, state the working assumption; do not treat unfamiliarity as a defect in the reader.
 
 ## 3. 段落任务图
 

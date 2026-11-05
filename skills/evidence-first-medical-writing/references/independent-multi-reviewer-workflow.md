@@ -131,6 +131,8 @@ Add a paediatric, pregnancy, geriatric, patient-reported-outcome, implementation
 
 The editor adjudicates; the editor is never an extra reviewer.
 
+Assign over-defensive-writing checks to the journal editor-style reviewer (or an explicitly designated editorial remit within the selected panel): argument strength, repetitive qualifications, unnecessary rebuttals, and genre fit. Assign preservation of evidence strength to the evidence/methodology reviewer. Both read [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md), but neither sees the other's findings before adjudication. These are remits, not mandatory extra agents. The separate final editor decides which qualifications to keep, consolidate, reframe, or delete; a language reviewer cannot unilaterally remove a methodological or safety boundary. Resolve conflicts in favor of scientific fidelity, record the rationale in the Decision Ledger, and ask the author about unresolved changes in scientific position.
+
 ## 4. Reviewer report contract
 
 Each reviewer independently outputs:
@@ -229,6 +231,7 @@ Create a Decision Ledger when the workflow starts and update it after every edit
 | Known failure patterns | recurring ambiguity, citation clustering, hierarchy, tone, or table problems |
 | Open uncertainty | unresolved facts and required author decisions |
 | Round constraints | every new restriction accepted after each review round |
+| Caveat decisions | proposition and locations; Keep / Consolidate / Reframe / Delete / Author decision; protected boundary, retained standalone occurrences, rationale, and linked issue ID |
 
 User corrections become persistent constraints unless the user explicitly revokes them.
 
@@ -241,6 +244,8 @@ Before every revision and before final delivery, run the Non-Regression Check:
 - [ ] No exploratory endpoint has become a primary endpoint.
 - [ ] No registry, topline, abstract, preprint, or unpublished result is presented as peer-reviewed full-publication evidence.
 - [ ] Empty slogans, template conclusions, and rejected wording have not returned.
+- [ ] Caveat compression has neither strengthened nor weakened scientific meaning; negative primary outcomes, causal limits, safety/ethics constraints, analysis hierarchy, and source status remain explicit where needed.
+- [ ] Deleted redundant caveats have not returned elsewhere; table result and limitation columns have distinct jobs without invented explanations; abstracts and legends still stand alone.
 - [ ] Table rows and columns remain parallel and independently understandable.
 - [ ] Citation callouts, numbering, and the reference list remain synchronized.
 - [ ] No protected number, definition, scientific meaning, authorship, funding, conflict disclosure, or unpublished information has changed without approval.
@@ -276,6 +281,10 @@ Flag formulaic language only when it adds little information or exceeds the evid
 Do not maintain an absolute banned-word list. Ask whether the wording identifies a concrete subject, action, result, time, mechanism, or evidentiary boundary; whether its strength matches the evidence; and whether deletion loses real information.
 
 Future recommendations should state who should act, for which population or setting, what should be done, when, why, and which outcome would show success. Replace generic `more research is needed` with the unresolved decision and the needed population, intervention/exposure, comparator, timing, endpoint, and design. Do not create a false dichotomy merely to sound decisive.
+
+### Over-Defensive Writing Audit
+
+Use [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md) as a distinct companion to the AI-Like Residue Audit, not a replacement. Identify semantic repetition across available sections, tables, supplements, and legends; judge the scientific risk of removal before proposing edits. Report location, original wording, issue, removal risk, action, and suggested revision. Keep necessary boundaries and accurate natural passages. Map findings into the existing Issue Matrix severity system; editorial priority never overrides scientific severity. The editor adjudicates all caveat changes before revision and records both retained qualifications and deleted repetitions for Round 2 closure checks. Fresh reviewers still receive only the new frozen manuscript, clean sources, and permitted contract, not earlier findings or the annotated caveat map.
 
 ### Claim–Citation Audit
 
@@ -334,7 +343,7 @@ Create a point-by-point response matrix linking issue ID, editor decision, actio
 3. Have the editor separately audit Round 1 issue closure against the response matrix.
 4. Identify residual issues, new issues, and revision-induced regressions.
 5. Adjudicate and revise again.
-6. Complete final reporting-guideline, citation, statistical, self-contained-writing, table/figure, AI-residue, and journal-compliance audits.
+6. Complete final reporting-guideline, citation, statistical, self-contained-writing, table/figure, AI-residue, over-defensive-writing, and journal-compliance audits.
 
 Start Round 3 only if a Critical issue remains; a Major issue may change the main interpretation; reference or data integrity is unresolved; journal compliance still fails; or the user explicitly requests another round.
 
