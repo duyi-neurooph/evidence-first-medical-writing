@@ -33,6 +33,8 @@ Ask 1–3 focused, plain-language questions per turn, choosing only those that c
 
 For randomized-trial terminology, consult the official [CONSORT explanation and elaboration](https://www.bmj.com/content/389/bmj-2024-081124) and retrieve the applicable current documents at runtime. The [STROBE explanation and elaboration](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0040297) cautions that prospective/retrospective terminology is ambiguous: report the actual sequence and, if using either label, define its meaning.
 
+When a definition needs clarification, also use the relevant **Determine My Study Type** section in [JAMA Instructions for Authors](https://jamanetwork.com/journals/jama/pages/instructions-for-authors), following [journal-guidance.md](journal-guidance.md). Treat it as a design-definition reference, not a mandate to use JAMA's format. A concise journal definition never substitutes for evidence of random allocation, outcome-based sampling, or actual chronology. Keep study design, report purpose, and journal article category distinct.
+
 Do not force a mixed or embedded design into one label. Separate components, populations, allocation units, time periods, and analysis purposes when they need different guidance. A cohort combining historical records and newly collected follow-up needs that chronology stated; a diagnostic or prediction analysis embedded in a trial needs its own purpose identified. Use applicable guidance for the report and components, not the prestige of the parent design.
 
 ## 3. Confirm facts without manufacturing agreement
@@ -52,6 +54,7 @@ Design card ID / version / date:
 Manuscript or analysis version and report purpose:
 Proposed or confirmed classification (components and current contrast):
 Concrete supporting facts and source locations:
+Definition sources / Manifest IDs, read sections, and unresolved terminology differences:
 Facts already confirmed and reused from the Contract:
 Unresolved facts / contradictions / why they matter:
 Author confirmation or correction: response/date/source, or Not obtained

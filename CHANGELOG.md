@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 — 2026-11-14
+
+- Added task-matched JAMA study-design definitions and NEJM statistical-reporting guidance, with explicit source roles in the existing Guideline Manifest. Actual study facts and the target journal's requirements remain authoritative; no third-party source originals are bundled.
+- Added lightweight submission/resubmission reminders to disclose AI use under the actual target journal's current policy; no AI-use log, history questionnaire, or automatic disclosure draft.
+- Added warnings for verified policy conflicts in the requested activity and bounded handling of inaccessible policies. Changed article types, targets, or requested activities trigger policy rechecking rather than historical-use tracking.
+- Distinguished basic spelling/grammar exemptions from substantive assistance, author-side simulated review from commissioned confidential review, and disclosure from permission. Detector scores and watermarks do not establish an AI-use percentage or policy compliance.
+- Integrated the reminder with submission and final delivery while preserving F1–F10, the five quality gates, and the existing editorial Decision Ledger.
+- Added bilingual instructions and synthetic evaluation cases. Preserved the existing license, dated capability reminder, independent-review isolation, and prior features; no new runtime dependency.
+
 ## 0.6.0 — 2026-11-05
 
 - Refined audience-calibrated explanation, critical-methods completeness, and limitation–remedy fit within the existing architecture and section playbooks. Preserved mandatory reporting information and study-specific details; corrected an overbroad rule that treated every secondary or subgroup finding as exploratory.

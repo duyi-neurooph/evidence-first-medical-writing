@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Plan, draft, revise, and audit medical research manuscripts in English or Chinese with evidence fidelity first. Use for study-design clarification, EQUATOR reporting checks, research integrity, IMRaD and review structure, citations, tables/figures, over-defensive scientific writing and repetitive caveats, language revision, submission and reviewer responses, independent multi-reviewer simulated peer review, iterative editor-led revision, final submission checks, and optional authorized data reconciliation. Also use for SCI 医学论文写作、论文可信度、自明性、主线一致、过度防御性写作、重复限定、独立审稿及投稿前核查. Not a substitute for current journal instructions, professional statistical or ethics review, or real external peer review; never impersonate people or reproduce source materials.
+description: Plan, draft, revise, and audit medical research manuscripts in English or Chinese with evidence fidelity first. Use for study-design clarification, EQUATOR reporting checks, research integrity, IMRaD and review structure, citations, tables/figures, over-defensive scientific writing and repetitive caveats, language revision, submission and reviewer responses, independent multi-reviewer simulated peer review, iterative editor-led revision, final submission checks, AI-use policy and disclosure, and optional authorized data reconciliation. Also use for SCI 医学论文写作、论文可信度、自明性、主线一致、过度防御性写作、重复限定、独立审稿及投稿前核查. Not a substitute for current journal instructions, professional statistical or ethics review, or real external peer review; never impersonate people or reproduce source materials.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -22,6 +22,7 @@ This skill is independently published and maintained by Yi under a neutral name.
 - Do not describe `P>0.05` as equivalence, safety, no effect, or no difference. Evaluate the effect estimate, confidence interval, clinical importance, and prespecified analysis together.
 - Do not automatically upgrade an observational association to causation or present an exploratory finding as prespecified confirmation.
 - Do not hide a negative primary result, limitation, error, protocol deviation, conflict of interest, or uncertainty.
+- Respect journal-specific AI-use restrictions and remind authors to disclose truthfully before submission; disclosure does not authorize prohibited use. Do not automatically track AI-use history or generate disclosure statements.
 - Label every simulated reviewer report, editor decision, and peer-review output as simulated. Do not present it as a real journal decision or real external peer review.
 - Do not publicly accuse anyone of research misconduct without a finding through a formal process. Do not reveal the identity of a patient, author, reviewer, or case provider.
 - Do not copy long source passages, cases, response letters, manuscripts, or distinctive turns of phrase. If asked to "write exactly like" a real person, apply only general methods and explicitly refuse identity or style imitation.
@@ -41,6 +42,8 @@ For every substantive task, first read [principles.md](references/principles.md)
 - For outlines, content selection, paragraph jobs, figure/table narrative, critical reading, or citations, read [architecture-and-evidence.md](references/architecture-and-evidence.md).
 - For titles, abstracts, introductions, methods, results, discussions, conclusions, figures/tables, or cover letters, read [section-playbooks.md](references/section-playbooks.md).
 - Before substantive manuscript planning, writing, rewriting, or review, read [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) and retrieve current applicable guidance through EQUATOR and official sources. This includes ordinary single-reviewer requests; users need not name EQUATOR. Pure copyediting or literal translation follows the scope exceptions in that reference.
+- For study-design definitions, clinical statistical-reporting guidance, or journal-specific preparation, read [journal-guidance.md](references/journal-guidance.md). Use JAMA/NEJM selectively according to source role, not as universal submission rules.
+- For manuscript assistance and submission, read [ai-use-and-disclosure.md](references/ai-use-and-disclosure.md): check relevant restrictions and give a brief presubmission disclosure reminder, without an AI-use ledger or automatic disclosure draft. Recheck a changed target or requested use; spelling-only or reminder-only tasks do not launch a full manuscript audit or design intake.
 - For RCTs, noninferiority/equivalence, observational studies, diagnostic studies, prediction studies, systematic reviews/meta-analyses, case reports, short-form articles, or experimental studies, read [study-type-playbooks.md](references/study-type-playbooks.md).
 - For English or Chinese rewriting, translation, sentence logic, connectors, terminology, abbreviations, or tense, read [language-and-logic.md](references/language-and-logic.md).
 - For substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, final audits, or requests to reduce repetitive caveats, read [anti-defensive-scientific-writing.md](references/anti-defensive-scientific-writing.md). Apply its local check to excerpts and its cross-section audit only to available full-manuscript materials; spelling, formatting, and literal translation do not trigger a full audit.
@@ -85,6 +88,8 @@ At intake, offer optional source-data reconciliation once: authorized de-identif
 After design confirmation and before design-dependent drafting or review, use [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) to search EQUATOR, verify the current official main guideline and relevant extensions, and download/read the actual checklist and supporting guidance with the available tools. Honor external-access restrictions. Record a Guideline Manifest with source links, versions, retrieval dates, read coverage, and any limitation; briefly state the selection before proceeding. Read supplied journal templates first and reconcile version differences explicitly. If live access or full text is unavailable, disclose that and keep any assessment provisional.
 
 Use a Reporting Guideline Matrix to turn applicable items into drafting slots or location-specific review findings and improvements. Reporting completeness does not establish scientific validity; do not invent missing methods or data to satisfy a checklist. For multi-reviewer tasks, freeze the clean guidance package before dispatch and keep annotated findings private until editor adjudication.
+
+Use [journal-guidance.md](references/journal-guidance.md) to distinguish design-definition and methodological references from the actual target journal's mandatory rules. Before an affected activity, apply [ai-use-and-disclosure.md](references/ai-use-and-disclosure.md); warn and pause that activity if it exceeds the verified journal policy. Missing or unclear policies remain unverified, not assumed permission or a universal prohibition.
 
 ### 2. Write the core proposition card
 
@@ -188,7 +193,8 @@ After rewriting, verify that:
 - abbreviations are defined at first use, and group names, tables, and figure legends are independently understandable;
 - protocol deviations, errors, limitations, and uncertainty have not been rhetorically weakened;
 - caveat edits preserve the author's scientific position and necessary boundaries without restoring rejected repetition; no new limitation, explanation, or clinical implication was invented to replace a deleted sentence;
-- the Reporting Guideline Matrix matches the revised manuscript, selected versions, and actual assessment scope; unavailable sources and unresolved omissions are not marked as passed.
+- the Reporting Guideline Matrix matches the revised manuscript, selected versions, and actual assessment scope; unavailable sources and unresolved omissions are not marked as passed;
+- a final manuscript handoff includes a brief, policy-appropriate AI disclosure reminder and any unresolved restriction affecting the current task, not an AI-use log or automatic declaration.
 
 ## Task routing
 
@@ -214,13 +220,13 @@ Audit facts, logic, and comparison direction before editing syntax and wording. 
 
 ### Select a journal, submit, or respond to reviewers
 
-Use current journal information. For each reviewer comment, identify both the explicit question and the underlying concern. Give a direct answer, action taken, result, effect on the conclusion, and exact manuscript location. Disagree with evidence when warranted, but never make a false concession.
+Use current journal information and check whether AI assistance is allowed for the requested article/task before drafting. Where permitted, for each reviewer comment identify both the explicit question and the underlying concern. Give a direct answer, action taken, result, effect on the conclusion, and exact manuscript location. Disagree with evidence when warranted, but never make a false concession. At submission/resubmission, briefly remind the author to disclose AI use according to the target policy and warn about an applicable restriction; do not automatically collect usage history or draft a statement.
 
 ### Run independent multi-reviewer peer review and iterative revision
 
 Route requests for multiple independent reviewers, mutually isolated professional roles, editor reconciliation, repeated review-and-revision rounds, or a combined reference/statistical/table/journal audit to [independent-multi-reviewer-workflow.md](references/independent-multi-reviewer-workflow.md). Use its defaults unless the user overrides them: two rounds, three to four independent reviewers chosen for the article type, one separate editor, journal-compliance review, a distinct Citation Audit, and a clean revision plus Issue Matrix.
 
-Before any capability or fallback explanation, copy the quoted versioned capability reminder from that reference verbatim. This reminder is required whenever the request calls for genuinely independent parallel review, even if the current environment will fall back to sequential passes. When independent subagents are unavailable, continue with isolated sequential passes, explicitly state that reviewer independence is only being approximated, and never claim fully independent parallel peer review. Label all outputs as `Simulated peer review` or an equivalent phrase.
+For a permitted review that will proceed, before any capability or fallback explanation copy the quoted versioned capability reminder from that reference verbatim. This reminder is required whenever the request calls for genuinely independent parallel review, even if the current environment will fall back to sequential passes. A review stopped by a verified confidentiality or permission restriction does not start capability onboarding or reviewer dispatch. When independent subagents are unavailable, continue with isolated sequential passes, explicitly state that reviewer independence is only being approximated, and never claim fully independent parallel peer review. Label all outputs as `Simulated peer review` or an equivalent phrase.
 
 ### Diagnose a full manuscript or run a presubmission check
 

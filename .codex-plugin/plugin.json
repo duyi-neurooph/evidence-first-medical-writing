@@ -1,6 +1,6 @@
 {
   "name": "evidence-first-medical-writing",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A bilingual, evidence-first workflow for planning, diagnosing, revising, and simulating independent peer review of medical research manuscripts.",
   "author": {
     "name": "Yi",
@@ -23,7 +23,9 @@
     "equator",
     "submission-checklist",
     "study-design",
-    "data-consistency"
+    "data-consistency",
+    "journal-guidance",
+    "ai-disclosure"
   ],
   "skills": "./skills/",
   "interface": {

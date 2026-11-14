@@ -6,6 +6,8 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
+- [journal-ai-disclosure-test-cases.md](journal-ai-disclosure-test-cases.md) for reminder-only AI disclosure, current-task policy conflicts, changed targets, spelling exemptions, detector-percentage traps, and journal-guidance scope controls;
+- [results-0.7.0.md](results-0.7.0.md) for the actual scoped forward runs, release checks, and remaining coverage limits;
 - [anti-defensive-test-cases.md](anti-defensive-test-cases.md) for contextual caveat editing, necessary-boundary controls, cross-section repetition, genre fit, and non-regression behavior;
 - [results-anti-defensive-upgrade.md](results-anti-defensive-upgrade.md) for actual synthetic forward runs, the observed correction and retest, package checks, and coverage limits;
 - [results-0.6.0.md](results-0.6.0.md) for the version 0.6.0 release baseline and its validation limits;

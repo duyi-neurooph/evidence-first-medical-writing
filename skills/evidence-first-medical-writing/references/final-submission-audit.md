@@ -10,6 +10,8 @@ Keep the audit discipline-neutral. Store author-specific terminology and formatt
 
 Reuse the confirmed study design and optional data-check decision from intake. If no decision exists, briefly offer [optional-data-integrity-audit.md](optional-data-integrity-audit.md) without requiring data sharing. Distinguish cross-file consistency from reconciliation with source/analysis data; a manuscript-only pass does not verify the underlying data.
 
+Give the brief presubmission reminder in [ai-use-and-disclosure.md](ai-use-and-disclosure.md): disclose AI use truthfully according to the target journal's current requirements, and check any restriction relevant to the current task. Recheck a changed target or requested use. Do not create a usage ledger, request a history questionnaire, or generate a disclosure statement by default; the reminder does not certify that the author has complied.
+
 ## Ten checks
 
 ### F1 — Abstract, text, tables, and supplements agree
@@ -80,5 +82,6 @@ Return a compact final-audit report:
 2. **Priority findings:** use the skill's P0–P3 grading (or the existing editor severity system in a multi-reviewer task), with location, conflicting evidence, consequence, smallest fix, and owner.
 3. **Final-check matrix:** one row for F1–F10 plus material subitems, with `Pass / Issue found / Cannot verify / Not applicable`, evidence/locations, planned action, and issue ID. Give a reason for `Not applicable`.
 4. **Author decisions:** unresolved numbers, missing analysis outputs, registry differences, contribution confirmations, and incomplete reviewer-response actions.
+5. **Brief submission reminder:** remind the author to follow the target journal's AI disclosure requirements; state a relevant exemption, restriction, or source-access limit if known. This is not another audit matrix or a compliance pass. A known unresolved prohibited-use conflict blocks a submission-ready claim.
 
 Reuse existing issue IDs and the Reporting Guideline Matrix rather than duplicating a second diagnosis. Pass applies only to the examined material; “no issue detected” is not a certification of data authenticity, study quality, or journal acceptance. Unresolved Critical/P0 or conclusion-changing issues block a submission-ready claim. Deliver useful findings with explicit pending checks when sources are missing. Recheck changed items and affected cross-references after authorized edits, preserve the original files, and stop when the requested coverage is complete without repeated stylistic rewrites.

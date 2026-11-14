@@ -14,6 +14,8 @@ First run [study-design-confirmation.md](study-design-confirmation.md). Explain 
 
 Read supplied journal instructions, templates, and checklists first. Identify whether the document reports completed research, a protocol, an evidence synthesis, a narrative argument, or guideline/consensus development. Record design features that may require extensions: cluster allocation, noninferiority, routinely collected data, diagnostic AI, prediction modelling, scoping review, and similar features.
 
+Use [journal-guidance.md](journal-guidance.md) to separate design definitions, reporting standards, actual target-journal requirements, and optional methodological benchmarks. Consult JAMA definitions for unresolved design terminology and the relevant NEJM statistical sections for substantive methods/statistical writing or full review of clinical original research; neither replaces the author-confirmed facts, EQUATOR selection, or another journal's requirements. Apply [ai-use-and-disclosure.md](ai-use-and-disclosure.md) separately for permitted AI uses and disclosure.
+
 Use the [EQUATOR reporting-guideline library](https://www.equator-network.org/reporting-guidelines/) and its [selection toolkit](https://www.equator-network.org/toolkits/selecting-the-appropriate-reporting-guideline/) as discovery entry points. Search by study type, relevant clinical area, and report section; prefer English search terms. Follow the selected record to the issuing group's official site or original publication.
 
 These families are search starting points, not a version registry or exhaustive list:
@@ -45,17 +47,18 @@ Call a version `Current official version verified on YYYY-MM-DD` only when the l
 
 ## 3. Record a Guideline Manifest
 
-Record one entry per selected main guideline, extension, or journal-required checklist:
+Record one entry per selected main guideline, extension, journal-required checklist, or other guidance/policy source used. Retain one shared Manifest with explicit source roles:
 
 | Field | Record |
 |---|---|
 | Guideline ID | stable local identifier, e.g. G1, G2 |
-| Identity and purpose | exact title, version/year, main/extension/journal role, applicable design and selection reason |
-| Provenance | EQUATOR record URL; official issuing/publication URL; actual checklist URL |
+| Identity and purpose | exact title, version/year, source role from journal-guidance.md; main/extension where applicable; relevant design, article/task type, and selection reason |
+| Provenance | official issuing/publication URL; EQUATOR record and actual checklist URL where applicable, or supplied-copy provenance |
 | Retrieval | date checked; downloaded file path and SHA-256 when feasible, or online-only URL; document format |
-| Read coverage | checklist, statement, explanation/elaboration, extensions, flow diagram: read / partially read / unavailable / not applicable |
+| Read coverage | exact source sections; checklist, statement, explanation/elaboration, extensions, flow diagram, or policy as applicable: read / partially read / unavailable / not applicable |
 | Currency | verified current / unverified / superseded but journal-required; evidence and any conflict |
 | Application scope | manuscript version, sections available, journal constraints, permitted external access |
+| Authority and conflicts | actual target requirement versus optional benchmark; conflicts, interpretation limits, and links to Contract facts, the design card, or policy source IDs, not AI-use history |
 
 Use `Unavailable` for missing metadata, not an invented value. Briefly tell the user which guidelines/versions will be used, why, when checked, and any access or version limitation before drafting or reviewing. Link the sources in the output. Keep downloaded third-party documents in task materials; do not bundle them in the public skill or imply their license is this repository's license.
 

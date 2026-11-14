@@ -23,6 +23,8 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 - Flags research-integrity and reporting risks before language polishing.
 - Confirms the actual study design with the author before applying a design-specific guideline, resolving decisive missing facts instead of trusting labels.
 - Retrieves applicable reporting guidelines through EQUATOR and official sources before substantive drafting or review, then records versions and item-level improvements.
+- Uses task-matched JAMA design definitions and NEJM statistical guidance as references, without replacing the actual target journal's rules.
+- Briefly reminds authors to disclose AI use under the target journal's current policy and flags a conflict in the requested task, without tracking AI-use history or automatically drafting a disclosure.
 - Revises titles, abstracts, sections, tables, figures, cover letters, and reviewer responses.
 - Runs independent multi-reviewer simulated peer review with a separate editor, iterative revision, a Decision Ledger, and non-regression checks.
 - Reconciles the final submission package across data, references, numbering, participant flow, registration, terminology, statistical summaries, eligibility, contributions, and reviewer responses.
@@ -63,6 +65,8 @@ skills/evidence-first-medical-writing/SKILL.md
 ```
 
 Example prompts:
+
+AI-assisted tasks, including reviewer-response drafting, are subject to the actual target journal's current policy. Disclosure does not make a prohibited use permissible.
 
 ```text
 Use $evidence-first-medical-writing to diagnose the three most important
@@ -125,6 +129,21 @@ abbreviations, statistical summaries, eligibility and factual contributions.
 For a resubmission, verify every reviewer-comment subpart against the response and
 actual revision. Give locations, smallest fixes, author confirmations and a
 coverage matrix. Preserve original files and do not change data on my behalf.
+```
+
+### Journal guidance and AI-use disclosure
+
+From 0.7.0, the existing Guideline Manifest separates design definitions, reporting standards, target-journal requirements, optional methodological benchmarks, and AI-use policies. JAMA definitions can clarify uncertain study terminology; relevant NEJM statistical-reporting sections support clinical original-research writing/review. Neither overrides study facts, author design confirmation, or another journal's format. Supplied or inaccessible guidelines remain explicitly currency-unverified; third-party originals are not distributed in the skill.
+
+At submission or resubmission, the skill gives a brief reminder to disclose AI use truthfully under the actual target journal's current policy. It does not maintain an AI-use log, collect a history questionnaire, or automatically prepare a disclosure draft. The author remains responsible for the disclosure. A change of target journal, article type, or requested activity triggers a check of the affected policy, not historical-use tracking.
+
+If the requested activity conflicts with a verified policy, it warns the author and pauses that activity; disclosure is not a workaround. Unknown policies remain unverified. A basic-spelling exemption does not automatically cover substantive rewriting. No detector score or watermark result establishes an AI-use percentage, policy compliance, or exemption from truthful disclosure.
+
+```text
+Before submission, briefly remind me to disclose AI use under the target
+journal's current policy. Flag a restriction that conflicts with this request,
+and recheck the policy if the target or task changes. Do not track my AI-use
+history, give me a history questionnaire, or automatically draft a disclosure.
 ```
 
 ### Optional data and statistical checks
@@ -209,10 +228,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.6.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.6.0).
+Current release: [0.7.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.0).
 
-This release adds evidence-preserving detection and revision of over-defensive scientific writing, including repetitive caveats across sections, tables, and legends. It also improves audience-specific explanation, critical-methods completeness, and limitation–remedy fit. It retains the five quality gates, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
+This release adds role-aware JAMA/NEJM journal guidance and lightweight submission-time AI-disclosure reminders, with warnings for policy conflicts in the requested task. It does not add AI-use logging or automatic disclosure drafting. It retains the five quality gates, over-defensive-writing audit, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.6.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.6.0/evidence-first-medical-writing-0.6.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.7.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.0/evidence-first-medical-writing-0.7.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

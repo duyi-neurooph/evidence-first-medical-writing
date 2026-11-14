@@ -41,7 +41,7 @@ The user may override reviewer roles, number of rounds, strictness, external-sea
 
 ### Versioned availability reminder — checked 2026-08-17
 
-Before any capability or fallback explanation for a request that requires genuinely independent parallel reviewers, reproduce this sentence verbatim:
+For a permitted review that will proceed, before any capability or fallback explanation for a request that requires genuinely independent parallel reviewers, reproduce this sentence verbatim. If a verified confidentiality or permission restriction stops the review, explain that restriction instead of starting capability onboarding or reviewer dispatch:
 
 > For genuinely independent parallel reviewer assessments, use a multi-agent or Ultra-capable mode when available. In the current ChatGPT Work interface, GPT-5.6 Sol with Ultra is recommended when available on the user’s account.
 
@@ -78,6 +78,8 @@ Before review, build an internal Manuscript Contract from the supplied files and
 
 If journal guidance or a template is supplied, read it before applying general experience. For requirements that may have changed, consult current official sources only when external research is permitted, and record the date checked.
 
+Apply [journal-guidance.md](journal-guidance.md) and [ai-use-and-disclosure.md](ai-use-and-disclosure.md) before distributing the manuscript or drafting restricted content. Check the actual journal, article type, user role, and current request. Do not treat author-side simulation as permission for confidential commissioned review; pause a prohibited activity and warn the author while continuing unaffected permitted work. At final delivery, give a brief disclosure reminder, not a reviewer/editor activity log or automatic declaration.
+
 Before selecting design-specific reviewers or freezing the package, run [study-design-confirmation.md](study-design-confirmation.md) with the author, then [reporting-guideline-retrieval.md](reporting-guideline-retrieval.md). Public guideline lookup is on by default when tools permit, unless the user restricts it; distinguish it from broader literature research. If access fails or is prohibited, disclose the limitation and use supplied guidance provisionally. Do not mark current-guideline compliance as verified without the necessary sources.
 
 Offer [optional-data-integrity-audit.md](optional-data-integrity-audit.md) without making data sharing a prerequisite. If accepted, freeze only the authorized, de-identified data subset/dictionary and assign suitable factual/statistical checks. Do not distribute precomputed anomaly accusations or another agent's Data Audit Ledger to independent reviewers; the editor reconciles the separate findings later. Keep declined/unavailable checks visible without penalizing the author or claiming data authenticity.
@@ -100,6 +102,8 @@ The remit may define the reviewer’s expertise and priority checks. It must not
 
 Reporting checklists are common factual criteria, not a shared diagnosis. Do not give reviewers an editor-filled Reporting Guideline Matrix or a checklist annotated with prior findings. Assign reporting completeness to an appropriate reviewer; consolidate item-level results only after the independent reports arrive. Keep the source versions frozen across rounds as specified in the retrieval reference.
 
+The shared journal-guidance package may carry factual permissions and source-policy limits, not annotations revealing prior reviewer findings or editor conclusions. Fresh reviewers receive the same clean policy facts; no separate AI-activity ledger is required.
+
 In multi-agent mode:
 
 1. Use one separate subagent per reviewer.
@@ -112,11 +116,11 @@ In sequential fallback, run each reviewer as a clean, role-bounded pass over the
 
 For Round 2, freeze the revised manuscript as a new version and use fresh reviewer subagents or fresh isolated passes. These reviewers normally do not see Round 1 reports. The editor separately checks Round 1 closure against the response matrix.
 
-## 3. Select reviewers by article type
+## 3. Select reviewers by study design and reporting purpose
 
 Select three to five reviewers. Do not assign the same panel mechanically to every manuscript.
 
-| Article type | Default reviewer mix |
+| Design / reporting purpose | Default reviewer mix |
 |---|---|
 | Randomized trial | clinical-domain specialist; clinical trialist or intervention specialist; biostatistician; optional safety, implementation, or patient-centred reviewer |
 | Observational study | clinical-domain specialist; epidemiologist; biostatistician; optional external-validity or implementation reviewer |
@@ -250,6 +254,7 @@ Before every revision and before final delivery, run the Non-Regression Check:
 - [ ] Citation callouts, numbering, and the reference list remain synchronized.
 - [ ] No protected number, definition, scientific meaning, authorship, funding, conflict disclosure, or unpublished information has changed without approval.
 - [ ] Guideline item IDs still match the frozen editions; resolved reporting gaps have not returned, and unverified items have not become compliance passes.
+- [ ] Applicable journal restrictions still fit the current task after a target or request change; a disclosure reminder has not been mistaken for permission or a compliance pass.
 
 Any failed check reopens or creates an Issue Matrix item. Do not silently waive it.
 
@@ -275,6 +280,8 @@ Check the abstract, main text, figure legends, tables, and supplements for:
 For tables, verify that every row can be understood without the main text; column entries share a logical level; population, phenotype, life stage, and clinical setting are not mixed as peers without an explicit hierarchy; verbs identify their objects and conditions; and footnotes define abbreviations, units, time points, outcomes, analysis sets, and comparison directions. Replace telegram phrases such as `avoid withdrawal`, `do not require exclusion`, or `consider escalation` with an explicit object, population, circumstance, and clinical reason.
 
 ### AI-Like Residue Audit
+
+This audit improves prose; it does not detect AI authorship, estimate an AI percentage, remove watermarks, or replace the truthful disclosure process in [ai-use-and-disclosure.md](ai-use-and-disclosure.md).
 
 Flag formulaic language only when it adds little information or exceeds the evidence. Review phrases such as `It is important to note that`, `This highlights`, `This underscores`, `In the rapidly evolving landscape`, `a paradigm shift`, `robust and comprehensive`, `transformative potential`, `more high-quality studies are urgently needed`, and `not merely X, but Y`, as well as repeated three-part slogans, excessive dashes, low-information symmetry, repeated use of `critical`, `important`, `promising`, or `novel`, and agentless future declarations.
 
@@ -371,6 +378,8 @@ Provide only the deliverables relevant to the user’s request:
 12. a version manifest with filenames;
 13. a Guideline Manifest and Reporting Guideline Matrix, including unresolved access or reporting items;
 14. final submission audit coverage and check matrix, with unresolved author decisions.
+
+Append a brief policy-appropriate AI disclosure reminder at final manuscript delivery. Do not add usage records or disclosure drafts as default deliverables.
 
 Never overwrite source files. Use explicit versioned names, for example:
 
