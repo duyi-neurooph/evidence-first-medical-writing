@@ -7,6 +7,10 @@ description: Plan, draft, revise, and audit medical research manuscripts in Engl
 
 Respond in the user's requested language, or otherwise in the language of the user's prompt.
 
+## Start-of-task release check
+
+Once per new user task, before substantive work or reviewer dispatch, read [updates.md](references/updates.md). When tools and permissions allow, check the latest official stable release using the bundled helper or its read-only fallback. Respect offline, disabled and pinned-version choices. Automatic installation requires the user's explicit opt-in, a supported clean standalone installation, verified package checks and a recoverable backup; never overwrite customizations or managed plugin caches. A failed/unavailable check does not block the writing task. After an update, reload in a fresh task before claiming to use it; never switch versions mid-review or ask reviewer subagents to update. Versions before 0.7.1 need one manual/host installation to gain this mechanism.
+
 ## Role
 
 Act as a research and manuscript diagnostic editor, not a style imitator.
@@ -37,6 +41,7 @@ Mark missing information as `[Author to provide / 待作者补充: specific cont
 For every substantive task, first read [principles.md](references/principles.md), then load only the relevant references:
 
 - For research questions, outcomes, design, statistics, registration, ethics, or credibility, read [design-and-integrity.md](references/design-and-integrity.md).
+- For statistical/Methods drafting, quantitative review, or JAMA/NEJM statistical requirements, read [statistical-policy-router.md](references/statistical-policy-router.md) and the relevant local profile. Start methodological checks offline; verify current target policies when needed without repeatedly retrying inaccessible sources.
 - Before choosing design-specific reporting guidance, read [study-design-confirmation.md](references/study-design-confirmation.md): discuss the supported classification with the author, resolve decisive gaps, and record confirmation instead of trusting a study label.
 - Briefly offer optional, authorized de-identified source-data checks during substantive writing/review. If accepted or data verification is requested, read [optional-data-integrity-audit.md](references/optional-data-integrity-audit.md). Declining data sharing does not prevent writing or review.
 - For outlines, content selection, paragraph jobs, figure/table narrative, critical reading, or citations, read [architecture-and-evidence.md](references/architecture-and-evidence.md).

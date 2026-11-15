@@ -25,6 +25,7 @@
 - 应用特定报告指南前，与作者确认真实研究类型，针对缺失的关键事实提问，不直接相信“随机”“前瞻性”等标签；
 - 在实质性写作或审稿前，从 EQUATOR 及官方来源获取适用报告指南，记录版本并逐项提出改进建议；
 - 按任务参考 JAMA 研究类型定义及 NEJM 统计报告指导，不用它们替代实际目标期刊的稿约；
+- 提供可离线使用的统计审查参考；使用时检查正式版更新，可在授权且安全的独立安装中自动更新；
 - 投稿前简短提醒作者按目标期刊现行政策披露 AI 使用，提示当前任务与政策的冲突；不记录 AI 使用历史，不自动起草披露声明；
 - 修改题目、摘要、正文各章节、图表、投稿信和审稿回复；
 - 运行“独立多审稿人—编辑裁决—迭代修改”的模拟同行评审，并维护 Decision Ledger 和 Non-Regression Check；
@@ -84,6 +85,22 @@ skills/evidence-first-medical-writing/SKILL.md
 以及稿件中的修改位置。
 ```
 
+### 使用时检查更新与可选自动更新
+
+从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**旧版用户需要先安装一次 0.7.1**，旧副本不会凭空获得更新能力。
+
+默认只检查和提示。经你明确选择自动更新后，内置的 Python 3 标准库程序可更新未被修改、可写入的独立 skill 文件夹：核对官方附件身份、SHA-256 和文件清单，保留备份，不覆盖自定义改动。源码仓库、插件包及平台管理的缓存使用各自更新方式。缺少工具、权限不足、版本锁定、离线或验证失败时，只提示或提供手动下载链接，不强行安装。更新后请在新任务中重新调用；同一轮审稿不会中途换版本。
+
+开启、关闭、仅检查及锁定版本的操作见[更新说明](skills/evidence-first-medical-writing/references/updates.md)。也可以直接对 AI 说：
+
+```text
+检查这个 skill 是否有更新。如果这是受支持且未修改的独立安装，
+请为后续任务开启自动更新；保留备份，不覆盖我的自定义修改。
+否则给我官方下载链接。
+```
+
+检查只向 GitHub 请求版本信息；获准安装时才获取 ZIP，不发送稿件、原始数据、提示词或 AI 使用历史。真实下载 ZIP 可能增加 GitHub 的下载请求数，仅查询版本信息不会下载附件。写作功能不要求安装 Python；更新程序不需要第三方 Python 包。不同平台可能只支持检查或手动替换，不能保证都能自动安装。
+
 ### 过度防御性科学写作检查
 
 实质性起草、语言改写、手稿修订、整稿审查、模拟同行评审及最终核查时，区分“必要的科学限定”和“反复免责声明”。检查跨章节、正文与表格、补充表及图注的语义重复，不统计否定词数量，也不强行改写准确自然的句子。它补充现有“去 AI 化”检查，不取代该检查。
@@ -130,6 +147,8 @@ skills/evidence-first-medical-writing/SKILL.md
 ```
 
 ### 期刊指导与 AI 使用披露
+
+从 0.7.1 起，增加[离线统计审查路由](skills/evidence-first-medical-writing/references/statistical-policy-router.md)及精简的 JAMA／NEJM 参考。即使期刊网站无法访问，也能继续有范围限制的方法学审查；明确区分统计方法问题和目标期刊要求，包括因果措辞、多重性及结果显示规则的差异。本地参考标注来源范围与时效限制，不代表已核查最新版。需要判断现行合规性时仍核实目标期刊要求，EQUATOR 流程不变，不打包第三方指南原文。
 
 从 0.7.0 起，现有指南记录进一步区分“设计定义、报告规范、目标期刊要求、可选方法学参考、AI 使用政策”。研究类型有歧义时参考 JAMA 定义；临床原创研究的方法与统计写作／审查可参考 NEJM 相应章节，但不覆盖实际研究事实、作者设计确认或其他期刊的格式要求。无法联网或仅有未标日期的副本时明确说明限制，不把第三方原文打包发布。
 
@@ -200,7 +219,13 @@ skills/evidence-first-medical-writing/SKILL.md
 ├── skills/evidence-first-medical-writing/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
+│   ├── scripts/update_skill.py
+│   ├── version.json
+│   ├── SKILL-MANIFEST.sha256
+│   ├── NOTICE.md
 │   └── references/
+├── scripts/validate_release.py
+├── tests/
 ├── LICENSE.md
 ├── NOTICE.md
 ├── PRIVACY.md
@@ -224,10 +249,10 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：[0.7.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.0)。
+当前版本：[0.7.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.1)。
 
-本版新增：按用途区分 JAMA／NEJM 指导与目标期刊要求，投稿前简短提醒披露 AI 使用，并提示当前任务与期刊政策的冲突。不增加 AI 使用记录或自动披露起草。保留原有五道质量门、过度防御性写作检查、独立多审稿人工作流、研究类型确认、实时报告指南、可选数据核查及投稿前最终核查。详见 [CHANGELOG.md](CHANGELOG.md)。
+本次小版本新增离线统计审查参考及授权后可用的安全更新程序，明确平台能力与期刊政策时效限制。保留 AI 披露“只提醒、不记录”的边界，以及五道质量门、过度防御性写作检查、独立多审稿人、研究类型确认、EQUATOR、可选数据与投稿前核查。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [0.7.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.0/evidence-first-medical-writing-0.7.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [0.7.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.1/evidence-first-medical-writing-0.7.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

@@ -168,6 +168,8 @@ Reviewers must not manufacture a Major issue to fill their role. `No major conce
 
 ### Statistical reviewer remit
 
+Load [statistical-policy-router.md](statistical-policy-router.md) and the relevant frozen local profiles or verified source sections. Review methodological validity separately from target-journal compliance; inaccessible official pages do not prevent scoped offline checks. Do not pass a prior reviewer diagnosis as part of this clean source package.
+
 Use clinical language and check only what is relevant:
 
 - design-question alignment and the estimand or practical effect being estimated;

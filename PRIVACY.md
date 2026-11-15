@@ -1,8 +1,10 @@
 # Privacy
 
-Last updated: 2026-07-29
+Last updated: 2026-11-15
 
-Evidence-First Medical Writing is a files-only skill/plugin. This repository contains no server, analytics, telemetry, advertising, authentication, or external data connector. The plugin itself does not transmit or store user content.
+Evidence-First Medical Writing contains skill instructions and an optional local release-check/update helper. It has no project-operated server, analytics, telemetry, advertising, authentication or manuscript-upload connector. The helper requests public release metadata and, for authorized installation, a release ZIP from GitHub; it does not read or transmit manuscript contents, prompts, research data or AI-use history. Normal request metadata, such as the connecting IP address and updater user agent, is visible to the hosting service.
+
+Update preferences are stored locally beside the installation and contain its path, mode, version pin and update consent. Authorized updates keep local backups of the previous skill files. No AI-use log is maintained. See the [update controls](skills/evidence-first-medical-writing/references/updates.md) to disable checking or automatic installation. No background scheduler is installed.
 
 The software, AI model, editor, operating system, Git hosting service, or other product used to run the skill may process data under its own terms and privacy policy. Review those policies before providing manuscripts or data.
 

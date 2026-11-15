@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1 — 2026-11-16
+
+- Added offline-first statistical routing with compact JAMA and NEJM profiles. Source scope, check dates and the undated NEJM copy's currency limit are explicit; current target-policy claims still require verification, and runtime EQUATOR selection remains in place.
+- Separated methodological concerns, target-journal requirements and optional benchmarks. Refined causal-language, baseline-comparison, multiplicity, missing-data, SAP chronology and precision checks without automatically changing analyses or data.
+- Added an on-use stable-release check and optional, explicitly authorized updater for clean standalone skill installations, using only Python's standard library. Local customizations, managed/plugin caches and source checkouts are protected; verification, backup and rollback precede installation. Offline/check-only/disabled/pinned choices remain available.
+- Added an installed-version marker, nested checksum inventory, standalone license notice, executable offline update tests, statistical evaluation cases and reproducible package validation. No background updater, manuscript telemetry, AI-use log or automatic disclosure drafting was added.
+- Older installations must install 0.7.1 once to gain update checking; unsupported hosts receive a manual update link. Existing review and scientific-integrity workflows and the dated capability reminder are retained.
+
 ## 0.7.0 — 2026-11-14
 
 - Added task-matched JAMA study-design definitions and NEJM statistical-reporting guidance, with explicit source roles in the existing Guideline Manifest. Actual study facts and the target journal's requirements remain authoritative; no third-party source originals are bundled.

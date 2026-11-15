@@ -6,6 +6,8 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
+- [results-0.7.1.md](results-0.7.1.md) for offline statistical forward evidence, executable updater tests, package checks and coverage limits;
+- [statistical-policy-test-cases.md](statistical-policy-test-cases.md) for offline statistics, target-policy conflicts, causal wording, multiplicity, missingness and rounding controls;
 - [journal-ai-disclosure-test-cases.md](journal-ai-disclosure-test-cases.md) for reminder-only AI disclosure, current-task policy conflicts, changed targets, spelling exemptions, detector-percentage traps, and journal-guidance scope controls;
 - [results-0.7.0.md](results-0.7.0.md) for the actual scoped forward runs, release checks, and remaining coverage limits;
 - [anti-defensive-test-cases.md](anti-defensive-test-cases.md) for contextual caveat editing, necessary-boundary controls, cross-section repetition, genre fit, and non-regression behavior;
@@ -24,3 +26,5 @@ See:
 - [results-0.3.0.md](results-0.3.0.md) for the release baseline.
 
 Do not place real manuscripts, patient information, confidential review material, private identity claims, or source texts in evaluation fixtures.
+
+From 0.7.1, executable offline updater tests are available with `python3 -B -m unittest discover -s tests -v`. Validate metadata, public inventory, protected content, links and checksums with `python3 -B scripts/validate_release.py`; after intentional edits, regenerate the skill manifest followed by the root manifest with `--write-manifests`. To verify a built release, add `--archive /absolute/path/to/release.zip`. These deterministic checks are separate from model-behavior examples.

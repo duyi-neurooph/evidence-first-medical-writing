@@ -5,7 +5,7 @@
 Use this reference alongside study-design confirmation and reporting-guideline retrieval, not as a second intake or scoring system. Read supplied journal instructions and templates first. Distinguish the actual study design, the purpose of the analysis/report, and the target journal's article category: a cohort analysis, a diagnostic investigation, and an Original Investigation label describe different dimensions.
 
 - When study-design terminology is uncertain, consult the relevant definitions in [JAMA Instructions for Authors](https://jamanetwork.com/journals/jama/pages/instructions-for-authors), especially **Determine My Study Type**, alongside the applicable CONSORT/STROBE explanation. Do not require another lookup when the same task already has verified definitions and confirmed decisive facts.
-- For substantive methods/statistical drafting or whole-manuscript review of clinical original research, consult the applicable **Statistical Reporting Guidelines** in [NEJM New Manuscripts](https://www.nejm.org/author-center/new-manuscripts) as a supplementary methodological benchmark. Read only the general and design-specific sections relevant to the actual analysis. Do not apply trial-statistics requirements to a nonquantitative narrative review or demand both journals' full instructions for every paragraph.
+- For substantive methods/statistical drafting or whole-manuscript review of clinical original research, start with [statistical-policy-router.md](statistical-policy-router.md) and its task-matched local JAMA/NEJM profiles. These enable offline methodological checks; live target-policy verification remains necessary for a current compliance claim. Do not require fresh downloads of both journals for every paragraph or impose trial-statistics requirements on nonquantitative reviews.
 - If the target is JAMA or NEJM, read that journal's current instructions and policies for the actual article type, not just these selected sections. For another target, retrieve that journal's requirements; JAMA/NEJM are references, not substitute submission authorities. With no target journal, keep journal-specific compliance pending.
 - Before a journal-bound AI-assisted task, and at submission, use [ai-use-and-disclosure.md](ai-use-and-disclosure.md) to check permitted AI uses and truthful disclosure. Statistical instructions alone do not establish the journal's AI policy.
 
@@ -33,7 +33,7 @@ If a summary definition simplifies a mixed, nested, or secondary analysis, prese
 
 ## Applying the statistical benchmark
 
-Use the retrieved NEJM sections to ask task-specific questions about:
+Use the selected local profile or verified source sections to ask task-specific questions about:
 
 - dated protocol/SAP versions, the timing of analysis decisions, documented changes, and reproducible descriptions;
 - endpoint/analysis hierarchy, multiplicity, effect estimates and uncertainty, and the difference between clinical importance and statistical testing;
@@ -41,7 +41,7 @@ Use the retrieved NEJM sections to ask task-specific questions about:
 - randomized-trial analysis populations, baseline presentation, adherence, subgroup interpretation, absolute event frequencies, and safety reporting;
 - observational selection, confounding, the intended association or causal contrast, diagnostics, and limits of causal interpretation.
 
-These are reading targets, not a frozen reproduction of the journal's rules. Determine the current wording and applicability from the source. Distinguish a general methodological concern from a journal-specific display preference. Do not automatically remove P values, replace effect measures, change an analysis population, or order reanalysis simply to match a benchmark. Explain the issue, whether it affects interpretation, and whether it needs a wording fix, source verification, author decision, or statistical review. Never backdate a newly documented SAP or imply that a post hoc analysis was prespecified.
+These are review targets, not a reproduction or permanent registry of journal rules. Separate offline methodological assessment from current target compliance using the router. Do not automatically remove P values, replace effect measures, change an analysis population, or order reanalysis simply to match a benchmark. Explain the issue, whether it affects interpretation, and whether it needs a wording fix, source verification, author decision, or statistical review. Never backdate a newly documented SAP or imply that a post hoc analysis was prespecified.
 
 The five existing quality gates remain in force. A reporting requirement can identify missing information but cannot repair unsupported claims or authorize invented data.
 

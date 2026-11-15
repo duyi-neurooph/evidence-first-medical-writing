@@ -2,7 +2,9 @@
 
 ## Scope
 
-This is a files-only skill/plugin with no executable scripts, server, authentication, telemetry, or external connector. Security reports may still concern malicious instructions, unsafe data disclosure, dependency confusion in downstream packaging, or files that should not be public.
+The project includes skill instructions and an optional Python-standard-library release-check/update helper. It has no project-operated server, authentication, telemetry or manuscript-upload connector. The helper defaults to read-only checks against the pinned official repository. Installation requires explicit consent, a supported unmodified standalone folder, official asset identity and checksum validation, safe archive paths, complete file inventories and a recoverable backup. Managed/plugin/source-checkout installations require their owner or host's update process.
+
+Checksums protect against corruption or mismatch, not compromise of the publisher or hosting account; they are not independent signatures. Future releases install instructions and scripts as data without executing downloaded code during installation. Backups are retained; a failed rollback reports recovery paths. Local concurrent/malicious filesystem changes are outside a complete security guarantee. See [update boundaries](skills/evidence-first-medical-writing/references/updates.md). Report archive handling, update rollback, unsafe instructions, privacy exposure, or packaging concerns through the private channel below.
 
 ## Reporting
 

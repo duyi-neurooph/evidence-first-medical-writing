@@ -24,6 +24,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 - Confirms the actual study design with the author before applying a design-specific guideline, resolving decisive missing facts instead of trusting labels.
 - Retrieves applicable reporting guidelines through EQUATOR and official sources before substantive drafting or review, then records versions and item-level improvements.
 - Uses task-matched JAMA design definitions and NEJM statistical guidance as references, without replacing the actual target journal's rules.
+- Provides offline statistical-review profiles and checks for stable skill updates on use, with optional authorized updating of clean standalone installations.
 - Briefly reminds authors to disclose AI use under the target journal's current policy and flags a conflict in the requested task, without tracking AI-use history or automatically drafting a disclosure.
 - Revises titles, abstracts, sections, tables, figures, cover letters, and reviewer responses.
 - Runs independent multi-reviewer simulated peer review with a separate editor, iterative revision, a Decision Ledger, and non-regression checks.
@@ -83,6 +84,22 @@ Rewrite this reviewer response while separating our position, action taken,
 result, impact on the conclusion, and manuscript location.
 ```
 
+### Release checks and optional automatic updates
+
+From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 once to gain this behavior; older copies cannot update themselves retroactively.
+
+The default is **check and notify**. With your explicit opt-in, the bundled Python 3 standard-library helper can update a clean, writable standalone skill installation. It verifies the official asset identity, SHA-256 and manifests, preserves a backup, and protects local edits. Source checkouts and host-managed plugins/caches require their own update process. Missing tools, denied permissions, pins, offline mode or failed verification lead to a notification/manual link, not forced installation. Reinvoke the skill in a fresh task after an update; a frozen review keeps its original version.
+
+See [update controls and safeguards](skills/evidence-first-medical-writing/references/updates.md) for opt-in, check-only, disable and pin commands. You can simply ask:
+
+```text
+Check this skill for updates. If this is a supported clean standalone install,
+enable automatic updates for future tasks; preserve backups and never overwrite
+my custom edits. Otherwise show me the official update link.
+```
+
+Only release metadata and, for authorized installation, the release ZIP are requested from GitHub. Manuscripts, data, prompts and AI-use history are not sent. A real ZIP fetch may increase GitHub's download-request count; metadata-only checks do not fetch the attachment. Python is optional for manuscript work; no third-party Python package is required by the updater. Other hosts may support only checking or manual replacement, not automatic installation.
+
 ### Over-defensive scientific writing
 
 Substantive drafting, language rewriting, manuscript revision, whole-manuscript review, simulated peer review, and final audits now distinguish necessary scientific qualifications from repetitive disclaimers. The workflow checks semantic repetition across available sections, tables, supplements, and legends, rather than counting negative words. It complements the existing AI-Like Residue Audit.
@@ -132,6 +149,8 @@ coverage matrix. Preserve original files and do not change data on my behalf.
 ```
 
 ### Journal guidance and AI-use disclosure
+
+From 0.7.1, [offline statistical routing](skills/evidence-first-medical-writing/references/statistical-policy-router.md) and concise JAMA/NEJM profiles let methodological review continue when a journal site is inaccessible. They distinguish methodological concerns from target-specific compliance, including differences in causal wording, multiplicity and statistical display. Profiles have explicit source coverage/currency limits; a dated local summary is not proof of the latest policy. Current target requirements and applicable EQUATOR guidance are still verified when needed. Original guideline documents are not bundled.
 
 From 0.7.0, the existing Guideline Manifest separates design definitions, reporting standards, target-journal requirements, optional methodological benchmarks, and AI-use policies. JAMA definitions can clarify uncertain study terminology; relevant NEJM statistical-reporting sections support clinical original-research writing/review. Neither overrides study facts, author design confirmation, or another journal's format. Supplied or inaccessible guidelines remain explicitly currency-unverified; third-party originals are not distributed in the skill.
 
@@ -204,7 +223,13 @@ Do not paste confidential manuscripts, identifiable health information, unpublis
 ├── skills/evidence-first-medical-writing/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
+│   ├── scripts/update_skill.py
+│   ├── version.json
+│   ├── SKILL-MANIFEST.sha256
+│   ├── NOTICE.md
 │   └── references/
+├── scripts/validate_release.py
+├── tests/
 ├── LICENSE.md
 ├── NOTICE.md
 ├── PRIVACY.md
@@ -228,10 +253,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.7.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.0).
+Current release: [0.7.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.1).
 
-This release adds role-aware JAMA/NEJM journal guidance and lightweight submission-time AI-disclosure reminders, with warnings for policy conflicts in the requested task. It does not add AI-use logging or automatic disclosure drafting. It retains the five quality gates, over-defensive-writing audit, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
+This patch adds offline-first statistical profiles and an opt-in safe updater, with explicit capability and policy-currentness limits. It retains reminder-only AI disclosure, the five quality gates, over-defensive-writing audit, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.7.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.0/evidence-first-medical-writing-0.7.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.7.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.1/evidence-first-medical-writing-0.7.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).
