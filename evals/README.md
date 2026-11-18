@@ -6,7 +6,7 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
-- [results-reference-verification.md](results-reference-verification.md) for the unpublished bibliography integration: mocked executable tests, real database and issuing-source checks, full-text support assessment, and presubmission routing;
+- [results-reference-verification.md](results-reference-verification.md) for the v0.8.0 bibliography integration: mocked executable tests, real database and issuing-source checks, full-text support assessment, and presubmission routing;
 - [results-0.7.1.md](results-0.7.1.md) for offline statistical forward evidence, executable updater tests, package checks and coverage limits;
 - [statistical-policy-test-cases.md](statistical-policy-test-cases.md) for offline statistics, target-policy conflicts, causal wording, multiplicity, missingness and rounding controls;
 - [journal-ai-disclosure-test-cases.md](journal-ai-disclosure-test-cases.md) for reminder-only AI disclosure, current-task policy conflicts, changed targets, spelling exemptions, detector-percentage traps, and journal-guidance scope controls;

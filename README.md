@@ -18,7 +18,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
-- **Local development update (not in the 0.7.1 release):** [reference verification](skills/evidence-first-medical-writing/references/reference-verification.md) is included in every presubmission check. Audit all entries, then test priority claims against original sources; do not change the bibliography by default. The standalone skill includes the Python helper and [upstream MIT notice](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md).
+- **New in 0.8.0:** [reference verification](skills/evidence-first-medical-writing/references/reference-verification.md) is included in every presubmission check. Audit all entries, then test priority claims against original sources; do not change the bibliography by default. The standalone skill includes the Python helper and [upstream MIT notice](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md).
 - Builds a research task card, PICO-T frame, core claim, and IMRaD outline.
 - Checks alignment across the question, design, endpoint, analysis, results, and conclusion.
 - Flags research-integrity and reporting risks before language polishing.
@@ -87,7 +87,7 @@ result, impact on the conclusion, and manuscript location.
 
 ### Release checks and optional automatic updates
 
-From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 once to gain this behavior; older copies cannot update themselves retroactively.
+From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
 
 The default is **check and notify**. With your explicit opt-in, the bundled Python 3 standard-library helper can update a clean, writable standalone skill installation. It verifies the official asset identity, SHA-256 and manifests, preserves a backup, and protects local edits. Source checkouts and host-managed plugins/caches require their own update process. Missing tools, denied permissions, pins, offline mode or failed verification lead to a notification/manual link, not forced installation. Reinvoke the skill in a fresh task after an update; a frozen review keeps its original version.
 
@@ -254,10 +254,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.7.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.1).
+Current release: [0.8.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.8.0).
 
-This patch adds offline-first statistical profiles and an opt-in safe updater, with explicit capability and policy-currentness limits. It retains reminder-only AI disclosure, the five quality gates, over-defensive-writing audit, independent multi-reviewer workflow, author-confirmed study design, runtime guideline retrieval, optional data checks, and final submission audit. See [CHANGELOG.md](CHANGELOG.md).
+This release checks every bibliography entry during presubmission review and separately checks whether original sources support priority claims. Unavailable sources remain pending, not verified. See the [acceptance results](evals/results-reference-verification.md) and [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.7.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.1/evidence-first-medical-writing-0.7.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.8.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.8.0/evidence-first-medical-writing-0.8.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

@@ -19,7 +19,7 @@
 
 ## 主要能力
 
-- **本地开发版新增（已发布的 0.7.1 不含此项）**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
+- **0.8.0 新增**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
 - 建立研究任务卡、PICO-T、核心命题和 IMRaD 大纲；
 - 检查研究问题、设计、终点、分析、结果与结论是否一致；
 - 在语言润色前发现研究诚信和报告风险；
@@ -88,7 +88,7 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ### 使用时检查更新与可选自动更新
 
-从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**旧版用户需要先安装一次 0.7.1**，旧副本不会凭空获得更新能力。
+从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
 默认只检查和提示。经你明确选择自动更新后，内置的 Python 3 标准库程序可更新未被修改、可写入的独立 skill 文件夹：核对官方附件身份、SHA-256 和文件清单，保留备份，不覆盖自定义改动。源码仓库、插件包及平台管理的缓存使用各自更新方式。缺少工具、权限不足、版本锁定、离线或验证失败时，只提示或提供手动下载链接，不强行安装。更新后请在新任务中重新调用；同一轮审稿不会中途换版本。
 
@@ -250,10 +250,10 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：[0.7.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.7.1)。
+当前版本：[0.8.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.8.0)。
 
-本次小版本新增离线统计审查参考及授权后可用的安全更新程序，明确平台能力与期刊政策时效限制。保留 AI 披露“只提醒、不记录”的边界，以及五道质量门、过度防御性写作检查、独立多审稿人、研究类型确认、EQUATOR、可选数据与投稿前核查。详见 [CHANGELOG.md](CHANGELOG.md)。
+本版在投稿前检查中逐条核对参考文献，并单独回查原文是否支持关键主张。来源不可访问或证据不足时保留“待核实”，不改原稿或文献库。详见[验收记录](evals/results-reference-verification.md)及 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [0.7.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.7.1/evidence-first-medical-writing-0.7.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [0.8.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.8.0/evidence-first-medical-writing-0.8.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

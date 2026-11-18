@@ -1,6 +1,6 @@
-# Reference verification — local integration acceptance, 2026-11-18
+# Reference verification — v0.8.0 integration acceptance, 2026-11-18
 
-Baseline: Evidence-First Medical Writing v0.7.1. Source inspected: [Aperivue verify-refs at medsci-skills v6.3.0](https://github.com/Aperivue/medsci-skills/tree/e0ea3b0be3bf529aa0b94ee5fd8450e78848932c/skills/verify-refs). This is a local unpublished change, not a change to the v0.7.1 GitHub release. The earlier hosted skill snapshot was not available as a local installation; the upstream release was pinned and its executable, instructions and license inspected directly.
+Baseline: Evidence-First Medical Writing v0.7.1. Source inspected: [Aperivue verify-refs at medsci-skills v6.3.0](https://github.com/Aperivue/medsci-skills/tree/e0ea3b0be3bf529aa0b94ee5fd8450e78848932c/skills/verify-refs). The integration tested here ships in v0.8.0. The earlier hosted skill snapshot was not available as a local installation; the upstream release was pinned and its executable, instructions and license inspected directly.
 
 ## Executable tests with simulated responses
 

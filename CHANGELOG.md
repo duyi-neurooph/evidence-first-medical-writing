@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.8.0 — 2026-11-18
 
 - Integrated standalone, read-only bibliographic verification into the existing claim-to-citation and F2 submission/resubmission checks. Separates publication identity from original-source claim support; preserves source-specific routes, incomplete-access limits and the upstream MIT notice.
+- Title searches yield candidates, not proof. Compare formal records, identifiers and available metadata; report ambiguous matches, duplicate identifiers and inaccessible sources for author review. Ordinary translation and language polishing do not trigger a full audit.
+- The standalone skill includes the verification helper and upstream attribution. See [acceptance results](evals/results-reference-verification.md) for offline regression tests and separate live-source checks.
 
 ## 0.7.1 — 2026-11-16
 
