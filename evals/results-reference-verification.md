@@ -20,6 +20,8 @@ Run `python3 -B -m unittest discover -s tests -v` from the repository root. [Bib
 
 ## End-user trigger exercise
 
+Additional standalone CLI run with **neither DOI nor PMID supplied**: the indexed 15-year title (changed punctuation and capitalization, group author, online year 2007) verified against PMID 17976727. The indexed 5-year title (including PubMed's historical group suffix, changed punctuation/case, 1997) independently verified against PMID 9400788. The shorter publisher title for the same 5-year work remained pending in the automated pass because of PubMed's suffix and a truncated Crossref candidate set; reading the publisher original resolved the identity. The same findings do not imply exhaustive title searching across all databases.
+
 A separate evaluator received only the skill and a short synthetic excerpt with “请进行投稿前的检查”, an instruction to stay offline, one supplied citation and one missing supplement reference. Without an additional bibliography request it ran the real helper using `--offline`, returned 1 listed/0 identity-verified/1 pending, flagged the absent supplementary entry, and recorded insufficient evidence for a visual-acuity claim because only the citation title mentioned retinal thickness. No original was changed. This is a scoped behavioral test, not validation across all assistants or a complete clinical manuscript.
 
 ## Decision limits
