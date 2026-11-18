@@ -10,7 +10,7 @@
 
 ## Public provenance boundary
 
-The public package intentionally identifies no specific person, book, article, publication account, publisher, or other third-party source. Public documentation uses only neutral, non-identifying provenance language.
+The public package intentionally does not identify private editorial source materials or their authors. This boundary does not conceal third-party software attribution: keep the [Aperivue source and MIT notice](../third-party/aperivue-verify-refs.md) with the bundled verifier, including in standalone copies. Technical attribution is not endorsement.
 
 Do not:
 

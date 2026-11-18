@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Integrated standalone, read-only bibliographic verification into the existing claim-to-citation and F2 submission/resubmission checks. Separates publication identity from original-source claim support; preserves source-specific routes, incomplete-access limits and the upstream MIT notice.
+
 ## 0.7.1 — 2026-11-16
 
 - Added offline-first statistical routing with compact JAMA and NEJM profiles. Source scope, check dates and the undated NEJM copy's currency limit are explicit; current target-policy claims still require verification, and runtime EQUATOR selection remains in place.

@@ -12,12 +12,13 @@ Published and maintained by **Yi**. Contact: [duyinapoleon@gmail.com](mailto:duy
 
 This project is independent. It is not affiliated with, authorized by, or endorsed by any author, publisher, journal, institution, platform, or other third party.
 
-Method provenance: the workflow distills transferable principles, workflows, and checklists from diverse medical research-writing and editorial practice. The public repository identifies no specific third-party source or contributor.
+Method provenance: the workflow distills transferable principles, workflows, and checklists from diverse medical research-writing and editorial practice. Private editorial sources are not identified. Third-party software components are credited under their own licenses.
 
 Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Local development update (not in the 0.7.1 release):** [reference verification](skills/evidence-first-medical-writing/references/reference-verification.md) is included in every presubmission check. Audit all entries, then test priority claims against original sources; do not change the bibliography by default. The standalone skill includes the Python helper and [upstream MIT notice](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md).
 - Builds a research task card, PICO-T frame, core claim, and IMRaD outline.
 - Checks alignment across the question, design, endpoint, analysis, results, and conclusion.
 - Flags research-integrity and reporting risks before language polishing.

@@ -1,0 +1,27 @@
+# Reference verification — local integration acceptance, 2026-11-18
+
+Baseline: Evidence-First Medical Writing v0.7.1. Source inspected: [Aperivue verify-refs at medsci-skills v6.3.0](https://github.com/Aperivue/medsci-skills/tree/e0ea3b0be3bf529aa0b94ee5fd8450e78848932c/skills/verify-refs). This is a local unpublished change, not a change to the v0.7.1 GitHub release. The earlier hosted skill snapshot was not available as a local installation; the upstream release was pinned and its executable, instructions and license inspected directly.
+
+## Executable tests with simulated responses
+
+Run `python3 -B -m unittest discover -s tests -v` from the repository root. [Bibliography tests](../tests/test_verify_references.py) execute the integrated decision logic with controlled records or HTTP response bodies; live database availability is not part of these tests.
+
+- Same formal title after case, whitespace and ordinary punctuation changes: verified. A PubMed result providing only a candidate ID, without a retrievable formal record: pending.
+- Cited 5-year ONTT paper, only 15-year paper returned: pending with title conflict. Mismatched dose, polarity and protocol/result examples were also rejected. Running the upstream title lookup itself with a synthetic AQP4+ / AQP4− pair exposed a false pass; the current upstream already rejects the real ONTT pair, so those are **different** regression cases.
+- A real DOI used with the wrong article title: conflict, not a pass. Duplicate DOI/PMID, incompatible paired IDs, multiple indistinguishable formal titles, author-order, group/abbreviated authors and publication-year variants were covered.
+- Simulated unavailable databases and an explicit offline CLI run: inputs preserved, pending with reason, no fabricated verdict. No network request in offline mode.
+
+## Live checks versus source reading
+
+1. **Actual networked Python CLI, running from a standalone skill copy.** For the [15-year ONTT report](https://pubmed.ncbi.nlm.nih.gov/17976727/), an input with changed capitalization/punctuation, collective author, online year 2007 and both IDs was verified against the retrieved records (issue year 2008). Pairing its real DOI with the [5-year paper](https://pubmed.ncbi.nlm.nih.gov/9400788/)'s title and 1997 citation was pending, with title, journal and year conflicts. A shared DOI in the batch was flagged. No result was accepted for resolving a DOI alone.
+2. **Candidate ambiguity observed live.** Crossref returned a similarly titled item from another journal ahead of the real 5-year article. A title search is not an identity result. The [original publisher record](https://jamanetwork.com/journals/jamaophthalmology/article-abstract/642401) identifies the 1997 article and DOI 10.1001/archopht.1997.01100160715008. PubMed appends a group byline to its indexed title. Check issuer records when index metadata or search coverage cannot distinguish the work; never certify the top hit.
+3. **Identifier-free institutional source: actual issuer document read, not an automated database pass.** Checked the National Health Commission's [original 2024 guidance](https://www.nhc.gov.cn/ylyjs/gzdt/202407/256b4eb8398440a8811344c7be50a333/files/1734003012304_36543.pdf), attachment 4, printed page 48, titled *高尿酸血症营养和运动指导原则（2024年版）*. The version and title establish the cited guidance without a supplied DOI/PMID. The script routes such entries to the issuer; an assistant reading the actual original makes and documents the final identity judgment.
+4. **Real identity, separate actual full-text assessment of a synthetic claim.** [Raftopoulos et al., PMID 26822749](https://pubmed.ncbi.nlm.nih.gov/26822749/): the live CLI verified the bibliography with its DOI, shortened author list and journal abbreviation. The test Discussion sentence “Phenytoin significantly improved 6-month visual acuity compared with placebo in acute optic neuritis” is **not supported** by the [author manuscript, Results and Table 3, PDF p. 19](https://discovery.ucl.ac.uk/id/eprint/1474201/1/Raftopoulos%20et%20al%20-%20Phenytoin%20neuroprotection%20in%20acute%20optic%20neuritis%20CLEAN.pdf). The affected-eye RNFL thickness difference and logMAR acuity difference are distinct outcomes; the latter was 0.02 (95% CI −0.11 to 0.16; P=.728). This does not prove no effect. The assessor read the table; the lookup script did not infer this verdict from the abstract.
+
+## End-user trigger exercise
+
+A separate evaluator received only the skill and a short synthetic excerpt with “请进行投稿前的检查”, an instruction to stay offline, one supplied citation and one missing supplement reference. Without an additional bibliography request it ran the real helper using `--offline`, returned 1 listed/0 identity-verified/1 pending, flagged the absent supplementary entry, and recorded insufficient evidence for a visual-acuity claim because only the citation title mentioned retinal thickness. No original was changed. This is a scoped behavioral test, not validation across all assistants or a complete clinical manuscript.
+
+## Decision limits
+
+Searches are bounded, not exhaustive. Different journal titles/aliases, missing publication metadata, indistinguishable candidates, withdrawn versions or insufficient source access can require author or librarian confirmation. Full-text claim interpretation is a separate reading task. Missing network, inadequate evidence, and incomplete bibliographies do not establish misconduct, a negative clinical finding, or that the manuscript is ready to submit.

@@ -297,6 +297,8 @@ Use [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md)
 
 ### Claim–Citation Audit
 
+Use the bundled [reference verification](reference-verification.md) for all bibliography entries and the existing Claim–Citation Map for source-level support of priority claims. Report identity and support separately. The editor can reuse current, traceable checks for unchanged sources during F2; new/changed claims must be reassessed.
+
 Build a Claim–Citation Map with one row per key factual or normative claim:
 
 | Claim ID | Exact claim and location | Required source type | Current citation | Publication status | Support judgment | Action |

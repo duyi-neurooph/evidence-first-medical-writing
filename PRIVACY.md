@@ -11,3 +11,5 @@ The software, AI model, editor, operating system, Git hosting service, or other 
 Do not provide directly identifying patient information, credentials, confidential peer-review material, unpublished third-party manuscripts without permission, or other information you are not authorized to process. De-identify sensitive materials and follow applicable institutional, ethics, contractual, and legal requirements.
 
 Privacy questions may be sent to `duyinapoleon@gmail.com`.
+
+During a permitted reference audit, the separate bibliography helper sends public titles or cited identifiers to PubMed/NCBI and Crossref. It does not upload a manuscript, reference library, claim excerpts or patient data. Supply only public bibliographic fields, not private text. For official documents the host may visit the issuing authority. External services receive normal request metadata. Offline mode makes no bibliography requests.

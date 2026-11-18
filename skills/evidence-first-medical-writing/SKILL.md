@@ -1,6 +1,6 @@
 ---
 name: evidence-first-medical-writing
-description: Plan, draft, revise, and audit medical research manuscripts in English or Chinese with evidence fidelity first. Use for study-design clarification, EQUATOR reporting checks, research integrity, IMRaD and review structure, citations, tables/figures, over-defensive scientific writing and repetitive caveats, language revision, submission and reviewer responses, independent multi-reviewer simulated peer review, iterative editor-led revision, final submission checks, AI-use policy and disclosure, and optional authorized data reconciliation. Also use for SCI 医学论文写作、论文可信度、自明性、主线一致、过度防御性写作、重复限定、独立审稿及投稿前核查. Not a substitute for current journal instructions, professional statistical or ethics review, or real external peer review; never impersonate people or reproduce source materials.
+description: Plan, draft, revise, and audit medical research manuscripts in English or Chinese with evidence fidelity first. Use for study-design clarification, EQUATOR reporting checks, research integrity, IMRaD and review structure, bibliographic identity and claim-to-citation checks, tables/figures, over-defensive scientific writing and repetitive caveats, language revision, submission and reviewer responses, independent multi-reviewer simulated peer review, iterative editor-led revision, final submission checks, AI-use policy and disclosure, and optional authorized data reconciliation. Also use for SCI 医学论文写作、论文可信度、自明性、主线一致、过度防御性写作、重复限定、独立审稿、参考文献核查及投稿前检查. Not a substitute for current journal instructions, professional statistical or ethics review, or real external peer review; never impersonate people or reproduce source materials.
 ---
 
 # Evidence-First Medical Writing / 循证医学科研写作
@@ -45,6 +45,7 @@ For every substantive task, first read [principles.md](references/principles.md)
 - Before choosing design-specific reporting guidance, read [study-design-confirmation.md](references/study-design-confirmation.md): discuss the supported classification with the author, resolve decisive gaps, and record confirmation instead of trusting a study label.
 - Briefly offer optional, authorized de-identified source-data checks during substantive writing/review. If accepted or data verification is requested, read [optional-data-integrity-audit.md](references/optional-data-integrity-audit.md). Declining data sharing does not prevent writing or review.
 - For outlines, content selection, paragraph jobs, figure/table narrative, critical reading, or citations, read [architecture-and-evidence.md](references/architecture-and-evidence.md).
+- For explicit reference verification, substantive citation changes and every presubmission/resubmission check (including “投稿前检查”), run [reference-verification.md](references/reference-verification.md). Whole-manuscript review checks every reference's identity and reads original sources for high-impact or disputed claims. For an isolated edit check the affected citations only; ordinary translation/polishing does not trigger this audit.
 - For titles, abstracts, introductions, methods, results, discussions, conclusions, figures/tables, or cover letters, read [section-playbooks.md](references/section-playbooks.md).
 - Before substantive manuscript planning, writing, rewriting, or review, read [reporting-guideline-retrieval.md](references/reporting-guideline-retrieval.md) and retrieve current applicable guidance through EQUATOR and official sources. This includes ordinary single-reviewer requests; users need not name EQUATOR. Pure copyediting or literal translation follows the scope exceptions in that reference.
 - For study-design definitions, clinical statistical-reporting guidance, or journal-specific preparation, read [journal-guidance.md](references/journal-guidance.md). Use JAMA/NEJM selectively according to source role, not as universal submission rules.
@@ -209,7 +210,7 @@ Complete the task card and core proposition card first. Then provide the researc
 
 ### Perform critical reading or citation checking
 
-Decompose the paper into question, design, sample, outcomes, analysis, results, and conclusion. Check one by one whether each citation directly supports the current claim. Do not replace verifiable evidence with "many studies show," and do not propagate a chain of secondary citations.
+Decompose the paper into question, design, sample, outcomes, analysis, results, and conclusion. Follow the [two-part reference audit](references/reference-verification.md) for bibliographic checks and claim support; give source locations and access limits separately from identity. Keep originals and libraries unchanged unless the user asks to change them. Do not propagate a chain of secondary citations.
 
 ### Rewrite one section
 

@@ -106,6 +106,8 @@ Classify each explanation as (1) background the intended readers can reasonably 
 
 ## 6. 引用完整性审查
 
+明确核查参考文献、实质修改引文、整稿审核或投稿前检查时，执行[书目与主张双层核查](reference-verification.md)。书目身份已核实，不代表文献支持正文结论。把原文位置、实际阅读范围及支持程度填入下表；仅翻译或润色不启动全量核查。
+
 ### 建立 Claim–Citation Map
 
 对每条重要主张记录：

@@ -34,6 +34,8 @@ For each logic finding state the two locations, the expected relationship, the o
 
 ### F2 — Citation callouts and reference entries reconcile
 
+Always run the [reference verification audit](reference-verification.md) as part of F2, even if the user only says “进行投稿前的检查”, “投稿前检查”, or “修回后再投前检查” and never mentions references. Verify the **entire** bibliography by source type and check original-source support for high-impact or reviewer-challenged claims. Return both verdicts and coverage; numbering alone cannot pass F2. If a list, original, or network access is missing, name the pending items instead of silently skipping them.
+
 Build a two-way inventory: every citation must resolve to an entry, and every listed entry must have an allowed citation location. Include main text, tables, legends, and supplements according to the journal's rules for shared or separate reference lists. Flag uncited entries, missing entries, duplicates, and broken citation fields. A source cited only in an allowed legend is not automatically an orphan. This inventory complements, and does not replace, claim-to-citation verification. Do not remove references or renumber a citation-manager library merely because extraction missed field codes.
 
 ### F3 — First mentions, labels, and numbering agree

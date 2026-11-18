@@ -13,12 +13,13 @@
 
 本项目为独立产品，不隶属于、不代表、未获得任何作者、出版社、期刊、机构、平台或其他第三方的授权、认可或背书。
 
-方法来源说明：本工作流基于多来源医学科研写作与编辑实践，提炼可迁移的方法原则、工作流与检查表。公开仓库不指向任何具体第三方来源或贡献者。
+方法来源说明：本工作流基于多来源医学科研写作与编辑实践，提炼可迁移的方法原则、工作流与检查表，不公开私人写作资料的具体来源。复用的软件组件单独注明来源，并保留其许可证。
 
 仓库地址：<https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## 主要能力
 
+- **本地开发版新增（已发布的 0.7.1 不含此项）**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
 - 建立研究任务卡、PICO-T、核心命题和 IMRaD 大纲；
 - 检查研究问题、设计、终点、分析、结果与结论是否一致；
 - 在语言润色前发现研究诚信和报告风险；
