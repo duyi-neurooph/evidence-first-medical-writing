@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Revised the default participant-flow drawing: solid connectors, straight side exclusions where space permits, unfilled boxes and bold leading counts. Added an English synthetic randomized trial with distinct treatment-receipt, observed-outcome and primary-analysis counts.
+
 - Added a design-aware participant-flow module for original research: create editable diagrams from sourced aggregate counts, audit denominators and exclusions, and distinguish uncertain drafts from reconciled figures. Published examples inform reporting choices; the package includes only independently designed synthetic examples.
 
 ## 0.8.0 — 2026-11-18

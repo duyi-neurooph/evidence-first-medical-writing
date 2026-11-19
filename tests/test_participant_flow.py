@@ -42,6 +42,35 @@ def visible_text(svg):
     return " ".join("".join(el.itertext()) for el in doc.iter(SVG + "text"))
 
 
+def solid_unfilled(root, expected_nodes):
+    boxes = [el for el in root.iter(SVG + "rect") if el.get("stroke") not in (None, "none")]
+    if len(boxes) != expected_nodes:
+        raise AssertionError(f"Expected {expected_nodes} node frames, got {len(boxes)}")
+    if any(box.get("fill") != "none" for box in boxes):
+        raise AssertionError("Each node frame should be transparent")
+    if any(el.get("stroke-dasharray") not in (None, "none") for el in root.iter()):
+        raise AssertionError("A relationship still relies on a dashed or dotted line")
+    return boxes
+
+
+def styled_chunks(element, inherited=None):
+    """Text/tails retain their own element's type weight in an editable SVG."""
+    weight = element.get("font-weight", inherited)
+    if element.text:
+        yield element.text, weight
+    for child in element:
+        yield from styled_chunks(child, weight)
+        if child.tail:
+            yield child.tail, weight
+
+
+def connector_points(element):
+    if element.tag == SVG + "line":
+        return [(float(element.get("x1")), float(element.get("y1"))),
+                (float(element.get("x2")), float(element.get("y2")))]
+    return [tuple(float(v) for v in pair.split(",")) for pair in element.get("points").split()]
+
+
 class ParticipantFlowCLI(unittest.TestCase):
     def setUp(self):
         data = tempfile.TemporaryDirectory(prefix="efmw-flow-acceptance-")
@@ -81,11 +110,14 @@ class ParticipantFlowCLI(unittest.TestCase):
         self.assertEqual(report["status"], "ready", report)
         return visible_text(svg), report, svg
 
-    def test_both_shipped_examples_render_in_isolation(self):
-        for name in ("flow-rct.json", "flow-cohort.json"):
+    def test_shipped_examples_render_in_isolation(self):
+        for name in ("flow-rct.json", "flow-cohort.json", "flow-community-bp.json"):
             with self.subTest(name=name):
                 spec = json.loads((SKILL / "assets" / name).read_text(encoding="utf-8"))
-                content, _, _ = self.ready(spec)
+                content, _, file = self.ready(spec)
+                root = ET.parse(file).getroot()
+                solid_unfilled(root, len(spec["nodes"]))
+                self.assertNotRegex(content.lower(), r"\bn\s*=|dashed|dotted")
                 for end in (v for v in spec["nodes"] if v["kind"] == "analysis"):
                     self.assertIn(str(end["n"]), content.replace(",", ""))
 
@@ -93,6 +125,51 @@ class ParticipantFlowCLI(unittest.TestCase):
         spec = cohort()
         spec["nodes"][1]["n"] = 21
         self.blocked(spec)
+
+    def test_inline_counts_and_reasons_are_bold_but_labels_are_not(self):
+        spec = cohort()
+        spec["nodes"][1].update(label="Excluded", reason_relation="partition", reasons=[
+            dict(label="Ineligible", n=12, source="Synthetic log, R1", confirmed=True),
+            dict(label="Declined", n=8, source="Synthetic log, R2", confirmed=True)])
+        visible, _, path = self.ready(spec)
+        root = ET.parse(path).getroot()
+        solid_unfilled(root, len(spec["nodes"]))
+        self.assertNotRegex(visible.lower(), r"\bn\s*=")
+        self.assertIn("patients", visible.lower(), "Counting units disappeared")
+        text = list(root.iter(SVG + "text"))
+        for number, label in [("120", "Screened"), ("20", "Excluded"), ("12", "Ineligible"), ("8", "Declined")]:
+            with self.subTest(number=number, label=label):
+                matches = [el for el in text if label in "".join(el.itertext())]
+                self.assertEqual(len(matches), 1)
+                chunks = [(s.strip(), w) for s, w in styled_chunks(matches[0]) if s.strip()]
+                self.assertEqual(chunks[0][0], number, "Count must lead the label on the same line")
+                self.assertIn(chunks[0][1], ("bold", "700", "800","900"))
+                self.assertTrue(any(label in s and w not in ("bold","700","800","900") for s, w in chunks[1:]))
+
+    def test_exclusion_arrow_is_horizontal_from_between_two_retained_stages(self):
+        for side_row in (0, 1, 2):
+            with self.subTest(side_row=side_row):
+                spec = cohort()
+                spec["nodes"][1]["row"] = side_row
+                _, _, path = self.ready(spec)
+                root = ET.parse(path).getroot()
+                boxes = solid_unfilled(root, len(spec["nodes"]))
+                rects = [tuple(float(el.get(k)) for k in ("x","y","width","height")) for el in boxes]
+                side = max(rects, key=lambda r:r[0])
+                start, retained, _ = sorted((r for r in rects if r != side), key=lambda r:r[1])
+                wires = [connector_points(el) for el in root.iter() if el.get("marker-end")]
+                branches = [w for w in wires if abs(w[-1][0] - side[0]) < 1 and side[1] < w[-1][1] < side[1]+side[3]]
+                self.assertEqual(len(branches),1, "Expected an arrow into the left edge of the excluded box")
+                branch = branches[0]
+                x, y = branch[0]
+                self.assertTrue(all(abs(pt[1]-y)<0.01 for pt in branch), "Avoid an elbow through the exclusion lane")
+                self.assertLess(x, branch[-1][0], "Exclusion arrow points to the right")
+                self.assertAlmostEqual(x, start[0]+start[2]/2)
+                self.assertLess(start[1]+start[3],y)
+                self.assertLess(y,retained[1])
+                self.assertTrue(any(abs(x-x1)<0.01 and abs(x-x2)<0.01 and min(y1,y2)<=y<=max(y1,y2)
+                                    for wire in wires for (x1,y1),(x2,y2) in zip(wire,wire[1:])),
+                                "The exclusion arrow must touch the retained vertical trunk")
 
     def test_chinese_paired_diagnostic_draft_keeps_the_unverified_denominator(self):
         spec = dict(title="配对诊断研究", design="前瞻性配对比较", unit="人", language="zh", synthetic=True,
@@ -110,6 +187,8 @@ class ParticipantFlowCLI(unittest.TestCase):
         self.assertIn("?", shown)
         self.assertNotIn("180", shown)
         self.assertNotIn("DRAFT", shown)
+        self.assertNotRegex(shown, r"[nN]\s*=|虚线|点线")
+        self.assertIn("重叠", shown)
 
     def test_randomized_arms_keep_observed_outcomes_separate_from_itt(self):
         spec = dict(
@@ -200,6 +279,10 @@ class ParticipantFlowCLI(unittest.TestCase):
         visible, _, _ = self.ready(spec)
         self.assertIn("370", visible)
         self.assertIn("120", visible)
+        self.assertIn("Unique patient key", visible)
+        self.assertIn("encounters", visible.lower())
+        self.assertIn("patients", visible.lower())
+        self.assertNotRegex(visible.lower(), r"dashed|dotted|\bn\s*=")
         spec["groups"][0]["rationale"] = 4
         proc, report, _ = self.invoke(spec, draft=True)
         self.assertNotEqual(proc.returncode, 0)

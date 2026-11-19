@@ -1,0 +1,39 @@
+{
+  "title": "Participant flow in a blood pressure trial",
+  "design": "Community-based randomized trial",
+  "unit": "participants",
+  "language": "en",
+  "synthetic": true,
+  "nodes": [
+    {"id":"screen","label":"Assessed for eligibility","n":248,"source":"Synthetic screening log, row S1","confirmed":true,"row":0,"col":1,"kind":"main"},
+    {"id":"excluded","label":"Excluded","n":48,"source":"Synthetic screening log, row S2","confirmed":true,"row":1,"col":2,"kind":"exclusion","reason_relation":"partition","reasons":[
+      {"label":"Outside blood pressure range","n":26,"source":"Synthetic screening log, row S2a","confirmed":true},
+      {"label":"Declined participation","n":14,"source":"Synthetic screening log, row S2b","confirmed":true},
+      {"label":"Outside age range","n":8,"source":"Synthetic screening log, row S2c","confirmed":true}
+    ]},
+    {"id":"randomized","label":"Randomized","n":200,"source":"Synthetic allocation log, row R1","confirmed":true,"row":2,"col":1,"kind":"main"},
+    {"id":"home","label":"Assigned to home monitoring","n":100,"source":"Synthetic allocation log, row R2","confirmed":true,"row":3,"col":0,"kind":"main","reason_relation":"partition","reasons":[
+      {"label":"Started home monitoring","n":98,"source":"Synthetic intervention log, row H1","confirmed":true},
+      {"label":"Did not start monitoring","n":2,"source":"Synthetic intervention log, row H2","confirmed":true}
+    ]},
+    {"id":"clinic","label":"Assigned to clinic follow-up","n":100,"source":"Synthetic allocation log, row R3","confirmed":true,"row":3,"col":2,"kind":"main","reason_relation":"partition","reasons":[
+      {"label":"Attended the initial visit","n":99,"source":"Synthetic intervention log, row C1","confirmed":true},
+      {"label":"Missed the initial visit","n":1,"source":"Synthetic intervention log, row C2","confirmed":true}
+    ]},
+    {"id":"analysis_home","label":"Included in primary analysis","n":100,"source":"Synthetic analysis output, row A1","confirmed":true,"row":4,"col":0,"kind":"analysis","reason_relation":"partition","reasons":[
+      {"label":"Had a week 12 reading","n":94,"source":"Synthetic outcome log, row A1a","confirmed":true},
+      {"label":"Had no week 12 reading","n":6,"source":"Synthetic outcome log, row A1b","confirmed":true}
+    ]},
+    {"id":"analysis_clinic","label":"Included in primary analysis","n":100,"source":"Synthetic analysis output, row A2","confirmed":true,"row":4,"col":2,"kind":"analysis","reason_relation":"partition","reasons":[
+      {"label":"Had a week 12 reading","n":96,"source":"Synthetic outcome log, row A2a","confirmed":true},
+      {"label":"Had no week 12 reading","n":4,"source":"Synthetic outcome log, row A2b","confirmed":true}
+    ]}
+  ],
+  "groups": [
+    {"parent":"screen","children":["randomized","excluded"],"relation":"partition"},
+    {"parent":"randomized","children":["home","clinic"],"relation":"partition"},
+    {"parent":"home","children":["analysis_home"],"relation":"partition"},
+    {"parent":"clinic","children":["analysis_clinic"],"relation":"partition"}
+  ],
+  "notes": ["The primary analysis retained each participant in the assigned group. Missing week 12 systolic blood pressure values were multiply imputed."]
+}

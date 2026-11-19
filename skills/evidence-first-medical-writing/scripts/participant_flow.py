@@ -168,9 +168,23 @@ def audit(data):
 
 
 def measure(s):
-    # Conservative em widths keep text editable without measuring local fonts.
-    return sum(0 if unicodedata.combining(c) else 1.05 if unicodedata.east_asian_width(c) in "WF" or c in "MW@%"
-               else .8 if c.isupper() else .64 if not c.isspace() else .35 for c in s)
+    # Approximate sans-serif advances in em; modest guard space accommodates
+    # font substitution without leaving half-empty lines in English figures.
+    def advance(c):
+        if unicodedata.combining(c):
+            return 0
+        if unicodedata.east_asian_width(c) in "WF":
+            return 1.03
+        if c.isspace() or c in "ilI!.,:;'|":
+            return .29
+        if c in "frt()[]-/":
+            return .37
+        if c in "mwMW@%":
+            return .92
+        if c.isupper():
+            return .74
+        return .58
+    return sum(map(advance, s))
 
 
 def wrap(s, width):
@@ -225,53 +239,141 @@ def ortho(a, b, boxes):
     raise ValueError("No clear channel for a connector; change the row/column arrangement.")
 
 
+def clear_segment(a, b, boxes, skip):
+    """Test a candidate straight connector against non-endpoint box interiors."""
+    for key, (x, y, w, h) in boxes.items():
+        if key in skip:
+            continue
+        lo, hi = 0.0, 1.0
+        for origin, delta, low, high in ((a[0], b[0]-a[0], x-2, x+w+2),
+                                         (a[1], b[1]-a[1], y-2, y+h+2)):
+            if not delta:
+                if not low <= origin <= high:
+                    lo, hi = 1.0, 0.0
+                    break
+                continue
+            t, u = sorted(((low-origin)/delta, (high-origin)/delta))
+            lo, hi = max(lo, t), min(hi, u)
+        if lo <= hi:
+            return False
+    return True
+
+
 def svg(data, draft=False):
     nodes = data["nodes"]
+    by_id = {n["id"]: n for n in nodes}
     zh = data.get("language", "en") == "zh"
+    unit = data["unit"]
     unconfirmed = "（待确认）" if zh else " (unconfirmed)"
     draft_label = "草稿：不可投稿" if zh else "DRAFT — NOT FOR SUBMISSION"
     teaching_label = "虚构数据示例" if zh else "SYNTHETIC EXAMPLE"
-    cols = sorted({n["col"] for n in nodes}); rows = sorted({n["row"] for n in nodes})
-    w, margin, gap = 252, 36, 40
-    width = max(560, 2*margin + len(cols)*w + (len(cols)-1)*gap)
-    plot = len(cols)*w + (len(cols)-1)*gap
-    unit = data["unit"]
-    labels = {n["id"]: wrap(n["label"], (w-32)/16) for n in nodes}
-    counts = {n["id"]: wrap(("n = " + (str(n["n"]) if n.get("n") is not None else "?") + " " +
-                              n.get("unit", unit) + (unconfirmed if n.get("confirmed") is not True else "")),
-                             (w-32)/15) for n in nodes}
-    reasons = {}
-    for n in nodes:
-        rs = []
+    w, margin, gap = 280, 22, 32
+
+    def entries(n):
+        # The label hangs from the bold number, with no redundant second count line.
+        result = []
+        def numbered(item, size, indent):
+            number = str(item["n"]) if item.get("n") is not None else "?"
+            label = item["label"]
+            node_unit = item.get("unit", unit)
+            if node_unit != unit and node_unit.casefold() not in label.casefold():
+                label = node_unit + ("，" if zh else " — ") + label
+            if item.get("confirmed") is not True:
+                label += unconfirmed
+            hang = size*(measure(number)+.45)
+            lines = wrap(label, max(5, (w-24-indent-hang)/size))
+            for i, line in enumerate(lines):
+                result.append((number if i == 0 else None, line, size,
+                               indent if i == 0 else indent+hang))
+        numbered(n, 15, 0)
         if n.get("reason_relation") == "subsets":
-            rs.extend(wrap("原因可重叠或未列全：" if zh else "Reasons (may overlap or be incomplete):", (w-32)/14))
+            result.extend((None, s, 13, 14) for s in wrap(
+                "原因可重叠或未列全：" if zh else "Reasons may overlap or be incomplete:", (w-40)/13))
         for r in n.get("reasons", []):
-            value = str(r["n"]) if r.get("n") is not None else "?"
-            rs.extend(wrap(value + " — " + r["label"] + (unconfirmed if r.get("confirmed") is not True else ""), (w-32)/14))
-        reasons[n["id"]] = rs
-    top = wrap(data["title"], (width-2*margin)/22)
-    meta = wrap(" · ".join(filter(None, [draft_label if draft else "",
-                teaching_label if data.get("synthetic") else "", data["design"]])), (width-2*margin)/14)
-    position = 28 + 18*len(meta) + 12 + 28*len(top) + 23
-    boxes = {}
-    for row in rows:
-        yy = position; heights = []
-        for n in [v for v in nodes if v["row"] == row]:
-            k = n["id"]; h = 27 + 21*len(labels[k]) + 19*len(counts[k]) + 18*len(reasons[k])
-            boxes[k] = ((width-plot)//2 + cols.index(n["col"])*(w+gap), yy, w, h)
-            heights.append(h)
-        position += max(heights) + 46
-    foot = []
-    if any(g["relation"] == "subsets" for g in data["groups"]):
-        foot.extend(wrap("虚线：子集可能重叠或未覆盖全部对象，各项计数不能相加。" if zh else
-                         "Dashed connectors: subsets may overlap or be incomplete; do not add their counts.", (width-2*margin)/13))
+            numbered(r, 14, 15)
+        return result
+
+    lines = {n["id"]: entries(n) for n in nodes}
+    heights = {k: 15 + sum(size+4 for _,_,size,_ in vals) for k, vals in lines.items()}
+    cols = {c:i for i,c in enumerate(sorted({n["col"] for n in nodes}))}
+    row_rank = {r:2*i for i,r in enumerate(sorted({n["row"] for n in nodes}))}
+    row = {n["id"]:row_rank[n["row"]] for n in nodes}
+    occupied = {(row[k], by_id[k]["col"]) for k in by_id}
+    outgoing = {g["parent"] for g in data["groups"]}
+    # Put a side exclusion between its source and the next retained stage even
+    # for older ledgers that positioned it on the source or destination row.
+    tees = {}
     for g in data["groups"]:
-        if g["relation"] == "unit_change":
-            prefix, unknown = ("点线：", "计数单位的转换方式待确认。") if zh else ("Dotted connector: ", "unit mapping unconfirmed")
-            foot.extend(wrap(prefix + (g["rationale"] if text(g.get("rationale")) else unknown), (width-2*margin)/13))
+        p = g["parent"]; pc = by_id[p]["col"]
+        if g["relation"] != "partition":
+            continue
+        retained = [k for k in g["children"] if by_id[k]["kind"] != "exclusion"]
+        if len(retained) != 1:
+            continue
+        keep = retained[0]
+        if by_id[keep]["col"] != pc or row[keep] <= row[p]:
+            continue
+        for k in g["children"]:
+            c = by_id[k]["col"]
+            if k == keep or k in outgoing or c == pc or not row[p] <= row[k] <= row[keep]:
+                continue
+            mid = row[k] if row[p] < row[k] < row[keep] else (row[p]+row[keep])//2
+            if mid != row[k] and (mid,c) in occupied:
+                continue
+            occupied.remove((row[k],c)); row[k] = mid; occupied.add((mid,c))
+            tees[(p,k)] = keep
+
+    bands = defaultdict(list)
+    for k in by_id:
+        bands[row[k]].append(k)
+    # Where only the two outer lanes share a row, the center column is an
+    # anchor for the stem, not another full-width unused column of space.
+    stride = w/2 + gap
+    for ks in bands.values():
+        ranks = sorted(cols[by_id[k]["col"]] for k in ks)
+        for a,b in zip(ranks,ranks[1:]):
+            stride = max(stride, (w+gap)/(b-a))
+    plot = w + (len(cols)-1)*stride
+    width = max(500, int(2*margin + plot + .5))
+    top = wrap(data["title"], (width-2*margin)/20)
+    mixed_units = any(n.get("unit", unit) != unit for n in nodes)
+    unit_caption = ("计数单位：" if zh else "Counts: ") + unit
+    if mixed_units:
+        unit_caption += "（另有注明者除外）" if zh else " unless otherwise specified"
+    meta = wrap(" · ".join(filter(None, [draft_label if draft else "",
+                teaching_label if data.get("synthetic") else "", data["design"],
+                unit_caption])), (width-2*margin)/12)
+    pos = 26 + 25*len(top) + 17*len(meta) + 7
+    boxes = {}
+    for band in sorted(bands):
+        h = max(heights[k] for k in bands[band])
+        # Equal-depth arm panels share top and bottom edges even when one has
+        # more lines. This keeps the two allocation arrows truly symmetric.
+        parallel = len(bands[band]) > 1 and all(by_id[k]["kind"] != "exclusion" for k in bands[band])
+        for k in bands[band]:
+            x = (width-plot)/2 + cols[by_id[k]["col"]]*stride
+            hh = h if parallel else heights[k]
+            boxes[k] = (x, pos + (h-hh)/2, w, hh)
+        pos += h+24
+
+    foot = []
+    for g in data["groups"]:
+        if g["relation"] == "subsets":
+            name = by_id[g["parent"]]["label"]
+            scope = (f"“{name}”的子集可能重叠或未覆盖全部对象，不应相加。" if zh else
+                     f"Subsets of “{name}” may overlap or be incomplete; do not add their counts.")
+        elif g["relation"] == "unit_change":
+            p = by_id[g["parent"]]
+            start = p.get("unit",unit)
+            end = ", ".join(dict.fromkeys(by_id[k].get("unit",unit) for k in g["children"]))
+            desc = g.get("rationale") or ("转换方式待确认。" if zh else "Mapping unconfirmed.")
+            scope = (f"单位转换（{start} → {end}）：{desc}" if zh else f"Unit change ({start} → {end}): {desc}")
+        else:
+            continue
+        foot.extend(wrap(scope,(width-2*margin)/12))
     for note in data.get("notes", []):
-        foot.extend(wrap(note, (width-2*margin)/13))
-    height = position + len(foot)*18 + 12
+        foot.extend(wrap(note, (width-2*margin)/12))
+    height = int(pos + 16*len(foot) + 5)
     root = ET.Element("svg", {"xmlns":"http://www.w3.org/2000/svg", "lang":"zh" if zh else "en", "width":str(width), "height":str(height),
                              "viewBox":f"0 0 {width} {height}", "role":"img", "aria-labelledby":"figure-title figure-desc"})
     def el(parent, tag, attrs=None, value=None):
@@ -281,47 +383,65 @@ def svg(data, draft=False):
     el(root, "title", {"id":"figure-title"}, data["title"])
     el(root, "desc", {"id":"figure-desc"}, ("原创研究对象流程图。" if zh else "Original participant disposition diagram. ") + " ".join(meta + foot))
     defs = el(root, "defs")
-    marker = el(defs, "marker", {"id":"tip","viewBox":"0 0 8 8","refX":7.2,"refY":4,
+    marker = el(defs, "marker", {"id":"tip","viewBox":"0 0 8 8","refX":8,"refY":4,
                                  "markerWidth":7,"markerHeight":7,"orient":"auto"})
-    el(marker,"path",{"d":"M0 0 L8 4 L0 8 Z","fill":"#4b5258"})
+    el(marker,"path",{"d":"M0 0 L8 4 L0 8 L2 4 Z","fill":"#444"})
     el(root,"rect",{"width":width,"height":height,"fill":"white"})
-    canvas = el(root,"g",{"font-family":"Arial, Helvetica, sans-serif","fill":"#202428"})
-    def txt(x,y,v,size,weight="normal",color="#202428"):
-        el(canvas,"text",{"x":x,"y":y,"font-size":size,"font-weight":weight,"fill":color},v)
-    for i,s in enumerate(meta):
-        txt(margin, 26+18*i, s, 14, "bold")
+    canvas = el(root,"g",{"font-family":"Arial, Helvetica, sans-serif","fill":"#161616"})
     for i,s in enumerate(top):
-        txt(margin, 26+18*len(meta)+13+i*28, s, 22, "bold")
+        el(canvas,"text",{"x":margin,"y":25+25*i,"font-size":20,"font-weight":"bold"},s)
+    for i,s in enumerate(meta):
+        el(canvas,"text",{"x":margin,"y":25*len(top)+20+17*i,"font-size":12,"fill":"#444"},s)
+
     for g in data["groups"]:
-        x,y,bw,bh = boxes[g["parent"]]
+        p = g["parent"]
+        x,y,bw,bh = boxes[p]
         for k in g["children"]:
             xx,yy,cw,ch = boxes[k]
-            if yy == y:
-                sign = 1 if xx > x else -1
-                a=(x+(bw if sign>0 else 0), y+bh//2); b=(xx+(0 if sign>0 else cw), yy+ch//2)
-                aa=(a[0]+12*sign,a[1]); bb=(b[0]-12*sign,b[1])
-            else:
-                a=(x+bw//2,y+bh); b=(xx+cw//2,yy)
-                aa=(a[0],a[1]+12); bb=(b[0],b[1]-12)
-            points = [a, *ortho(aa,bb,boxes.values()), b]
-            attrs = {"points":" ".join(f"{x0},{y0}" for x0,y0 in points), "fill":"none",
-                     "stroke":"#4b5258","stroke-width":"1.5","stroke-linejoin":"round","marker-end":"url(#tip)"}
-            if g["relation"] != "partition":
-                attrs["stroke-dasharray"] = "6 3" if g["relation"] == "subsets" else "2 3"
-            el(canvas,"polyline",attrs)
+            a = (x+bw/2, y+bh); b = (xx+cw/2,yy)
+            points = None
+            if (p,k) in tees:
+                keep = tees[(p,k)]; ky = boxes[keep][1]
+                ty = yy+ch/2
+                side = (xx if xx > x else xx+cw, ty)
+                stem = (a[0], ty)
+                if a[1] < ty < ky and clear_segment(a,(a[0],ky),boxes,{p,keep}) and clear_segment(stem,side,boxes,{k}):
+                    points = [stem,side]
+            if points is None:
+                if row[k] == row[p]:
+                    sign = 1 if xx > x else -1
+                    a=(x+(bw if sign>0 else 0), y+bh/2); b=(xx+(0 if sign>0 else cw), yy+ch/2)
+                    aa=(a[0]+10*sign,a[1]); bb=(b[0]-10*sign,b[1])
+                else:
+                    aa=(a[0],a[1]+7); bb=(b[0],b[1]-7)
+                if clear_segment(a,b,boxes,{p,k}):
+                    points = [a,b]
+                else:
+                    points = [a,*ortho(aa,bb,boxes.values()),b]
+            el(canvas,"polyline",{"data-from":p,"data-to":k,
+                  "points":" ".join(f"{u:g},{v:g}" for u,v in points), "fill":"none",
+                  "stroke":"#444","stroke-width":1.05,"stroke-linejoin":"round","marker-end":"url(#tip)"})
+
     for n in nodes:
         k = n["id"]; x,y,ww,hh = boxes[k]
-        attrs = {"x":x,"y":y,"width":ww,"height":hh,"fill":"#f3f5f6" if n["kind"]=="analysis" else "#fff",
-                 "stroke":"#394149","stroke-width":1.4}
-        el(canvas,"rect",attrs)
-        for i,s in enumerate(labels[k]):
-            txt(x+15, y+24+21*i, s, 16)
-        for i,s in enumerate(counts[k]):
-            txt(x+15, y+26+21*len(labels[k])+19*i, s, 15, "bold")
-        for i,s in enumerate(reasons[k]):
-            txt(x+15, y+26+21*len(labels[k])+19*len(counts[k])+18*i, s, 14)
+        box = el(canvas,"g",{"data-node":k})
+        el(box,"rect",{"x":x,"y":y,"width":ww,"height":hh,"fill":"none","stroke":"#555","stroke-width":1})
+        line_y = y+6
+        for number, line, size, indent in lines[k]:
+            line_y += size
+            t = el(box,"text",{"x":x+12+indent,"y":line_y,"font-size":size,
+                               "{http://www.w3.org/XML/1998/namespace}space":"preserve"})
+            if number is not None:
+                el(t,"tspan",{"font-weight":"bold"},number).tail = " "
+                # An explicit label anchor also fixes the hanging indent if
+                # the viewer substitutes a wider or narrower numeric font.
+                anchor = x+12+indent+size*(measure(number)+.45)
+                el(t,"tspan",{"x":anchor},line)
+            else:
+                el(t,"tspan",{},line)
+            line_y += 4
     for i,s in enumerate(foot):
-        txt(margin, position+18*i, s, 13, color="#424950")
+        el(canvas,"text",{"x":margin,"y":pos+16*i,"font-size":12,"fill":"#444"},s)
     return ET.tostring(root, encoding="unicode", xml_declaration=True) + "\n"
 
 
