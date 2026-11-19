@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.1 — 2026-11-19
+
+- Patient groups and other retained stages now receive downward arrows; only exclusions receive rightward arrows. The same rule applies when redrawing an editable figure. A shorter follow-up period is not itself an exclusion.
+- Plain requests such as “按我给你的数据画 flowchart” now route to the participant-flow module without a journal name. Literature selection and nonclinical process diagrams remain separate.
+
 ## 0.9.0 — 2026-11-19
 
 - Revised the default participant-flow drawing: solid connectors, straight side exclusions where space permits, unfilled boxes and bold leading counts. Added an English synthetic randomized trial with distinct treatment-receipt, observed-outcome and primary-analysis counts.

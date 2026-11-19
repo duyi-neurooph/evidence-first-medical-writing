@@ -110,6 +110,36 @@ class ParticipantFlowCLI(unittest.TestCase):
         self.assertEqual(report["status"], "ready", report)
         return visible_text(svg), report, svg
 
+    def assert_arrow_semantics(self, spec, path):
+        """Measure the rendered arrowhead's approach, not a label or routing flag."""
+        root = ET.parse(path).getroot()
+        boxes = {g.get("data-node"): tuple(float(g.find(SVG + "rect").get(a))
+                                          for a in ("x", "y", "width", "height"))
+                 for g in root.iter(SVG + "g") if g.get("data-node")}
+        kinds = {n["id"]: n["kind"] for n in spec["nodes"]}
+        expected = [(g["parent"], k) for g in spec["groups"] for k in g["children"]]
+        arrows = [(e.get("data-from"), e.get("data-to"), connector_points(e))
+                  for e in root.iter() if e.get("marker-end")]
+        self.assertCountEqual([(p, k) for p, k, _ in arrows], expected)
+        for p, k, points in arrows:
+            with self.subTest(edge=(p, k)):
+                x, y, w, h = boxes[k]
+                tip = points[-1]
+                previous = next(pt for pt in reversed(points[:-1]) if pt != tip)
+                if kinds[k] == "exclusion":
+                    self.assertGreater(x, boxes[p][0] + boxes[p][2] / 2)
+                    self.assertAlmostEqual(tip[0], x, delta=.05)  # left edge
+                    self.assertTrue(y < tip[1] < y + h)
+                    self.assertAlmostEqual(previous[1], tip[1], delta=.05)
+                    self.assertLess(previous[0], tip[0])
+                else:
+                    self.assertGreater(y, boxes[p][1] + boxes[p][3])
+                    self.assertAlmostEqual(tip[1], y, delta=.05)  # top edge
+                    self.assertAlmostEqual(tip[0], x + w / 2, delta=.05)
+                    self.assertAlmostEqual(previous[0], tip[0], delta=.05)
+                    self.assertLess(previous[1], tip[1])
+        return boxes
+
     def test_shipped_examples_render_in_isolation(self):
         for name in ("flow-rct.json", "flow-cohort.json", "flow-community-bp.json",
                      "flow-observational-cohort.json", "flow-case-control.json"):
@@ -118,6 +148,7 @@ class ParticipantFlowCLI(unittest.TestCase):
                 content, _, file = self.ready(spec)
                 root = ET.parse(file).getroot()
                 solid_unfilled(root, len(spec["nodes"]))
+                self.assert_arrow_semantics(spec, file)
                 self.assertNotRegex(content.lower(), r"\bn\s*=|dashed|dotted")
                 for end in (v for v in spec["nodes"] if v["kind"] == "analysis"):
                     self.assertIn(str(end["n"]), content.replace(",", ""))
@@ -197,6 +228,59 @@ class ParticipantFlowCLI(unittest.TestCase):
         spec = cohort()
         spec["nodes"][1]["n"] = 21
         self.blocked(spec)
+
+    def test_followup_groups_below_analyzed_parent_are_both_retained(self):
+        spec = dict(title="Follow-up in the analyzed cohort", design="cohort", synthetic=True, unit="patients",
+                    nodes=[node("all", "Primary analysis", 80, 0, 1, "analysis"),
+                           node("short", "Follow-up <90 days", 51, 1, 0, "analysis"),
+                           node("long", "Follow-up ≥90 days", 29, 1, 2, "analysis")],
+                    groups=[group("all", "short", "long")])
+        _, _, path = self.ready(spec)
+        boxes = self.assert_arrow_semantics(spec, path)
+        self.assertAlmostEqual(boxes["short"][1], boxes["long"][1], delta=.05)
+        self.assertLess(boxes["short"][0] + boxes["short"][2], boxes["long"][0])
+
+    def test_mixed_partition_uses_role_not_child_order_or_lane(self):
+        spec = dict(title="Cohort entry", design="cohort", synthetic=True, unit="patients",
+                    nodes=[node("source", "Assessed", 93, 0, 1),
+                           node("unexposed", "Unexposed at entry", 60, 2, 0, "analysis"),
+                           node("excluded", "Ineligible", 13, 1, 3, "exclusion"),
+                           node("exposed", "Exposed at entry", 20, 2, 2, "analysis")],
+                    groups=[group("source", "exposed", "excluded", "unexposed")])
+        _, _, path = self.ready(spec)
+        self.assert_arrow_semantics(spec, path)
+
+    def test_terminal_exclusion_without_a_retained_sibling_points_right(self):
+        spec = dict(title="Endpoint availability by site", design="cohort", synthetic=True, unit="patients",
+                    nodes=[node("eligible", "Eligible", 45, 0, 1),
+                           node("site_a", "Site A, primary analysis", 39, 1, 0, "analysis"),
+                           node("site_b", "Site B", 6, 1, 2),
+                           node("omitted", "Excluded from analysis: records unavailable", 6, 1, 3, "exclusion")],
+                    groups=[group("eligible", "site_a", "site_b"), group("site_b", "omitted")])
+        for row in (1, 2):  # Either beside the source or in an offset side lane.
+            with self.subTest(row=row):
+                spec["nodes"][-1]["row"] = row
+                _, _, path = self.ready(spec)
+                self.assert_arrow_semantics(spec, path)
+
+    def test_hostile_layout_never_yields_a_misleading_checked_or_draft_figure(self):
+        for fault in ("same_row_retained", "left_exclusion"):
+            spec = cohort()
+            if fault == "same_row_retained":
+                spec["nodes"][2].update(row=0, col=2)
+            else:
+                for n in spec["nodes"]:
+                    n["col"] = 1 - n["col"]
+            for draft in (False, True):
+                with self.subTest(fault=fault, draft=draft):
+                    proc, report, path = self.invoke(spec, draft)
+                    if path.exists():  # A renderer may repair the layout without changing counts.
+                        self.assert_arrow_semantics(spec, path)
+                    else:
+                        self.assertNotEqual(proc.returncode, 0)
+                        self.assertNotEqual(report["status"], "ready")
+                        self.assertEqual(report["figure"], "withheld")
+                        self.assertTrue(any(i.get("location") and i.get("message") for i in report["issues"]))
 
     def test_inline_counts_and_reasons_are_bold_but_labels_are_not(self):
         spec = cohort()

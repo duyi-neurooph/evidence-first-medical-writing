@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Yi"
     email: "duyinapoleon@gmail.com"
-version: "0.9.0"
+version: "0.9.1"
 date-released: 2026-11-19
 license: "PolyForm-Noncommercial-1.0.0"
 url: "https://github.com/duyi-neurooph/evidence-first-medical-writing"

@@ -18,7 +18,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
-- **New in 0.9.0:** Draw or audit an [original participant-flow diagram](skills/evidence-first-medical-writing/references/participant-flow.md) from aggregate counts. Try: “Show how patients entered the primary analysis; give me an editable figure and flag any counts that do not reconcile.” The [English synthetic trial ledger](skills/evidence-first-medical-writing/assets/flow-community-bp.json) renders an unfilled, count-first two-arm figure with a straight exclusion arrow.
+- **Participant flow (0.9.1):** Say “Draw a flowchart from my data” and supply your study counts. No journal name is needed. [Patient groups branch downward; only exclusions point right](skills/evidence-first-medical-writing/references/participant-flow.md). Try the [synthetic randomized trial](skills/evidence-first-medical-writing/assets/flow-community-bp.json).
   Observational examples: [cohort selection](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json) and [case-control sampling](skills/evidence-first-medical-writing/assets/flow-case-control.json).
 
 - **New in 0.8.0:** [reference verification](skills/evidence-first-medical-writing/references/reference-verification.md) is included in every presubmission check. Audit all entries, then test priority claims against original sources; do not change the bibliography by default. The standalone skill includes the Python helper and [upstream MIT notice](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md).
@@ -257,10 +257,10 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.9.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.0).
+Current release: [0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1).
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.9.0 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.0/evidence-first-medical-writing-0.9.0-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 0.9.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.1/evidence-first-medical-writing-0.9.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

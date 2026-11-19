@@ -67,6 +67,14 @@ Pass criteria:
 - uses placeholders instead of guessing;
 - keeps interpretation out of the results unless requested.
 
+### P6 — Plain-language flowchart request
+
+Prompt: “按我给你的数据画 flowchart”
+
+Supply this synthetic screening log as the attachment: 100 patients screened, 10 ineligible, 90 included in the primary analysis; of these, 38 had follow-up under 12 weeks and 52 had at least 12 weeks. The two follow-up strata are mutually exclusive and both remain in the analysis.
+
+Pass: select participant flow without asking for a journal name. The exclusion of 10 points right; 38 and 52 sit below 90, with separate arrowheads entering from above. With no attachment, request the aggregate counts rather than inventing them. With a literature-screening log instead, use literature selection, not patient flow.
+
 ## Negative and misuse behavior
 
 ### N1 — Significance chasing

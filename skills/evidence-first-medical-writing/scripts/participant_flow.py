@@ -127,8 +127,14 @@ def audit(data):
             if (p, k) in edges:
                 issue("duplicate_edge", loc, "A connection is repeated.", True)
             edges.add((p, k)); children[p].append(k); parents[k] += 1
-            if integer(parent.get("row")) and integer(child.get("row")) and child["row"] < parent["row"]:
-                issue("backwards_layout", k, "Arrange successive stages down the page or beside their parent.", True)
+            if integer(parent.get("row")) and integer(child.get("row")):
+                if child.get("kind") != "exclusion" and child["row"] <= parent["row"]:
+                    issue("retained_layout", k, f"Place retained stage {k} below {p} (a later row); put parallel groups in separate columns. Do not change the disposition.", True)
+                elif child["row"] < parent["row"]:
+                    issue("backwards_layout", k, "Place the exclusion at its source stage or in a later row.", True)
+            if (child.get("kind") == "exclusion" and integer(parent.get("col")) and
+                    integer(child.get("col")) and child["col"] <= parent["col"]):
+                issue("exclusion_layout", k, f"Place the exclusion {k} in a column to the right of {p}. Do not change the disposition.", True)
             cu = child.get("unit", data.get("unit"))
             if (rel == "unit_change") == (cu == pu):
                 issue("unit_mismatch", p + " -> " + k, "Use unit_change only where units actually change.", True)
@@ -205,7 +211,11 @@ def wrap(s, width):
     return out or [""]
 
 
-def ortho(a, b, boxes):
+class LayoutError(ValueError):
+    """A direction-preserving drawing needs different layout cells."""
+
+
+def ortho(a, b, boxes, edge):
     """Route on channels around boxes; a bend costs a little more than a shared straight segment."""
     obstacles = [(x-6, y-6, x+w+6, y+h+6) for x, y, w, h in boxes]
     xs = sorted({a[0], b[0], *(x for l, t, r, d in obstacles for x in (l, r))})
@@ -236,7 +246,7 @@ def ortho(a, b, boxes):
             if next_cost < distances.get(new, float("inf")):
                 distances[new] = next_cost; prev[new] = (i,j,axis)
                 heapq.heappush(heap, (next_cost, *new))
-    raise ValueError("No clear channel for a connector; change the row/column arrangement.")
+    raise LayoutError(edge)
 
 
 def clear_segment(a, b, boxes, skip):
@@ -299,29 +309,26 @@ def svg(data, draft=False):
     row_rank = {r:2*i for i,r in enumerate(sorted({n["row"] for n in nodes}))}
     row = {n["id"]:row_rank[n["row"]] for n in nodes}
     occupied = {(row[k], by_id[k]["col"]) for k in by_id}
-    outgoing = {g["parent"] for g in data["groups"]}
+    outgoing = defaultdict(list)
+    for g in data["groups"]:
+        outgoing[g["parent"]].extend(g["children"])
     # Put a side exclusion between its source and the next retained stage even
     # for older ledgers that positioned it on the source or destination row.
-    tees = {}
-    for g in data["groups"]:
-        p = g["parent"]; pc = by_id[p]["col"]
-        if g["relation"] != "partition":
+    tee_candidates = defaultdict(list)
+    for p, kids in outgoing.items():
+        retained = [k for k in kids if by_id[k]["kind"] != "exclusion"]
+        if not retained:
             continue
-        retained = [k for k in g["children"] if by_id[k]["kind"] != "exclusion"]
-        if len(retained) != 1:
-            continue
-        keep = retained[0]
-        if by_id[keep]["col"] != pc or row[keep] <= row[p]:
-            continue
-        for k in g["children"]:
+        first = min(row[k] for k in retained)
+        for k in kids:
             c = by_id[k]["col"]
-            if k == keep or k in outgoing or c == pc or not row[p] <= row[k] <= row[keep]:
+            if by_id[k]["kind"] != "exclusion" or k in outgoing or not row[p] <= row[k] <= first:
                 continue
-            mid = row[k] if row[p] < row[k] < row[keep] else (row[p]+row[keep])//2
+            mid = row[k] if row[p] < row[k] < first else (row[p]+first)//2
             if mid != row[k] and (mid,c) in occupied:
                 continue
             occupied.remove((row[k],c)); row[k] = mid; occupied.add((mid,c))
-            tees[(p,k)] = keep
+            tee_candidates[p].append(k)
 
     bands = defaultdict(list)
     for k in by_id:
@@ -400,31 +407,55 @@ def svg(data, draft=False):
     for i,s in enumerate(meta):
         el(canvas,"text",{"x":margin,"y":25*len(top)+20+17*i,"font-size":12,"fill":"#444"},s)
 
+    # Give retained children a common stem before the horizontal fork. Take
+    # side exits off this stem only if the line really meets the retained path.
+    forks, tees = {}, {}
+    for p, kids in outgoing.items():
+        retained = [k for k in kids if by_id[k]["kind"] != "exclusion"]
+        if not retained:
+            continue
+        x,y,bw,bh = boxes[p]; a = (x+bw/2,y+bh)
+        first = min(boxes[k][1] for k in retained)
+        side_exits = {}
+        for k in tee_candidates[p]:
+            xx,yy,cw,ch = boxes[k]; ty = yy+ch/2
+            stem, side = (a[0],ty), (xx,ty)
+            if a[1] < ty < first and xx > a[0] and clear_segment(stem,side,boxes,{k}):
+                side_exits[p,k] = [stem,side]
+        after = max([a[1]] + [path[0][1] for path in side_exits.values()])
+        fork = (a[0],(after+first)/2)
+        if clear_segment(a,fork,boxes,{p}):
+            forks[p] = fork
+            tees.update(side_exits)
+
     for g in data["groups"]:
         p = g["parent"]
         x,y,bw,bh = boxes[p]
         for k in g["children"]:
             xx,yy,cw,ch = boxes[k]
-            a = (x+bw/2, y+bh); b = (xx+cw/2,yy)
-            points = None
-            if (p,k) in tees:
-                keep = tees[(p,k)]; ky = boxes[keep][1]
-                ty = yy+ch/2
-                side = (xx if xx > x else xx+cw, ty)
-                stem = (a[0], ty)
-                if a[1] < ty < ky and clear_segment(a,(a[0],ky),boxes,{p,keep}) and clear_segment(stem,side,boxes,{k}):
-                    points = [stem,side]
-            if points is None:
-                if row[k] == row[p]:
-                    sign = 1 if xx > x else -1
-                    a=(x+(bw if sign>0 else 0), y+bh/2); b=(xx+(0 if sign>0 else cw), yy+ch/2)
-                    aa=(a[0]+10*sign,a[1]); bb=(b[0]-10*sign,b[1])
-                else:
-                    aa=(a[0],a[1]+7); bb=(b[0],b[1]-7)
-                if clear_segment(a,b,boxes,{p,k}):
+            if by_id[k]["kind"] == "exclusion":
+                a, b = (x+bw,y+bh/2), (xx,yy+ch/2)
+                if (p,k) in tees:
+                    points = tees[p,k]
+                elif a[1] == b[1] and a[0] < b[0] and clear_segment(a,b,boxes,{p,k}):
                     points = [a,b]
                 else:
-                    points = [a,*ortho(aa,bb,boxes.values()),b]
+                    # An off-spine exit still enters the left edge facing right.
+                    aa, bb = (a[0]+8,a[1]), (b[0]-8,b[1])
+                    points = [a,*ortho(aa,bb,boxes.values(),(p,k)),b]
+            else:
+                a, b = (x+bw/2,y+bh), (xx+cw/2,yy)
+                if a[0] == b[0] and clear_segment(a,b,boxes,{p,k}):
+                    points = [a,b]
+                else:
+                    fork = forks.get(p,(a[0],a[1]+8)); turn = (b[0],fork[1])
+                    if (clear_segment(fork,turn,boxes,{p,k}) and
+                            clear_segment(turn,b,boxes,{p,k})):
+                        points = [a,fork,turn,b]
+                    else:
+                        # End with a vertical segment even when boxes obstruct
+                        # the usual fork; never replace it with a diagonal.
+                        points = [a,*ortho(fork,(b[0],b[1]-8),boxes.values(),(p,k)),b]
             el(canvas,"polyline",{"data-from":p,"data-to":k,
                   "points":" ".join(f"{u:g},{v:g}" for u,v in points), "fill":"none",
                   "stroke":"#444","stroke-width":1.05,"stroke-linejoin":"round","marker-end":"url(#tip)"})
@@ -476,7 +507,14 @@ def main(argv=None):
         report = audit(data)
         diagram = None
         if report["status"] == "ready" or args.draft and report["status"] == "needs_confirmation":
-            diagram = svg(data,args.draft)
+            try:
+                diagram = svg(data,args.draft)
+            except LayoutError as exc:
+                p,k = exc.args[0]
+                report["status"] = "invalid"
+                report["issues"].append(dict(code="blocked_connector", location=f"{p} -> {k}",
+                    message="Leave a clear lane for the connector: retained groups below, exclusions to the right. Change layout cells, not dispositions or counts.",
+                    severity="invalid"))
         report["figure"] = ("draft" if args.draft else "checked") if diagram else "withheld"
         with args.audit.open("x", encoding="utf-8") as f:
             json.dump(report, f, indent=2, ensure_ascii=False); f.write("\n")

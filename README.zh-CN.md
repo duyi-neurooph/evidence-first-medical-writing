@@ -19,7 +19,7 @@
 
 ## 主要能力
 
-- **0.9.0 新增**：根据原创研究的汇总人数绘制或核查[患者纳排流程图](skills/evidence-first-medical-writing/references/participant-flow.md)。可以说：“请按 JAMA 原创研究的画法，画一张从筛选、排除到最终分析的可编辑流程图；人数对不上的地方单独列出。”可用[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)直接试画：数字在前加粗、框内不填色、排除分支水平引出。
+- **患者流程图（0.9.1）**：提供研究的汇总人数，只说“按我给你的数据画 flowchart”即可，不用提 JAMA。[患者分组向下，只有排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
   观察性研究另有两套独立的英文虚拟数据：[队列研究纳排](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json)和[病例对照研究抽样](skills/evidence-first-medical-writing/assets/flow-case-control.json)。
 
 - **0.8.0 新增**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
@@ -253,10 +253,10 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：[0.9.0](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.0)。
+当前版本：[0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1)。
 
 本版可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [0.9.0 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.0/evidence-first-medical-writing-0.9.0-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [0.9.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.1/evidence-first-medical-writing-0.9.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。
