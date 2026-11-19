@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.0 — 2026-11-19
 
 - Revised the default participant-flow drawing: solid connectors, straight side exclusions where space permits, unfilled boxes and bold leading counts. Added an English synthetic randomized trial with distinct treatment-receipt, observed-outcome and primary-analysis counts.
 - Fit and center short standalone stages while keeping breakdowns aligned. Added English synthetic cohort and case-control diagrams with separate rules for follow-up completeness and control sampling.
