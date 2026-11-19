@@ -1,0 +1,50 @@
+# Participant flow in original clinical research
+
+Use this when asked to draw or audit patient selection, inclusion/exclusion, enrollment or analysis flow, including “患者纳排流程图”, “病例筛选图” or “JAMA-style flowchart”. The aim is to let a reader reconstruct **who entered which analysis and why others did not**. In manuscript planning, suggest a diagram if the derivation is hard to follow; in review/F4, examine the supplied diagram or flag a required missing one. A review request alone does not authorize a replacement. Do not substitute this for a PRISMA literature search diagram, a study schedule, or an outcomes chart.
+
+## Reconstruct the flow before drawing boxes
+
+1. Start with [design confirmation](study-design-confirmation.md), existing decisions and the [current reporting guidance](reporting-guideline-retrieval.md). Use the actual target journal's instructions; an article in JAMA is an example, not a universal rule. If classification is uncertain, ask how people were identified or assigned and keep the layout provisional.
+2. Extract the source population, setting/enrollment window, counting unit, sequence of decisions, exclusions **at the stage where they happened**, group definitions, follow-up window and the named primary analysis set. Start with the earliest **documented** population; distinguish “all records retrieved” from “unique people assessed”. Do not invent a pre-screening denominator. Distinguish a criterion in Methods from the *number actually excluded* for that reason.
+3. Build a private aggregate ledger: for each box record stage/arm, count or unknown, unit, source and locator (e.g., screening log v2 row 8; Results ¶2; Table 1 heading), and whether the source has been checked. Use already supplied information; no patient-level records or identifiers needed. Do not upload data to an online diagram service. Ask only for facts that change a branch, a denominator, or whether exclusions are disjoint. Do not call a guess author-confirmed.
+4. Reconcile against Results, Methods/analysis plan, abstract, Table 1, primary outcome table, and relevant supplements. Table 1 can legitimately describe a **different** set: label and explain it rather than forcing agreement. Check mutually exclusive and exhaustive branches of the same stage and unit against the parent. Overlapping reasons need a unique excluded-person total or separate note; outcome-specific sets may overlap. A missing count is not zero. Do not invent an exclusion reason or silently fill a discrepancy by subtraction.
+
+| Confirmed design | Build this path | Avoid this mistake |
+|---|---|---|
+| Parallel randomized trial | Assessed → not randomized (why) / randomized → separate allocated arms → actual receipt, follow-up and **primary analysis by arm**. Show run-in before randomization when applicable. | Stopping treatment, withdrawing consent, missing a visit, and exclusion from analysis are different events. Do not subtract them all or infer an ITT set from completers. For cluster trials track clusters and people separately; for crossover track sequences and periods without counting people twice. |
+| Cohort, registry, cross-sectional or case-control | Source population → linkage/deduplication and eligibility filters → enrolled/included → primary endpoint-specific analysis. Identify exposure groups, case/control sampling or survey response stage only where real. | No randomization or intervention labels. Records, encounters, eyes, specimens and patients are not interchangeable. Matching, weights or repeated visits do not create additional distinct people. |
+| Diagnostic accuracy or prediction | Show eligibility, index/reference testing or development/validation cohorts, and the participants contributing to each relevant estimate. Explain untested, indeterminate, and missing results. | Not every patient receives both tests; distinguish complete pairs from test-level totals. Do not turn internal resampling into recruitment or present resampled observations as independent patients. |
+
+When an upstream denominator or an entire stage genuinely was not recorded, name that limit in the legend and begin at the first documented stage. Do not reclassify unexplained attrition as overlapping subsets to pass the checks. For protocols produce a planned diagram without observed counts; for reviews route to the appropriate literature-selection workflow.
+
+## Draw, audit and hand off
+
+- Use a short descriptive title, a top-to-bottom main path and short right-angle arrows. Put exclusions beside their originating stage, allocate a parallel lane to each arm, and end at explicitly named analysis populations. Put the count and its unit in each box. Use short action labels in one language, aligned boxes, readable type and restrained contrast that survives grayscale. Use notes for overlapping reasons, analysis-set definitions and less common abbreviations. Number by first mention, not automatically “Figure 1”.
+- Use original geometry and wording, not a journal logo, template replica, copied figure or implied endorsement. An editable vector is a working master, not a guarantee of acceptance. Check the target's figure formats, dimensions, AI rules and the [AI-use policy route](ai-use-and-disclosure.md) before proposing a submission file. Do not synthesize a picture of the diagram with an image generator.
+- Work from a **new** JSON ledger and versioned output paths. Start from the [randomized trial](../assets/flow-rct.json) or [cohort](../assets/flow-cohort.json) example. Both contain *only synthetic counts*. Never carry their counts, source locators or confirmation flags into patient work. Keep the flag `synthetic: true` for demonstrations. Use `n: null` for missing numbers and `language: "zh"` for Chinese diagram labels and warnings (default: English); supply node labels in the same language.
+
+```sh
+python3 -B scripts/participant_flow.py study-flow.json --svg flow-v1.svg --audit flow-v1-audit.json
+```
+
+Run from the installed skill folder. The [local drawing tool](../scripts/participant_flow.py) uses only Python's standard library. Each node has a unique ID, text, count, source, confirmation state, role (`main`, `exclusion`, `analysis`) and layout cell (`row`, `col`); the root unit can be overridden on a node. Specify relationships, not just where arrows should point:
+
+- `partition`: all children together are an exhaustive, mutually exclusive breakdown of the parent; arithmetic is checked.
+- `subsets`: the children are not claimed to form a partition; each must fit its parent, but they need not sum. Explain scope and omissions. For a pooled analysis, retain arm-specific denominators and state the independently verified pooled total in a note rather than duplicating patients across incoming arrows.
+- `unit_change`: the unit actually changes; supply the linkage or deduplication rationale. Do not subtract encounters from people.
+
+To verify a breakdown within one exclusion box, give it `reasons` (each with label, count, source and confirmation state) and `reason_relation: partition` or `subsets`. Plain prose in labels/notes is not arithmetically checked. In paired testing, show both assessments as paths **within the same enrolled population** and the separate denominator with a usable reference standard; never count the same people twice.
+
+The tool reports `ready`, `needs_confirmation` or `invalid`. It cannot read the cited source, prove eligibility or determine whether an author mislabeled an overlap. A checked diagram requires both the automated checks and reconciliation with the actual manuscript. If counts conflict or information needed for interpretation is unresolved, return a location-specific question, not a submission figure; use new filenames and `--draft` only for a visibly marked working drawing. If Python is unavailable, supply the same ledger, an explicitly provisional editable text diagram, and the checks performed by hand; do not claim a file was rendered.
+
+Deliver the editable SVG, the ledger and audit for the author (not public supplements by default), a standalone figure legend and a short Results sentence naming the primary denominator. Report unresolved items separately. Inspect the rendered figure at its intended width: arrow direction, lane order, line crossings, clipping, text size, labels, and agreement between graph and audit. Split crowding into panels or move detail into the legend, never omit a scientific stage to make the figure fit.
+
+## What the published examples teach
+
+These are observations about flagship *JAMA* Original Investigations, not style mandates. No article text or artwork is bundled. Examined 2026-11-19:
+
+- [Samieri et al., Three-City cohort, Figure 1 (2018)](https://jamanetwork.com/journals/jama/fullarticle/2697696): a vertical cohort path with stage-specific side exclusions ends at the primary dementia analysis; the two cognitive-change analyses have their own denominators rather than forming two mutually exclusive arms.
+- [Moran et al., cellulitis randomized trial, Figure 1 (2017)](https://jamanetwork.com/journals/jama/fullarticle/2627970): the two columns preserve allocation through follow-up and analysis. Per-protocol and modified intention-to-treat populations are not additive; some exclusion reasons overlap.
+- [Ng et al., PRIME paired diagnostic study, Figure 1 (2025)](https://jamanetwork.com/journals/jama/fullarticle/2838799): after exclusions, the same evaluable patients followed two MRI interpretation paths. Two parallel boxes do not necessarily represent different people or treatment arms.
+
+For a JAMA submission, recheck the [current Instructions for Authors](https://jamanetwork.com/journals/jama/pages/instructions-for-authors), especially the randomized-trial flow and figure-file sections. Other journals and designs may differ.

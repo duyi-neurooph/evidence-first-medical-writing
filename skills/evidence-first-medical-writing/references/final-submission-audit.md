@@ -44,6 +44,8 @@ Check first-mention order separately for tables, figures, and each supplementary
 
 ### F4 — Flow diagrams and counts are coherent
 
+For original patient-level research, use the design-specific [participant-flow checks](participant-flow.md). Compare the analysis denominator for each outcome/time point, not just the overall total. Report problems without replacing the figure unless asked.
+
 If a flow diagram exists or the applicable guideline requires one, reconcile screening, inclusion, exclusion reasons, allocation, follow-up, and analysis counts against the text and tables. Apply arithmetic only to mutually exclusive branches with the same unit and stage. Distinguish people, visits, specimens, records, reports, and studies; overlapping analysis sets and multiple exclusion reasons must not be summed as disjoint groups. Report the precise broken transition and needed source verification. If only a figure title or unreadable image is available, the diagram check is `Cannot verify`, not passed.
 
 ### F5 — Registration and manuscript agree

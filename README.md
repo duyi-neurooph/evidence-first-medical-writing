@@ -18,6 +18,8 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Development branch (not in v0.8.0):** Draw or audit an [original participant-flow diagram](skills/evidence-first-medical-writing/references/participant-flow.md) from aggregate counts. Try: “Show how patients entered the primary analysis; give me an editable figure and flag any counts that do not reconcile.”
+
 - **New in 0.8.0:** [reference verification](skills/evidence-first-medical-writing/references/reference-verification.md) is included in every presubmission check. Audit all entries, then test priority claims against original sources; do not change the bibliography by default. The standalone skill includes the Python helper and [upstream MIT notice](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md).
 - Builds a research task card, PICO-T frame, core claim, and IMRaD outline.
 - Checks alignment across the question, design, endpoint, analysis, results, and conclusion.

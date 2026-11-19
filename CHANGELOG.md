@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added a design-aware participant-flow module for original research: create editable diagrams from sourced aggregate counts, audit denominators and exclusions, and distinguish uncertain drafts from reconciled figures. Published examples inform reporting choices; the package includes only independently designed synthetic examples.
+
 ## 0.8.0 — 2026-11-18
 
 - Integrated standalone, read-only bibliographic verification into the existing claim-to-citation and F2 submission/resubmission checks. Separates publication identity from original-source claim support; preserves source-specific routes, incomplete-access limits and the upstream MIT notice.

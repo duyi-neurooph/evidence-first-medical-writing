@@ -1,0 +1,26 @@
+{
+  "title": "Derivation of the cohort and endpoint-specific analysis populations",
+  "design": "Retrospective cohort",
+  "unit": "patients",
+  "synthetic": true,
+  "nodes": [
+    {"id":"extract","label":"Encounter records in the source extract","n":420,"source":"Synthetic teaching ledger, encounter extract","confirmed":true,"row":0,"col":0,"kind":"main","unit":"encounters"},
+    {"id":"unique","label":"Distinct patients after linkage","n":300,"source":"Synthetic teaching ledger, patient-level linkage","confirmed":true,"row":1,"col":0,"kind":"main"},
+    {"id":"eligible","label":"Patients meeting cohort eligibility criteria","n":240,"source":"Synthetic teaching ledger, cohort selection","confirmed":true,"row":2,"col":0,"kind":"main"},
+    {"id":"excluded","label":"Outside the prespecified age range","n":60,"source":"Synthetic teaching ledger, age exclusion","confirmed":true,"row":1,"col":1,"kind":"exclusion"},
+    {"id":"primary","label":"Included in primary 30-day analysis","n":225,"source":"Synthetic teaching ledger, primary endpoint denominator","confirmed":true,"row":4,"col":0,"kind":"analysis"},
+    {"id":"secondary","label":"Included in secondary 90-day analysis","n":210,"source":"Synthetic teaching ledger, secondary endpoint denominator","confirmed":true,"row":4,"col":2,"kind":"analysis"},
+    {"id":"day30","label":"Evaluated for the 30-day primary endpoint","n":240,"source":"Synthetic teaching ledger, 30-day assessment roster","confirmed":true,"row":3,"col":0,"kind":"main"},
+    {"id":"day90","label":"Evaluated for the 90-day secondary endpoint","n":240,"source":"Synthetic teaching ledger, 90-day assessment roster","confirmed":true,"row":3,"col":2,"kind":"main"},
+    {"id":"missing30","label":"No recorded outcome within the 30-day window","n":15,"source":"Synthetic teaching ledger, 30-day unresolved endpoint log","confirmed":true,"row":4,"col":1,"kind":"exclusion"},
+    {"id":"missing90","label":"No recorded outcome within the 90-day window","n":30,"source":"Synthetic teaching ledger, 90-day unresolved endpoint log","confirmed":true,"row":4,"col":3,"kind":"exclusion"}
+  ],
+  "groups": [
+    {"parent":"extract","children":["unique"],"relation":"unit_change","rationale":"Multiple encounters were linked to one patient using a stable identifier; the two counts are not subtracted."},
+    {"parent":"unique","children":["eligible","excluded"],"relation":"partition"},
+    {"parent":"eligible","children":["day30","day90"],"relation":"subsets"},
+    {"parent":"day30","children":["primary","missing30"],"relation":"partition"},
+    {"parent":"day90","children":["secondary","missing90"],"relation":"partition"}
+  ],
+  "notes": ["The 30-day and 90-day branches revisit the same cohort. A patient can lack one outcome, both or neither."]
+}

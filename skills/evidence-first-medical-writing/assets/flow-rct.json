@@ -1,0 +1,32 @@
+{
+  "title": "Participant screening, allocation and primary analysis",
+  "design": "Two-group randomized trial",
+  "unit": "participants",
+  "synthetic": true,
+  "nodes": [
+    {"id":"screen","label":"Assessed for eligibility","n":160,"source":"Synthetic teaching ledger, screening total","confirmed":true,"row":0,"col":1,"kind":"main"},
+    {"id":"excluded","label":"Not randomized","n":30,"source":"Synthetic teaching ledger, screening reasons","confirmed":true,"row":0,"col":2,"kind":"exclusion","reason_relation":"partition","reasons":[{"label":"Did not meet eligibility criteria","n":18,"source":"Synthetic screening log, primary reason A","confirmed":true},{"label":"Declined participation","n":12,"source":"Synthetic screening log, primary reason B","confirmed":true}]},
+    {"id":"randomized","label":"Randomized","n":130,"source":"Synthetic teaching ledger, allocation total","confirmed":true,"row":1,"col":1,"kind":"main"},
+    {"id":"groupA","label":"Allocated to intervention A","n":65,"source":"Synthetic teaching ledger, arm A allocation","confirmed":true,"row":2,"col":0,"kind":"main"},
+    {"id":"groupB","label":"Allocated to intervention B","n":65,"source":"Synthetic teaching ledger, arm B allocation","confirmed":true,"row":2,"col":2,"kind":"main"},
+    {"id":"receivedB","label":"Started assigned intervention B","n":65,"source":"Synthetic teaching ledger, arm B receipt log","confirmed":true,"row":3,"col":2,"kind":"main"},
+    {"id":"receivedA","label":"Started assigned intervention A","n":65,"source":"Synthetic teaching ledger, arm A receipt log","confirmed":true,"row":3,"col":0,"kind":"main"},
+    {"id":"observedA","label":"Primary outcome observed at week 12","n":60,"source":"Synthetic teaching ledger, arm A week 12","confirmed":true,"row":4,"col":0,"kind":"main"},
+    {"id":"unobservedA","label":"Week 12 outcome unavailable","n":5,"source":"Synthetic teaching ledger, arm A missing outcomes","confirmed":true,"row":4,"col":1,"kind":"exclusion"},
+    {"id":"observedB","label":"Primary outcome observed at week 12","n":62,"source":"Synthetic teaching ledger, arm B week 12","confirmed":true,"row":4,"col":2,"kind":"main"},
+    {"id":"unobservedB","label":"Week 12 outcome unavailable","n":3,"source":"Synthetic teaching ledger, arm B missing outcomes","confirmed":true,"row":4,"col":3,"kind":"exclusion"},
+    {"id":"analysisA","label":"Primary complete-case analysis: intervention A","n":60,"source":"Synthetic teaching ledger, arm A analysis set","confirmed":true,"row":5,"col":0,"kind":"analysis"},
+    {"id":"analysisB","label":"Primary complete-case analysis: intervention B","n":62,"source":"Synthetic teaching ledger, arm B analysis set","confirmed":true,"row":5,"col":2,"kind":"analysis"}
+  ],
+  "groups": [
+    {"parent":"screen","children":["excluded","randomized"],"relation":"partition"},
+    {"parent":"randomized","children":["groupA","groupB"],"relation":"partition"},
+    {"parent":"receivedA","children":["observedA","unobservedA"],"relation":"partition"},
+    {"parent":"receivedB","children":["observedB","unobservedB"],"relation":"partition"},
+    {"parent":"observedA","children":["analysisA"],"relation":"partition"},
+    {"parent":"observedB","children":["analysisB"],"relation":"partition"},
+    {"parent":"groupA","children":["receivedA"],"relation":"partition"},
+    {"parent":"groupB","children":["receivedB"],"relation":"partition"}
+  ],
+  "notes": ["The prespecified complete-case example uses observed week 12 outcomes. Missing outcomes do not imply treatment discontinuation."]
+}

@@ -19,6 +19,8 @@
 
 ## 主要能力
 
+- **开发分支新增（v0.8.0 尚不含此项）**：根据原创研究的汇总人数绘制或核查[患者纳排流程图](skills/evidence-first-medical-writing/references/participant-flow.md)。可以说：“请按 JAMA 原创研究的画法，画一张从筛选、排除到最终分析的可编辑流程图；人数对不上的地方单独列出。”
+
 - **0.8.0 新增**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
 - 建立研究任务卡、PICO-T、核心命题和 IMRaD 大纲；
 - 检查研究问题、设计、终点、分析、结果与结论是否一致；

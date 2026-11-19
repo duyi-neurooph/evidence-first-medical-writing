@@ -6,6 +6,8 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
+- [test_participant_flow.py](../tests/test_participant_flow.py) exercises both original research flowchart examples, partition and overlap semantics, changing units, missing counts, source confirmation, and draft/output protections;
+
 - [results-reference-verification.md](results-reference-verification.md) for the v0.8.0 bibliography integration: mocked executable tests, real database and issuing-source checks, full-text support assessment, and presubmission routing;
 - [results-0.7.1.md](results-0.7.1.md) for offline statistical forward evidence, executable updater tests, package checks and coverage limits;
 - [statistical-policy-test-cases.md](statistical-policy-test-cases.md) for offline statistics, target-policy conflicts, causal wording, multiplicity, missingness and rounding controls;
