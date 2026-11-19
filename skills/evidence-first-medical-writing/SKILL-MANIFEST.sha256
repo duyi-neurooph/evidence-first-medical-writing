@@ -1,8 +1,10 @@
 1c681ba84426c38431fc0b983b5cb383d01ba8e6a3c7856721be0d0a3d0c185f  ./NOTICE.md
 3e25e12dc36631a3ba42573b96ebf6388d467c193b2d06ed0bfbec2a7ee33f1e  ./SKILL.md
 3f31647f16383937c52bf92dac93c4b95d7d3f8b0fd314e38b605daed94afefc  ./agents/openai.yaml
+ae55126a31e2f728ae4ce311985b27aad83a9c61cb0c030b3f81a663ccea0932  ./assets/flow-case-control.json
 4325ce111f11b6c5f14ed37f199219ef29ace091aa2372af5c67a78290919525  ./assets/flow-cohort.json
 763451977fd967515b561afce705abfa6ca42651642dff7f43220834c76d552d  ./assets/flow-community-bp.json
+2d229afe1c875d8d606fbcdd8273ff73a15789f1e9f8de8a1d51d1850527ffbd  ./assets/flow-observational-cohort.json
 3c4236f5b47830f0ca7e3bf86b153e9a78f3863dcabd4c588d09f4f88bdddc1e  ./assets/flow-rct.json
 074852fa97f6286d226b10889b85ed4f954a7c473d99950f3a9eeeeda052e357  ./references/ai-use-and-disclosure.md
 96dd698506a887da251cc1fcbe429fddc62c4e872e4bef5d3134222482061e09  ./references/anti-defensive-scientific-writing.md
@@ -16,7 +18,7 @@ d29fd4d7dd78a8341b0f2bd06705c25f89ba845115b52ff4d0c35449398405d8  ./references/f
 84dde36a80ed36341da2bcf4c530460a6860b570c18e89732ee05f2509030f54  ./references/language-and-logic.md
 0bd36af97659649d29f5a26a0e3e92aa3f9ef512c656da86f608a7c095c5603e  ./references/nejm-statistical-reporting.md
 220b8dcbb27ad42916b18cca4d5a9f0b15c9ffcd1e73dc1546b28fd21fc1a3fe  ./references/optional-data-integrity-audit.md
-5b0f4db95468c982f74adc468f1df2b720504541016131983eaf3d7277079d51  ./references/participant-flow.md
+3c7e22c979554c3b7a3445422d436da2d4148916035dc5208e273835becf9501  ./references/participant-flow.md
 b1aa0f8e9d243c93fb3636d147eae823517026f33b17f0c029e3cd8471afc53d  ./references/principles.md
 a2d0dc369d3fe8a07420c8641a930d9768e78a5a8fa943f5e83f9d87f891e4e8  ./references/reference-verification.md
 58fc3f23f332c832ae4e8c26ff3378ee206b7d2c8b7f18aca8590d97efb2f442  ./references/reporting-guideline-retrieval.md
@@ -27,7 +29,7 @@ a5375da1a06a66920efa664800a087af204b39f2458e442a7f88c9a4e17aae7f  ./references/s
 1e334399b9214fce4335ade22ace2200dbecec97ee7a1a161479878d09987c4f  ./references/study-type-playbooks.md
 6a0dc53440efef1ba4ccde279bb7e617a55d9e6ccccfa4d9056d8b2737621f12  ./references/submission-and-review.md
 46e960c1650d2a1482440b862c24f30f170c7ced4af14a4c7b937bb330b9f7d5  ./references/updates.md
-7e183ae6c6ca7d9c734b702d8a156be8b28d53d01a7d6ad773573febb9cdf562  ./scripts/participant_flow.py
+a343af18e0cfe0010edd7c2e76f93ad990785f4be2a85940494cf7b5eb36a44e  ./scripts/participant_flow.py
 d508f9c98a3881288edb2e924b1d656c1ebcaaaee0e42889066bbe4412e302c2  ./scripts/update_skill.py
 505ec525ba880be69528298ad9a91b431c8871a4a08b331f798c06a2259b68fa  ./scripts/verify_references.py
 0418786fd69f96f0d87c98648bd703524ff06931f45463ac9bd931ac186bc41f  ./third-party/aperivue-verify-refs.md

@@ -111,7 +111,8 @@ class ParticipantFlowCLI(unittest.TestCase):
         return visible_text(svg), report, svg
 
     def test_shipped_examples_render_in_isolation(self):
-        for name in ("flow-rct.json", "flow-cohort.json", "flow-community-bp.json"):
+        for name in ("flow-rct.json", "flow-cohort.json", "flow-community-bp.json",
+                     "flow-observational-cohort.json", "flow-case-control.json"):
             with self.subTest(name=name):
                 spec = json.loads((SKILL / "assets" / name).read_text(encoding="utf-8"))
                 content, _, file = self.ready(spec)
@@ -120,6 +121,77 @@ class ParticipantFlowCLI(unittest.TestCase):
                 self.assertNotRegex(content.lower(), r"\bn\s*=|dashed|dotted")
                 for end in (v for v in spec["nodes"] if v["kind"] == "analysis"):
                     self.assertIn(str(end["n"]), content.replace(",", ""))
+
+    def test_trial_spine_boxes_fit_and_center_the_count_and_label_together(self):
+        spec = json.loads((SKILL / "assets/flow-community-bp.json").read_text(encoding="utf-8"))
+        _, _, path = self.ready(spec)
+        root = ET.parse(path).getroot()
+        panels = {g.get("data-node"): g for g in root.iter(SVG + "g") if g.get("data-node")}
+        rects = {k: tuple(float(g.find(SVG + "rect").get(a)) for a in ("x","y","width","height"))
+                 for k, g in panels.items()}
+        for key, count, label in (("screen","248","Assessed for eligibility"),
+                                  ("randomized","200","Randomized")):
+            with self.subTest(key=key):
+                x, y, w, h = rects[key]
+                lines = panels[key].findall(SVG + "text")
+                self.assertEqual(len(lines), 1)
+                line = lines[0]
+                self.assertEqual(line.get("text-anchor"), "middle")
+                self.assertIn(line.get("dominant-baseline"), ("central", "middle"))
+                self.assertAlmostEqual(float(line.get("x")), x + w / 2, delta=.05)
+                self.assertAlmostEqual(float(line.get("y")), y + h / 2, delta=.05)
+                chunks = [(s.strip(), weight) for s, weight in styled_chunks(line) if s.strip()]
+                self.assertEqual([s for s, _ in chunks], [count, label])
+                self.assertIn(chunks[0][1], ("bold", "700"))
+                self.assertNotIn(chunks[1][1], ("bold", "700"))
+                self.assertTrue(all(s.get("x") is None for s in line.iter(SVG + "tspan")),
+                                "Independent span anchors would center the words and number separately")
+        sx, sy, sw, sh = rects["screen"]
+        rx, ry, rw, rh = rects["randomized"]
+        self.assertLess(rw, sw)
+        self.assertLess(rw, .75 * rects["excluded"][2])
+        self.assertLess(sw, rects["excluded"][2])
+        stem = sx + sw / 2
+        self.assertAlmostEqual(stem, rx + rw / 2, delta=.05)
+        wires = {(e.get("data-from"),e.get("data-to")): connector_points(e)
+                 for e in root.iter() if e.get("marker-end")}
+        trunk = wires["screen","randomized"]
+        self.assertAlmostEqual(trunk[0][1], sy+sh, delta=.05)
+        self.assertAlmostEqual(trunk[-1][1], ry, delta=.05)
+        self.assertTrue(all(abs(px-stem) < .05 for px, _ in trunk))
+        for terminal in ("home","clinic"):
+            px, py = wires["randomized",terminal][0]
+            self.assertAlmostEqual(px, stem, delta=.05)
+            self.assertAlmostEqual(py, ry+rh, delta=.05)
+        exclusion_rows = panels["excluded"].findall(SVG + "text")
+        self.assertGreater(len(exclusion_rows), 1)
+        self.assertTrue(all(row.get("text-anchor", "start") == "start" for row in exclusion_rows))
+
+    def test_observational_figures_trace_endpoint_and_sampling_denominators(self):
+        def load_example(name):
+            spec = json.loads((SKILL / "assets" / name).read_text(encoding="utf-8"))
+            visible, report, path = self.ready(spec)
+            self.assertIs(spec["synthetic"], True)
+            self.assertEqual(ET.parse(path).getroot().get("lang"), "en")
+            self.assertIn("SYNTHETIC", visible)
+            self.assertNotRegex(visible.lower(), r"randomi[sz]ed to|assigned to|treatment arm")
+            return {n["id"]: n["n"] for n in report["nodes"]}, spec, visible.lower()
+
+        counts, cohort_spec, _ = load_example("flow-observational-cohort.json")
+        self.assertEqual(counts["enrolled"], counts["screened"] - counts["not_enrolled"])
+        self.assertEqual(counts["analyzed"], counts["enrolled"] - counts["no_outcome"])
+        self.assertLess(counts["analyzed"], counts["enrolled"])
+        endpoint = next(n for n in cohort_spec["nodes"] if n["id"] == "analyzed")
+        self.assertEqual(endpoint["kind"], "analysis")
+        self.assertIn("90", endpoint["label"])
+
+        counts, spec, _ = load_example("flow-case-control.json")
+        self.assertEqual(counts["sampled"], counts["registry"] - counts["not_sampled"])
+        self.assertEqual(counts["cases"] + counts["controls"], counts["sampled"])
+        self.assertEqual({n["id"] for n in spec["nodes"] if n["kind"] == "analysis"}, {"cases", "controls"})
+        # Replacing sampled controls with all source noncases must not pass.
+        next(n for n in spec["nodes"] if n["id"] == "controls")["n"] = counts["registry"] - counts["cases"]
+        self.blocked(spec)
 
     def test_declared_complete_partition_requires_count_conservation(self):
         spec = cohort()

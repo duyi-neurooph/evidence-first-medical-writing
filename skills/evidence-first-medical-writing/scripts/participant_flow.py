@@ -344,7 +344,7 @@ def svg(data, draft=False):
                 teaching_label if data.get("synthetic") else "", data["design"],
                 unit_caption])), (width-2*margin)/12)
     pos = 26 + 25*len(top) + 17*len(meta) + 7
-    boxes = {}
+    boxes, compact = {}, set()
     for band in sorted(bands):
         h = max(heights[k] for k in bands[band])
         # Equal-depth arm panels share top and bottom edges even when one has
@@ -353,7 +353,14 @@ def svg(data, draft=False):
         for k in bands[band]:
             x = (width-plot)/2 + cols[by_id[k]["col"]]*stride
             hh = h if parallel else heights[k]
-            boxes[k] = (x, pos + (h-hh)/2, w, hh)
+            ww = w
+            # Fit a short, solitary stage to its count + label. Keep parallel
+            # panels and detailed lists aligned, and keep the stage on its lane.
+            if len(bands[band]) == 1 and by_id[k]["kind"] != "exclusion" and len(lines[k]) == 1:
+                count, label, size, _ = lines[k][0]
+                ww = min(w, max(64, round(26 + size*(1.08*measure(count) + measure(" " + label)))))
+                compact.add(k)
+            boxes[k] = (x+(w-ww)/2, pos + (h-hh)/2, ww, hh)
         pos += h+24
 
     foot = []
@@ -426,6 +433,16 @@ def svg(data, draft=False):
         k = n["id"]; x,y,ww,hh = boxes[k]
         box = el(canvas,"g",{"data-node":k})
         el(box,"rect",{"x":x,"y":y,"width":ww,"height":hh,"fill":"none","stroke":"#555","stroke-width":1})
+        if k in compact:
+            number, label, size, _ = lines[k][0]
+            # Anchor the complete text chunk (not its spans) at the box center
+            # so the viewer uses the actual advances of its bold and plain fonts.
+            t = el(box,"text",{"x":x+ww/2,"y":y+hh/2,"font-size":size,
+                               "text-anchor":"middle","dominant-baseline":"central",
+                               "{http://www.w3.org/XML/1998/namespace}space":"preserve"})
+            el(t,"tspan",{"font-weight":"bold"},number).tail = " "
+            el(t,"tspan",{},label)
+            continue
         line_y = y+6
         for number, line, size, indent in lines[k]:
             line_y += size

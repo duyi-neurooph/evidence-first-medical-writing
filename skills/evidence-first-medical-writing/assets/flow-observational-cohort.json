@@ -1,0 +1,28 @@
+{
+  "title": "90-day pain after hip arthroplasty",
+  "design": "Prospective cohort, 2023–2024",
+  "unit": "patients",
+  "language": "en",
+  "synthetic": true,
+  "nodes": [
+    {"id":"screened","label":"Assessed before surgery","n":520,"source":"Synthetic screening log, S1","confirmed":true,"row":0,"col":0,"kind":"main"},
+    {"id":"not_enrolled","label":"Not enrolled","n":64,"source":"Synthetic screening log, S2","confirmed":true,"row":1,"col":1,"kind":"exclusion","reason_relation":"partition","reasons":[
+      {"label":"Scheduled for revision surgery","n":40,"source":"Synthetic screening log, S2a","confirmed":true},
+      {"label":"Eligible but declined","n":24,"source":"Synthetic screening log, S2b","confirmed":true}
+    ]},
+    {"id":"enrolled","label":"Enrolled at primary surgery","n":456,"source":"Synthetic enrollment log, E1","confirmed":true,"row":2,"col":0,"kind":"main"},
+    {"id":"no_outcome","label":"No 90-day pain score","n":36,"source":"Synthetic follow-up log, F1","confirmed":true,"row":3,"col":1,"kind":"exclusion","reason_relation":"partition","reasons":[
+      {"label":"Did not return questionnaire","n":24,"source":"Synthetic follow-up log, F1a","confirmed":true},
+      {"label":"Returned it after the window","n":12,"source":"Synthetic follow-up log, F1b","confirmed":true}
+    ]},
+    {"id":"analyzed","label":"Analyzed for 90-day pain","n":420,"source":"Synthetic complete-case output, A1","confirmed":true,"row":4,"col":0,"kind":"analysis","reason_relation":"partition","reasons":[
+      {"label":"First walked within 24 hours","n":255,"source":"Synthetic mobilization log, A1a","confirmed":true},
+      {"label":"First walked after 24 hours","n":165,"source":"Synthetic mobilization log, A1b","confirmed":true}
+    ]}
+  ],
+  "groups": [
+    {"parent":"screened","children":["enrolled","not_enrolled"],"relation":"partition"},
+    {"parent":"enrolled","children":["analyzed","no_outcome"],"relation":"partition"}
+  ],
+  "notes": ["Time to first walk was recorded during routine care. The analysis used pain scores collected 83–97 days after surgery."]
+}
