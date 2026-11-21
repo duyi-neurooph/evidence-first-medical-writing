@@ -19,8 +19,8 @@
 
 ## 主要能力
 
-- **写作示例（本地候选版 1.0.1）**：遇到具体写作问题时，按需查阅随包附带的[正反例卡片](skills/evidence-first-medical-writing/references/writing-example-cards.md)，离线也能用。正例说明哪些准确的表述值得保留；反例说明读者可能误解什么，以及怎样修正。示例均为虚构，不是研究证据，不能用来补写稿件事实。
-- **标题与摘要（本地候选版 1.0.1）**：只看标题，读者会以为这是一项什么研究？单读摘要，又能得出什么结论？先分别记录两次阅读的判断，再用实际研究设计和已有结果核对。只有可能引起误解时才建议最小修改；不改事实、数字或结论，原文准确就保留。
+- **写作示例（1.0.1）**：遇到具体写作问题时，按需查阅随包附带的[正反例卡片](skills/evidence-first-medical-writing/references/writing-example-cards.md)，离线也能用。正例说明哪些准确的表述值得保留；反例说明读者可能误解什么，以及怎样修正。示例均为虚构，不是研究证据，不能用来补写稿件事实。
+- **标题与摘要（1.0.1）**：只看标题，读者会以为这是一项什么研究？单读摘要，又能得出什么结论？先分别记录两次阅读的判断，再用实际研究设计和已有结果核对。只有可能引起误解时才建议最小修改；不改事实、数字或结论，原文准确就保留。
 - **患者流程图（0.9.1）**：提供研究的汇总人数，只说“按我给你的数据画 flowchart”即可，不用提 JAMA。[患者分组向下，只有排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
   观察性研究另有两套独立的英文虚拟数据：[队列研究纳排](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json)和[病例对照研究抽样](skills/evidence-first-medical-writing/assets/flow-case-control.json)。
 
@@ -93,7 +93,7 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ### 使用时检查更新与可选自动更新
 
-本地候选版 1.0.1 每个任务只在对话中提示一次实际加载的 skill 版本，不依赖联网检查。版本提示不写入稿件或任何投稿文件。
+从 1.0.1 起，每个任务只在对话中提示一次实际加载的 skill 版本，不依赖联网检查。版本提示不写入稿件或任何投稿文件。
 
 从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
@@ -257,12 +257,12 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-本地候选版：**1.0.1**（尚未发布）。下方公开下载不含候选版改动。
+1.0.1 新增 7 张可离线使用的原创虚构教学卡，并把题目单独读、摘要独立读接入写作与审稿。
 
-已发布版本：[0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1)。
+已发布版本：[1.0.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.1)。
 
-0.9.1 可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
+也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [0.9.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.1/evidence-first-medical-writing-0.9.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.1/evidence-first-medical-writing-1.0.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

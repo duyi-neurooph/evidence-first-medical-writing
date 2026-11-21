@@ -26,4 +26,4 @@ Commercial licensing proposals and private rights concerns should be sent to `du
 
 ## Version numbering
 
-The current local candidate is **1.0.1**. For the next change, the maintainer plans to use **1.0.2** for a smaller update or **1.2.0** for a larger one. These are alternatives for planning, not published releases. See the [changelog](CHANGELOG.md) for release status.
+The baseline for this numbering policy is **1.0.1**. For the next change, the maintainer plans to use **1.0.2** for a smaller update or **1.2.0** for a larger one. These are alternatives for planning, not published releases. See the [changelog](CHANGELOG.md) for release status.

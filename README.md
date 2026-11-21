@@ -18,8 +18,8 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
-- **Writing examples (local 1.0.1 candidate):** The bundled [example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) are available offline. When a writing decision calls for an example, the skill consults the relevant card: positive examples show what to keep, and negative examples show what can mislead a reader and how to fix it. All examples are synthetic, not evidence or a source of facts for your manuscript.
-- **Title and abstract (local 1.0.1 candidate):** What study would you expect from the title alone? What would the abstract tell you on its own? The skill records those readings separately, then checks both against the actual design and available results. If the wording misleads, it suggests the smallest change that fixes the reader’s inference without changing facts, numbers or conclusions. An accurate title or abstract can stay as written.
+- **Writing examples (1.0.1):** The bundled [example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) are available offline. When a writing decision calls for an example, the skill consults the relevant card: positive examples show what to keep, and negative examples show what can mislead a reader and how to fix it. All examples are synthetic, not evidence or a source of facts for your manuscript.
+- **Title and abstract (1.0.1):** What study would you expect from the title alone? What would the abstract tell you on its own? The skill records those readings separately, then checks both against the actual design and available results. If the wording misleads, it suggests the smallest change that fixes the reader’s inference without changing facts, numbers or conclusions. An accurate title or abstract can stay as written.
 - **Participant flow (0.9.1):** Say “Draw a flowchart from my data” and supply your study counts. No journal name is needed. [Patient groups branch downward; only exclusions point right](skills/evidence-first-medical-writing/references/participant-flow.md). Try the [synthetic randomized trial](skills/evidence-first-medical-writing/assets/flow-community-bp.json).
   Observational examples: [cohort selection](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json) and [case-control sampling](skills/evidence-first-medical-writing/assets/flow-case-control.json).
 
@@ -92,7 +92,7 @@ result, impact on the conclusion, and manuscript location.
 
 ### Release checks and optional automatic updates
 
-In the local 1.0.1 candidate, a chat notice identifies the skill version actually loaded once per task, independently of the network update check. The notice is not part of the manuscript or any submission file.
+Starting in 1.0.1, a chat notice identifies the skill version actually loaded once per task, independently of the network update check. The notice is not part of the manuscript or any submission file.
 
 From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
 
@@ -261,12 +261,12 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Local candidate: **1.0.1** (unreleased). The published release linked below does not include the candidate changes.
+Evidence-First Medical Writing 1.0.1 includes seven original, offline teaching cards and separate title and abstract reader checks.
 
-Published release: [0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1).
+Published release: [1.0.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.1).
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 0.9.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.1/evidence-first-medical-writing-0.9.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.1/evidence-first-medical-writing-1.0.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).
