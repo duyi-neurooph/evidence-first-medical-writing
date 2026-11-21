@@ -19,6 +19,7 @@
 
 ## 主要能力
 
+- **标题与摘要（本地候选版 0.10.0）**：只看标题，读者会以为这是一项什么研究？单读摘要，又能得出什么结论？先分别记录两次阅读的判断，再用实际研究设计和已有结果核对。只有可能引起误解时才建议最小修改；不改事实、数字或结论，原文准确就保留。
 - **患者流程图（0.9.1）**：提供研究的汇总人数，只说“按我给你的数据画 flowchart”即可，不用提 JAMA。[患者分组向下，只有排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
   观察性研究另有两套独立的英文虚拟数据：[队列研究纳排](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json)和[病例对照研究抽样](skills/evidence-first-medical-writing/assets/flow-case-control.json)。
 
@@ -90,6 +91,8 @@ skills/evidence-first-medical-writing/SKILL.md
 ```
 
 ### 使用时检查更新与可选自动更新
+
+本地候选版 0.10.0 每个任务只在对话中提示一次实际加载的 skill 版本，不依赖联网检查。版本提示不写入稿件或任何投稿文件。
 
 从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
@@ -253,9 +256,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-当前版本：[0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1)。
+本地候选版：**0.10.0**（尚未发布）。下方公开下载不含候选版改动。
 
-本版可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
+已发布版本：[0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1)。
+
+0.9.1 可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
 
 下载 [0.9.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v0.9.1/evidence-first-medical-writing-0.9.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 

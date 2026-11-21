@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0 — Unreleased
+
+- Added a title-only reader check: record what the title alone leads a reader to expect, then read the abstract on its own. Compare both readings with the actual study design and available results. Suggest the smallest correction only where the wording misleads; preserve supported facts, numbers, uncertainty and conclusions.
+- Report the version of the skill actually loaded once per task in chat, separately from any update notice. Keep the version out of manuscripts and submission files.
+
 ## 0.9.1 — 2026-11-19
 
 - Patient groups and other retained stages now receive downward arrows; only exclusions receive rightward arrows. The same rule applies when redrawing an editable figure. A shorter follow-up period is not itself an exclusion.

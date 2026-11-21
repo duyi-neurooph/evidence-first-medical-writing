@@ -18,6 +18,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Title and abstract (local 0.10.0 candidate):** What study would you expect from the title alone? What would the abstract tell you on its own? The skill records those readings separately, then checks both against the actual design and available results. If the wording misleads, it suggests the smallest change that fixes the reader’s inference without changing facts, numbers or conclusions. An accurate title or abstract can stay as written.
 - **Participant flow (0.9.1):** Say “Draw a flowchart from my data” and supply your study counts. No journal name is needed. [Patient groups branch downward; only exclusions point right](skills/evidence-first-medical-writing/references/participant-flow.md). Try the [synthetic randomized trial](skills/evidence-first-medical-writing/assets/flow-community-bp.json).
   Observational examples: [cohort selection](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json) and [case-control sampling](skills/evidence-first-medical-writing/assets/flow-case-control.json).
 
@@ -89,6 +90,8 @@ result, impact on the conclusion, and manuscript location.
 ```
 
 ### Release checks and optional automatic updates
+
+In the local 0.10.0 candidate, a chat notice identifies the skill version actually loaded once per task, independently of the network update check. The notice is not part of the manuscript or any submission file.
 
 From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
 
@@ -257,7 +260,9 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Current release: [0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1).
+Local candidate: **0.10.0** (unreleased). The published release linked below does not include the candidate changes.
+
+Published release: [0.9.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v0.9.1).
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md).
 

@@ -270,6 +270,8 @@ Apply the retrieved checklists item by item using [reporting-guideline-retrieval
 
 ### Self-Contained Writing Audit
 
+Use the [title-only and abstract-only readings](title-and-abstract.md) on the frozen version when available. Capture the ambiguous words before reconciliation; do not circulate that reading as a hint to the other reviewers. The editor rechecks adjudicated repairs after revision.
+
 Check the abstract, main text, figure legends, tables, and supplements for:
 
 - explicit subjects, objects, comparison directions, populations, interventions/exposures, comparators, time windows, and outcomes;

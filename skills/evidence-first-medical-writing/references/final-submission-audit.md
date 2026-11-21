@@ -16,6 +16,8 @@ Give the brief presubmission reminder in [ai-use-and-disclosure.md](ai-use-and-d
 
 ### F1 — Abstract, text, tables, and supplements agree
 
+Run or reuse the [separate title and abstract checks](title-and-abstract.md) for this exact version before reconciling the text. An internally consistent number does not rescue a title that implies a different outcome.
+
 Compare repeated study facts in both directions: population and analysis-set counts, groups, outcome definitions and time points, units, denominators, effect directions, estimates, confidence intervals, and P values. Record both conflicting values and their exact locations. Explain genuine differences in population or timing before calling them contradictions. Do not choose the “right” value by majority vote or silently make one section match another; unresolved data conflicts require author/source confirmation.
 
 Run two distinct layers: **source/analysis-data reconciliation** when authorized data are available, and **within-manuscript logical consistency** for the supplied text, tables and figures regardless of data access. Passing the first layer never substitutes for the second: a correctly copied result can still be mislabeled, compared with an incompatible denominator, or interpreted in the wrong direction. Report separate statuses and coverage for each layer.

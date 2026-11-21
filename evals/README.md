@@ -6,6 +6,8 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
+- [Title and abstract reader checks](title-abstract-reader-checks.md) for staged title-only assessment, source reconciliation, a synthetic wrong-outcome rewrite, and the chat-only version boundary;
+
 - [test_participant_flow.py](../tests/test_participant_flow.py) exercises randomized and observational flowchart examples, compact centered milestones, partition and overlap semantics, changing units, missing counts, source confirmation, and draft/output protections;
 
 - [results-reference-verification.md](results-reference-verification.md) for the v0.8.0 bibliography integration: mocked executable tests, real database and issuing-source checks, full-text support assessment, and presubmission routing;

@@ -3,10 +3,12 @@
 
 Run from any directory. --write-manifests regenerates checksums after intentional
 edits. --archive verifies a built ZIP against this exact public worktree.
+--require-release rejects local candidates even when their metadata is valid.
 Uses only Python's standard library; it does not access the network.
 """
 
 import argparse
+from datetime import date
 import hashlib
 import json
 from pathlib import Path
@@ -45,7 +47,42 @@ def manifest(base, paths, own):
                    for path in sorted(paths) if path != own)
 
 
-def validate(write=False, archive=None):
+def check_release_metadata(version, changelog, citation, readmes, require_release=False):
+    headings = re.findall(r"^## (.+)$", changelog, re.M)
+    version_pattern = r"\d+\.\d+\.\d+"
+    date_pattern = r"\d{4}-\d{2}-\d{2}"
+    assert re.fullmatch(version_pattern, version), "Version format"
+    assert re.findall(r'^version: "([^"]+)"$', citation, re.M) == [version], "Citation version mismatch"
+    entry = re.fullmatch(rf"{re.escape(version)} — (Unreleased|{date_pattern})", headings[0]) if headings else None
+    assert entry, "Missing or invalid current changelog entry"
+    candidate = entry[1] == "Unreleased"
+    assert not (candidate and require_release), "Unreleased candidate cannot pass --require-release"
+    citation_dates = re.findall(r"^date-released: *(.*)$", citation, re.M)
+    if candidate:
+        assert not citation_dates, "Unreleased candidate has a citation release date"
+        previous = re.fullmatch(rf"({version_pattern}) — ({date_pattern})", headings[1]) if len(headings) > 1 else None
+        assert previous, "Missing last dated release after candidate entry"
+        date.fromisoformat(previous[2])
+        linked_version = previous[1]
+        assert tuple(map(int, linked_version.split('.'))) < tuple(map(int, version.split('.'))), "Candidate is not newer than previous release"
+    else:
+        date.fromisoformat(entry[1])
+        assert citation_dates == [entry[1]], "Citation and changelog release dates differ"
+        linked_version = version
+
+    base = f"https://github.com/duyi-neurooph/{NAME}/releases"
+    for doc, body in readmes.items():
+        targets = re.findall(r"\[[^\]]*\]\(([^)]+)\)", body)
+        tag = f"{base}/tag/v{linked_version}"
+        asset = f"{base}/download/v{linked_version}/{NAME}-{linked_version}-github-global.zip"
+        assert tag in targets and asset in targets, f"Release links: {doc}"
+        if candidate:
+            assert version in body, f"Local candidate version not named: {doc}"
+            assert not re.search(rf"/releases/(?:tag|download)/v{re.escape(version)}(?=[^\w.-]|$)", body), f"Unreleased candidate linked as a release: {doc}"
+    return "unreleased" if candidate else "dated"
+
+
+def validate(write=False, archive=None, require_release=False):
     paths = inventory()
     skill_paths = [p for p in paths if SKILL in p.parents]
     skill_text = manifest(SKILL, skill_paths, SKILL_MANIFEST)
@@ -60,13 +97,9 @@ def validate(write=False, archive=None):
     plugin = json.loads((ROOT / ".codex-plugin/plugin.json").read_text())
     marker = json.loads((SKILL / "version.json").read_text())
     version = plugin["version"]
-    assert re.fullmatch(r"\d+\.\d+\.\d+", version), "Version format"
     assert marker == {"schema": 1, "name": NAME, "version": version, "repository": "duyi-neurooph/" + NAME}, "Version marker mismatch"
-    assert f'version: "{version}"' in (ROOT / "CITATION.cff").read_text(), "Citation version mismatch"
-    assert f"## {version} — " in (ROOT / "CHANGELOG.md").read_text(), "Missing changelog entry"
-    for doc in ("README.md", "README.zh-CN.md"):
-        value = (ROOT / doc).read_text()
-        assert f"releases/tag/v{version}" in value and f"{NAME}-{version}-github-global.zip" in value, f"Release links: {doc}"
+    release_state = check_release_metadata(version, (ROOT / "CHANGELOG.md").read_text(), (ROOT / "CITATION.cff").read_text(),
+                                           {doc: (ROOT / doc).read_text() for doc in ("README.md", "README.zh-CN.md")}, require_release)
 
     text = (SKILL / "SKILL.md").read_text()
     front = re.match(r"^---\n(.*?)\n---\n", text, re.S)
@@ -106,12 +139,13 @@ def validate(write=False, archive=None):
             assert len(members) == len([n for n in zf.namelist() if not n.endswith("/")]), "Duplicate ZIP members"
             for path in paths:
                 assert zf.read(NAME + "/" + path.relative_to(ROOT).as_posix()) == path.read_bytes(), f"ZIP mismatch: {path.name}"
-    return {"version": version, "public_files": len(paths), "skill_files": len(skill_paths), "relative_links": links, "archive_verified": bool(archive), "status": "passed"}
+    return {"version": version, "release_state": release_state, "public_files": len(paths), "skill_files": len(skill_paths), "relative_links": links, "archive_verified": bool(archive), "status": "passed"}
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write-manifests", action="store_true")
     parser.add_argument("--archive", type=Path)
+    parser.add_argument("--require-release", action="store_true", help="reject an unreleased local candidate")
     args = parser.parse_args()
-    print(json.dumps(validate(args.write_manifests, args.archive), indent=2))
+    print(json.dumps(validate(args.write_manifests, args.archive, args.require_release), indent=2))
