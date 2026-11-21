@@ -36,6 +36,19 @@ def cohort():
                         group("included", "primary")])
 
 
+def dental_cohort():
+    """Load the public fictional ledger afresh so tests cannot share mutations."""
+    return json.loads((SKILL / "assets/flow-dental-records.json").read_text(encoding="utf-8"))
+
+
+def panels_by_id(root):
+    return {g.get("data-node"): g for g in root.iter(SVG + "g") if g.get("data-node")}
+
+
+def panel_rect(panel):
+    return tuple(float(panel.find(SVG + "rect").get(a)) for a in ("x", "y", "width", "height"))
+
+
 def visible_text(svg):
     doc = ET.parse(svg).getroot()
     assert doc.tag == SVG + "svg"
@@ -113,9 +126,7 @@ class ParticipantFlowCLI(unittest.TestCase):
     def assert_arrow_semantics(self, spec, path):
         """Measure the rendered arrowhead's approach, not a label or routing flag."""
         root = ET.parse(path).getroot()
-        boxes = {g.get("data-node"): tuple(float(g.find(SVG + "rect").get(a))
-                                          for a in ("x", "y", "width", "height"))
-                 for g in root.iter(SVG + "g") if g.get("data-node")}
+        boxes = {k: panel_rect(g) for k, g in panels_by_id(root).items()}
         kinds = {n["id"]: n["kind"] for n in spec["nodes"]}
         expected = [(g["parent"], k) for g in spec["groups"] for k in g["children"]]
         arrows = [(e.get("data-from"), e.get("data-to"), connector_points(e))
@@ -153,13 +164,33 @@ class ParticipantFlowCLI(unittest.TestCase):
                 for end in (v for v in spec["nodes"] if v["kind"] == "analysis"):
                     self.assertIn(str(end["n"]), content.replace(",", ""))
 
+    def test_public_gallery_is_reproducible_from_shipped_fictional_ledgers(self):
+        for stem, gallery in (("community-bp", "randomized-trial"), ("observational-cohort", "cohort"),
+                              ("case-control", "case-control"), ("dental-records", "dental-records")):
+            with self.subTest(stem=stem):
+                spec = json.loads((SKILL / "assets" / f"flow-{stem}.json").read_text(encoding="utf-8"))
+                self.assertIs(spec["synthetic"], True)
+                _, _, svg = self.ready(spec)
+                self.assertEqual(svg.read_bytes(), (SKILL.parents[1] / "assets" / "participant-flow"
+                                                    / (gallery + ".svg")).read_bytes())
+
+    def test_public_header_does_not_reprint_private_design_or_an_explicit_unit(self):
+        spec = dental_cohort()
+        spec["title"] = "Screening and analysis of children"
+        spec["design"] = "SYNTH_INTERNAL_DESIGN_LOCATOR"
+        _, report, path = self.ready(spec)
+        public_svg = path.read_text(encoding="utf-8")
+        self.assertNotIn(spec["design"], public_svg)
+        self.assertNotIn("Counts: children", public_svg)
+        self.assertIn("SYNTHETIC EXAMPLE", public_svg)
+        self.assertIn(spec["design"], json.dumps(report))
+
     def test_trial_spine_boxes_fit_and_center_the_count_and_label_together(self):
         spec = json.loads((SKILL / "assets/flow-community-bp.json").read_text(encoding="utf-8"))
         _, _, path = self.ready(spec)
         root = ET.parse(path).getroot()
-        panels = {g.get("data-node"): g for g in root.iter(SVG + "g") if g.get("data-node")}
-        rects = {k: tuple(float(g.find(SVG + "rect").get(a)) for a in ("x","y","width","height"))
-                 for k, g in panels.items()}
+        panels = panels_by_id(root)
+        rects = {k: panel_rect(g) for k, g in panels.items()}
         for key, count, label in (("screen","248","Assessed for eligibility"),
                                   ("randomized","200","Randomized")):
             with self.subTest(key=key):
@@ -179,9 +210,8 @@ class ParticipantFlowCLI(unittest.TestCase):
                                 "Independent span anchors would center the words and number separately")
         sx, sy, sw, sh = rects["screen"]
         rx, ry, rw, rh = rects["randomized"]
-        self.assertLess(rw, sw)
-        self.assertLess(rw, .75 * rects["excluded"][2])
-        self.assertLess(sw, rects["excluded"][2])
+        self.assertAlmostEqual(rw, sw, delta=.05, msg="One lane should not resize each short label independently")
+        self.assertAlmostEqual(rh, sh, delta=.05)
         stem = sx + sw / 2
         self.assertAlmostEqual(stem, rx + rw / 2, delta=.05)
         wires = {(e.get("data-from"),e.get("data-to")): connector_points(e)
@@ -190,13 +220,98 @@ class ParticipantFlowCLI(unittest.TestCase):
         self.assertAlmostEqual(trunk[0][1], sy+sh, delta=.05)
         self.assertAlmostEqual(trunk[-1][1], ry, delta=.05)
         self.assertTrue(all(abs(px-stem) < .05 for px, _ in trunk))
-        for terminal in ("home","clinic"):
-            px, py = wires["randomized",terminal][0]
-            self.assertAlmostEqual(px, stem, delta=.05)
-            self.assertAlmostEqual(py, ry+rh, delta=.05)
+        # A single stem/bus may supply both terminal arrows; inspect the
+        # actual union of segments below, not duplicate paths at the parent.
+        self.assert_centered_fork(root, "randomized", "home", "clinic")
         exclusion_rows = panels["excluded"].findall(SVG + "text")
         self.assertGreater(len(exclusion_rows), 1)
         self.assertTrue(all(row.get("text-anchor", "start") == "start" for row in exclusion_rows))
+
+    def assert_centered_fork(self, root, parent, first, second):
+        rects = {k: panel_rect(g) for k, g in panels_by_id(root).items()}
+        px, py, pw, ph = rects[parent]
+        cx, bottom = px + pw / 2, py + ph
+        a, b = sorted((rects[first], rects[second]))
+        left, right = a[0] + a[2] / 2, b[0] + b[2] / 2
+        self.assertLess(a[0] + a[2], b[0])
+        self.assertAlmostEqual(a[1], b[1], delta=.05)
+        self.assertAlmostEqual(cx - left, right - cx, delta=.05,
+                               msg="Peer status must not depend on which child shared the ledger column")
+        segments = []
+        for el in root.iter():
+            if el.get("data-from") == parent and el.tag in (SVG + "line", SVG + "polyline"):
+                pts = connector_points(el)
+                segments.extend((p, q) for p, q in zip(pts, pts[1:]) if p != q)
+        horizontal = [(min(p[0], q[0]), max(p[0], q[0]), p[1])
+                      for p, q in segments if abs(p[1] - q[1]) < .05]
+        self.assertTrue(horizontal, "No fork bar between the parent and its two children")
+        bar = horizontal[0][2]
+        self.assertLess(bottom, bar)
+        self.assertLess(bar, a[1])
+        self.assertTrue(all(abs(y-bar) < .05 for _, _, y in horizontal))
+        cursor = left
+        for lo, hi, _ in sorted(horizontal):
+            self.assertAlmostEqual(lo, cursor, delta=.05, msg="Broken, repeated or overhanging fork bar")
+            cursor = hi
+        self.assertAlmostEqual(cursor, right, delta=.05)
+        for x, start, end in ((cx, bottom, bar), (left, bar, a[1]), (right, bar, b[1])):
+            vertical = sorted((min(p[1], q[1]), max(p[1], q[1])) for p, q in segments
+                              if abs(p[0]-x) < .05 and abs(q[0]-x) < .05)
+            self.assertTrue(vertical)
+            cursor = start
+            for lo, hi in vertical:
+                self.assertAlmostEqual(lo, cursor, delta=.05, msg="Broken or duplicated vertical branch")
+                cursor = hi
+            self.assertAlmostEqual(cursor, end, delta=.05)
+
+    def test_centered_dental_outcome_fork_is_independent_of_child_column_and_order(self):
+        for shared_col, reverse in ((0, False), (1, True)):
+            with self.subTest(shared_col=shared_col):
+                spec = dental_cohort()
+                # Start with the trunk aligned to one child; neither outcome
+                # should be drawn as the default continuation or an exclusion.
+                for n in spec["nodes"]:
+                    if n["id"] in {"screen", "entry", "analyzed"}:
+                        n["col"] = shared_col
+                if reverse:
+                    spec["groups"][-1]["children"].reverse()
+                visible, audit, path = self.ready(spec)
+                boxes = self.assert_arrow_semantics(spec, path)
+                root = ET.parse(path).getroot()
+                self.assert_centered_fork(root, "analyzed", "recorded", "absent")
+                self.assertIn("children", visible)
+                self.assertEqual({n["id"]: (n["n"], n["unit"]) for n in audit["nodes"]},
+                                 {n["id"]: (n["n"], "children") for n in spec["nodes"]})
+                panels = panels_by_id(root)
+                for n in spec["nodes"]:
+                    heading = panels[n["id"]].find(SVG + "text")
+                    self.assertEqual([s.strip() for s, _ in styled_chunks(heading) if s.strip()],
+                                     [str(n["n"]), n["label"]])
+                for k in ("entry", "analyzed"):
+                    self.assertAlmostEqual(boxes[k][0] + boxes[k][2] / 2,
+                                           boxes["screen"][0] + boxes["screen"][2] / 2, delta=.05)
+                    self.assertAlmostEqual(boxes[k][2], boxes["screen"][2], delta=.05)
+                    self.assertAlmostEqual(boxes[k][3], boxes["screen"][3], delta=.05)
+                self.assertGreater(boxes["removed"][3], boxes["screen"][3])
+
+    def test_parallel_peer_with_a_wrapped_label_does_not_stretch_the_single_line_peer(self):
+        spec = dental_cohort()
+        label = "No sealant record in the school dental register during the final term before graduation"
+        spec["nodes"][-1]["label"] = label
+        _, _, path = self.ready(spec)
+        root = ET.parse(path).getroot()
+        panels = panels_by_id(root)
+        single, multi = panels["recorded"], panels["absent"]
+        first = single.findall(SVG + "text")
+        wrapped = multi.findall(SVG + "text")
+        self.assertEqual(len(first), 1)
+        self.assertGreater(len(wrapped), 1)
+        self.assertEqual(" ".join(s.strip() for row in wrapped for s, _ in styled_chunks(row) if s.strip()),
+                         "326 " + label)
+        self.assertEqual(panel_rect(single)[3], panel_rect(panels["analyzed"])[3])
+        self.assertGreater(panel_rect(multi)[3], panel_rect(single)[3])
+        self.assert_centered_fork(root, "analyzed", "recorded", "absent")
+        self.assert_arrow_semantics(spec, path)
 
     def test_observational_figures_trace_endpoint_and_sampling_denominators(self):
         def load_example(name):
@@ -301,6 +416,76 @@ class ParticipantFlowCLI(unittest.TestCase):
                 self.assertEqual(chunks[0][0], number, "Count must lead the label on the same line")
                 self.assertIn(chunks[0][1], ("bold", "700", "800","900"))
                 self.assertTrue(any(label in s and w not in ("bold","700","800","900") for s, w in chunks[1:]))
+
+    def test_dental_exclusion_centers_its_text_block_and_preserves_hanging_indents(self):
+        # Known Arial/Helvetica advances (em) for the limited fixture
+        # alphabet. An independent measurement catches a mere 'centered' flag
+        # with the original left-aligned glyph coordinates.
+        letters = {" ": .278, "D": .722, "M": .833, "N": .722, "a": .556,
+                   "c": .5, "d": .556, "e": .556, "f": .278, "h": .556,
+                   "i": .222, "l": .222, "m": .833, "n": .556, "o": .556,
+                   "p": .556, "r": .333, "s": .5, "t": .278, "u": .556,
+                   "v": .5, "y": .5}
+        def span_extent(x, label, size, anchor):
+            width = size * sum(.556 if c.isdecimal() else letters[c] for c in label)
+            start = x - {"start": 0, "middle": .5, "end": 1}[anchor] * width
+            return start, start + width
+
+        for long_reason in (False, True):
+            with self.subTest(long_reason=long_reason):
+                spec = dental_cohort()
+                reason = ("Declined the school dental visit unless a parent could attend in person"
+                          if long_reason else "Declined")
+                spec["nodes"][1]["reasons"][1]["label"] = reason
+                _, _, path = self.ready(spec)
+                panels = panels_by_id(ET.parse(path).getroot())
+                screen, excluded = panels["screen"], panels["removed"]
+                main_size = float(screen.find(SVG + "text").get("font-size"))
+                x, y, w, h = panel_rect(excluded)
+                rows = list(excluded.iter(SVG + "text"))
+                if long_reason:
+                    self.assertGreater(len(rows), 3)
+                else:
+                    self.assertEqual(len(rows), 3)
+                ys, extents, parsed = [], [], []
+                for row in rows:
+                    rowx = float(row.get("x"))
+                    size = float(row.get("font-size"))
+                    self.assertEqual(size, main_size, "Excluded counts and reasons use the main body size")
+                    self.assertIn(row.get("dominant-baseline"), ("central", "middle"))
+                    ys.append(float(row.get("y")))
+                    parts = []
+                    for span in row.iter(SVG + "tspan"):
+                        label = (span.text or "").strip()
+                        if not label:
+                            continue
+                        self.assertEqual(float(span.get("font-size", size)), main_size)
+                        bold = span.get("font-weight", row.get("font-weight")) in ("bold","700","800","900")
+                        self.assertEqual(bold, label.isdecimal(), (label, "Only leading counts are bold"))
+                        left, right = span_extent(float(span.get("x", rowx)), label, size,
+                                                  span.get("text-anchor", row.get("text-anchor", "start")))
+                        parts.append((label, left, right))
+                        extents.append((left, right))
+                    parsed.append(parts)
+                self.assertEqual([p[0][0] for p in parsed[:3]], ["83", "6", "77"])
+                self.assertEqual(" ".join([parsed[2][1][0], *(p[0][0] for p in parsed[3:])]), reason)
+                # The short and long reason numbers share a right edge; each
+                # continued line starts under the reason text, never the count.
+                self.assertAlmostEqual(parsed[1][0][2], parsed[2][0][2], delta=.5)
+                self.assertGreater(parsed[1][1][1], parsed[1][0][2])
+                label_x = parsed[1][1][1]
+                self.assertAlmostEqual(parsed[2][1][1], label_x, delta=.1)
+                for parts in parsed[3:]:
+                    self.assertEqual(len(parts), 1)
+                    self.assertAlmostEqual(parts[0][1], label_x, delta=.1)
+                left, right = min(lo for lo, _ in extents), max(hi for _, hi in extents)
+                self.assertGreater(left, x)
+                self.assertLess(right, x+w)
+                self.assertAlmostEqual(left-x, x+w-right, delta=3,
+                                       msg="Center the complete measured block, not each reason or its left margin")
+                self.assertEqual(ys, sorted(set(ys)))
+                self.assertGreater(ys[0]-y, main_size/2)
+                self.assertAlmostEqual(ys[0]-y, y+h-ys[-1], delta=1)
 
     def test_exclusion_arrow_is_horizontal_from_between_two_retained_stages(self):
         for side_row in (0, 1, 2):
@@ -419,6 +604,44 @@ class ParticipantFlowCLI(unittest.TestCase):
         spec["nodes"][-1]["n"] = 101  # Each subset is bounded individually.
         self.blocked(spec)
 
+    def test_audit_details_are_not_published_and_a_caption_is_opt_in(self):
+        spec = dental_cohort()
+        spec["notes"] = ["SYNTH_INTERNAL_MEMO"]
+        spec["groups"][-1]["rationale"] = "SYNTH_INTERNAL_PATH"
+        for include_caption in (False, True):
+            with self.subTest(include_caption=include_caption):
+                caption = "A school term ended in June."
+                if include_caption:
+                    spec["caption"] = caption
+                text, report, path = self.ready(spec)
+                svg = path.read_text(encoding="utf-8")
+                # Check the complete payload, including accessibility metadata
+                # and XML attributes, not just what is painted on the canvas.
+                for marker in ("SYNTH_INTERNAL", "Synthetic log, row", "SYNTH_LOC_"):
+                    self.assertFalse(marker in svg, f"Private marker {marker!r} appeared in the exported SVG")
+                self.assertIn("SYNTH_LOC_DECLINED", json.dumps(report))
+                self.assertEqual(caption in text, include_caption)
+                if not include_caption:
+                    root = ET.parse(path).getroot()
+                    last_box = max(y+h for _, y, _, h in map(panel_rect, panels_by_id(root).values()))
+                    footer = [el for el in root.iter(SVG+"text") if float(el.get("y")) > last_box]
+                    self.assertFalse(footer, "A simple partition with no approved caption needs no bottom note")
+
+    def test_overlapping_dental_denominators_are_not_summed_in_the_audit_or_figure(self):
+        spec = dental_cohort()
+        spec["nodes"][-2].update(label="Offered varnish", n=487)
+        spec["nodes"][-1].update(label="Offered sealants", n=532)
+        spec["groups"][-1].update(relation="subsets", rationale="SYNTH_INTERNAL_INTERSECTION")
+        text, report, path = self.ready(spec)
+        last_check = next(g for g in report["checks"] if g["parent"] == "analyzed")
+        self.assertEqual(last_check["relation"], "subsets")
+        self.assertNotIn("children_sum", last_check)
+        self.assertNotIn("1019", text.replace(",", ""))
+        self.assertNotIn("SYNTH_INTERNAL_INTERSECTION", path.read_text(encoding="utf-8"))
+        for value in ("764", "487", "532"):
+            self.assertIn(value, text)
+        self.assertRegex(text.lower(), r"overlap|non.?additive|do not add")
+
     def test_mixed_units_do_not_make_a_valid_count_identity(self):
         spec = cohort()
         spec["nodes"][0]["unit"] = "encounters"
@@ -432,10 +655,12 @@ class ParticipantFlowCLI(unittest.TestCase):
             n["row"] += 1
         spec["groups"].insert(0, group("encounters", "assessed", relation="unit_change",
                                        rationale="Unique patient key; one person per key."))
-        visible, _, _ = self.ready(spec)
+        visible, audit, path = self.ready(spec)
         self.assertIn("370", visible)
         self.assertIn("120", visible)
-        self.assertIn("Unique patient key", visible)
+        self.assertIn("Unique patient key", json.dumps(audit))
+        self.assertFalse("Unique patient key" in path.read_text(encoding="utf-8"),
+                         "The figure must not publish the audit rationale")
         self.assertIn("encounters", visible.lower())
         self.assertIn("patients", visible.lower())
         self.assertNotRegex(visible.lower(), r"dashed|dotted|\bn\s*=")

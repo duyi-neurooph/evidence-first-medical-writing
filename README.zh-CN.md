@@ -22,7 +22,7 @@
 - **P 值精度（1.0.3）**：以目标期刊要求为先；期刊无不同要求时，按**未舍入值**判断：小于 0.001 写 `P < 0.001`；0.001 至 0.999（含两端）用等号并保留三位小数（含末尾零）；大于 0.999 但小于 1 写 `P > 0.999`；仅确认精确等于 1 时可写 `P = 1.000`。软件舍入显示的 `1.000` 不代表精确等于 1，已有 `P < 0.05` 也不能反推具体数值；必要时向作者索取更高精度的输出。
 - **写作示例（1.0.1）**：遇到具体写作问题时，按需查阅随包附带的[正反例卡片](skills/evidence-first-medical-writing/references/writing-example-cards.md)，离线也能用。正例说明哪些准确的表述值得保留；反例说明读者可能误解什么，以及怎样修正。示例均为虚构，不是研究证据，不能用来补写稿件事实。
 - **标题与摘要（1.0.1）**：只看标题，读者会以为这是一项什么研究？单读摘要，又能得出什么结论？先分别记录两次阅读的判断，再用实际研究设计和已有结果核对。只有可能引起误解时才建议最小修改；不改事实、数字或结论，原文准确就保留。
-- **患者流程图（0.9.1）**：提供研究的汇总人数，只说“按我给你的数据画 flowchart”即可，不用提 JAMA。[患者分组向下，只有排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
+- **患者流程图（1.0.4）**：只说“按我给你的数据画 flowchart”即可，不用提期刊名。先核对单位和分母：[保留的分组向下，只有真正排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可编辑 SVG 使用人数、对齐的框和简短图题，来源核对记录另存。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
   观察性研究另有两套独立的英文虚拟数据：[队列研究纳排](skills/evidence-first-medical-writing/assets/flow-observational-cohort.json)和[病例对照研究抽样](skills/evidence-first-medical-writing/assets/flow-case-control.json)。
 
 - **0.8.0 新增**：“投稿前检查”自动执行[书目身份与原文支持程度核查](skills/evidence-first-medical-writing/references/reference-verification.md)。先逐条核对书目，再回到原文核对关键主张；默认不改原稿及文献库。独立 skill 已含所需 Python 脚本及[上游 MIT 许可](skills/evidence-first-medical-writing/third-party/aperivue-verify-refs.md)。
@@ -96,7 +96,7 @@ skills/evidence-first-medical-writing/SKILL.md
 
 每个写作新任务开始时，只在对话中用你惯用的语言提示一次**当前任务实际加载的版本**。联网核实了官方稳定版，才根据结果明确说“已是最新版”或“有可用更新：vX”；未能核实时直接说明。从网上下载或更新到磁盘的版本，不等于本次对话已加载的版本。提示也会简短提醒：数据如何解释由你把关；投稿前请遵守目标期刊的 AI 使用与披露政策。版本和提醒均不写入投稿文件。
 
-只有在确认首次安装成功或实际升级成功时，才在对话或安装完成提示中，用你的惯用语言给出一两句寄语。仅查询版本、无需更新、安装失败或日常写作时都不发寄语；不与写作提醒重复叠加。并非所有平台都会自动显示安装提示；能确认安装结果的助手或安装程序可读取[随包说明](skills/evidence-first-medical-writing/references/updates.md)。
+确认首次安装或升级成功后，可用你的惯用语言给出一两句寄语。如果平台静默安装或无法确认是否显示，在实际用该版本写作时可随首次版本提示补发；已显示就不重复。只查版本不发，也不写入稿件、图及其他交付文件。详见[随包说明](skills/evidence-first-medical-writing/references/updates.md)。
 
 从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
@@ -260,11 +260,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-[1.0.3](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.3) 新增上述投稿排版和统计表呈现规则，并保留 1.0.2 的摘要核查：对于以人为对象的定量原创研究，摘要中的人数、实际年龄和性别构成应描述同一批人。缺少资料时提醒核实，不替作者补数。
+[1.0.4](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.4) 更新了患者流程图的绘制和图注规则。原有的稿件、摘要及统计表核查仍然保留。
 
-也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
+也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。 另见[虚拟学校牙科项目](assets/participant-flow/dental-records.svg)：有记录与无记录均保留在分析分母里。
 
-下载 [1.0.3 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.3/evidence-first-medical-writing-1.0.3-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.4 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.4/evidence-first-medical-writing-1.0.4-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
 

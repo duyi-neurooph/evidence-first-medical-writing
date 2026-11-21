@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.4 — 2026-11-22
+
+### English
+
+- Participant flow: decide who remains in each denominator before drawing. Retained groups branch downward; only actual removals from that stage point right. Missing local records need not mean exclusion, loss to follow-up, or absence of care.
+- Editable SVGs use consistent column widths, equal heights for single-line boxes, centered labels and balanced forks. Show counts first; indent exclusion reasons without shrinking their type. Use a short figure title and add a note only when necessary for interpretation.
+- Keep source locators and internal review notes in the local audit, outside the figure. Examples and regression tests use fictional aggregate data.
+- On hosts that did not show the installation message, the first writing task can show the localized wish in chat. It is never part of the manuscript.
+
+### 中文
+
+- 患者流程图先核对各阶段的分母，再决定箭头方向。仍计入分析的分组向下，只有在该阶段真正排除才向右；本机构无记录不等于排除、失访或未接受诊疗。
+- 可编辑 SVG 的同列框等宽、单行框等高，文字居中，分叉对称。人数在前；排除原因用缩进区分，不缩小字号。图题尽量简短，只有影响解读时才补注。
+- 来源定位和内部核对备注保留在本地审核记录里，不写入图中。示例和测试只用虚构的汇总数据。
+- 平台未显示安装寄语时，首次实际写作可在对话中补发，不写入稿件。
+
 ## 1.0.3 — 2026-11-21
 
 ### English

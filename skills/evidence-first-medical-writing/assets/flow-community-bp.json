@@ -1,5 +1,6 @@
 {
   "title": "Participant flow in a blood pressure trial",
+  "caption": "Missing week 12 blood pressure readings were multiply imputed.",
   "design": "Community-based randomized trial",
   "unit": "participants",
   "language": "en",

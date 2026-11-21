@@ -43,7 +43,7 @@ Use the following wording or its natural equivalent in the user's language:
 - 中文：愿你始终对未知好奇，也珍惜那些出乎意料的答案——今天如实写下的发现，也许能让明天的病人少走一段弯路。这个工具帮你把研究写得清楚、规范；写下什么，怎样解释，仍由你把关。
 - English: May you stay curious, especially when a result surprises you—what you report honestly today may help a patient tomorrow. This tool helps you write clearly; what you report and how you interpret it remain your decisions.
 
-This is a completion message, not a first-use banner. Show it in one place only; do not repeat it on reload, during ordinary writing, or in a submission artifact. If an installation completes in the same chat as a writing task, use just the first sentence of the wish alongside the task's separate responsibility reminder. Hosts with no observable installation event or completion UI cannot guarantee this message; do not guess or set up background tracking.
+If the installer was silent or delivery is unknown, show the wish beside the chat-only version receipt on the first substantive writing task with the loaded version; this does not establish that installation just occurred. If reliable host or conversation state says this version's wish was shown, skip it. Without cross-session state, deduplicate at least within the current conversation; do not add telemetry or store manuscript content. Combine overlapping reminders rather than repeating them. No wish for a version-only check, failure or ordinary repeat use. Never include it in copy-ready prose, a figure, comments, cover letter, review report or any other deliverable.
 
 ## Capability fallbacks
 

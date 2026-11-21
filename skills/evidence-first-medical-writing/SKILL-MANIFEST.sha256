@@ -1,9 +1,10 @@
 1c681ba84426c38431fc0b983b5cb383d01ba8e6a3c7856721be0d0a3d0c185f  ./NOTICE.md
-b83393f8b827bb44c233e161d927fd290839be9776bb65aeab73336dd2277e92  ./SKILL.md
+86065a1a0b41116f7d977050108fec455babf9cfa397407a1c4d4886ef365f0f  ./SKILL.md
 3f31647f16383937c52bf92dac93c4b95d7d3f8b0fd314e38b605daed94afefc  ./agents/openai.yaml
 ae55126a31e2f728ae4ce311985b27aad83a9c61cb0c030b3f81a663ccea0932  ./assets/flow-case-control.json
 4325ce111f11b6c5f14ed37f199219ef29ace091aa2372af5c67a78290919525  ./assets/flow-cohort.json
-763451977fd967515b561afce705abfa6ca42651642dff7f43220834c76d552d  ./assets/flow-community-bp.json
+4bf1546a53d9b93ec1c0a03794d8c9f9dcf2ae985a0522c4271495041aee6887  ./assets/flow-community-bp.json
+4f7081eab2df7420a0b948abb3206dfbe282765407c294e5153db11d81c4211c  ./assets/flow-dental-records.json
 2d229afe1c875d8d606fbcdd8273ff73a15789f1e9f8de8a1d51d1850527ffbd  ./assets/flow-observational-cohort.json
 3c4236f5b47830f0ca7e3bf86b153e9a78f3863dcabd4c588d09f4f88bdddc1e  ./assets/flow-rct.json
 074852fa97f6286d226b10889b85ed4f954a7c473d99950f3a9eeeeda052e357  ./references/ai-use-and-disclosure.md
@@ -18,7 +19,7 @@ bba4cd6fbb5dbf1609780c22460d42b7a9aabc0af946d8a7673c2612efd36cf0  ./references/i
 84dde36a80ed36341da2bcf4c530460a6860b570c18e89732ee05f2509030f54  ./references/language-and-logic.md
 0bd36af97659649d29f5a26a0e3e92aa3f9ef512c656da86f608a7c095c5603e  ./references/nejm-statistical-reporting.md
 220b8dcbb27ad42916b18cca4d5a9f0b15c9ffcd1e73dc1546b28fd21fc1a3fe  ./references/optional-data-integrity-audit.md
-66f868a5f7c88b6c39e2ee56245c9f0d7b3114bc4272ed4777f475af29b29a29  ./references/participant-flow.md
+95d2fe4c01139f34dd55d0f9afe4ed96b0c28e36bc577faf6b19fa607e0aface  ./references/participant-flow.md
 b1aa0f8e9d243c93fb3636d147eae823517026f33b17f0c029e3cd8471afc53d  ./references/principles.md
 a2d0dc369d3fe8a07420c8641a930d9768e78a5a8fa943f5e83f9d87f891e4e8  ./references/reference-verification.md
 58fc3f23f332c832ae4e8c26ff3378ee206b7d2c8b7f18aca8590d97efb2f442  ./references/reporting-guideline-retrieval.md
@@ -29,11 +30,11 @@ a5375da1a06a66920efa664800a087af204b39f2458e442a7f88c9a4e17aae7f  ./references/s
 1e334399b9214fce4335ade22ace2200dbecec97ee7a1a161479878d09987c4f  ./references/study-type-playbooks.md
 6a0dc53440efef1ba4ccde279bb7e617a55d9e6ccccfa4d9056d8b2737621f12  ./references/submission-and-review.md
 6529fe1961d06fb5f011035a78fefb0c12da64ec76c2f92779506c4128668df0  ./references/title-and-abstract.md
-a45af4e57620d4df1ebdb858329d33c5e19916518313ee1173fa9a20c7466b0d  ./references/updates.md
+b2e9ef10097c88658acfd677ffc86cf840ded70c0fd95acfef66a7afc175d573  ./references/updates.md
 12d088d935d73c5f5c46f3a47c81c8e2bdea7f796d00114012c3e7ec08e007fc  ./references/writing-example-cards.md
 6c120abce24d97dd3a53a74f35028e672d9d336f09d9a9a8b2bb39ccdae055e6  ./scripts/format_p_value.py
-9e512b79b03f282f5ea224a4f82a7ff3dca216018f4e3d70a6c7d35e8ea6f295  ./scripts/participant_flow.py
+f7573503517c84d504339808714fa153b7679666e39615464a5749ff014bbd01  ./scripts/participant_flow.py
 79f83f4a628e1d7e608c82d21afb6dfd0f8ad43ccf49b55bb83e6b736dc0be97  ./scripts/update_skill.py
 505ec525ba880be69528298ad9a91b431c8871a4a08b331f798c06a2259b68fa  ./scripts/verify_references.py
 0418786fd69f96f0d87c98648bd703524ff06931f45463ac9bd931ac186bc41f  ./third-party/aperivue-verify-refs.md
-0bf8b23c9cd09087e0987092a473c0e6d21fbdfb0a10ad96b739911b8658e41e  ./version.json
+75b67cd85e3b01166c76f94418885d8e27a4769d30e73fcc7099ad7d633707d7  ./version.json

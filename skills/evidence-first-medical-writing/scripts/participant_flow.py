@@ -2,7 +2,7 @@
 """Audit an aggregate participant-flow ledger and draw an original editable SVG (standard library only)."""
 
 import argparse
-from collections import Counter, defaultdict, deque
+from collections import Counter, defaultdict, deque, namedtuple
 import heapq
 import json
 from pathlib import Path
@@ -45,12 +45,18 @@ def audit(data):
     for k in ("title", "design", "unit"):
         if not text(data.get(k)):
             issue("required_text", k, "Supply a nonblank " + k + ".", True)
+    if text(data.get("design")):
+        report["design"] = data["design"]
     if type(data.get("synthetic", False)) is not bool:
         issue("schema", "synthetic", "Expected a boolean.", True)
     if data.get("language", "en") not in ("en", "zh"):
         issue("schema", "language", "Use en or zh for generated figure labels.", True)
     if not isinstance(data.get("notes", []), list) or not all(text(n) for n in data.get("notes", [])):
         issue("schema", "notes", "Expected a list of text notes.", True)
+    elif "notes" in data:
+        report["notes"] = data["notes"]  # Private working notes, never copied to the SVG.
+    if "caption" in data and not text(data["caption"]):
+        issue("schema", "caption", "Omit the caption or supply nonblank publication-facing text.", True)
     raw, groups = data.get("nodes"), data.get("groups")
     if not isinstance(raw, list) or not 2 <= len(raw) <= 96 or not isinstance(groups, list):
         issue("schema", "input", "Expected 2–96 aggregate nodes and an array of relationship groups.", True)
@@ -146,7 +152,7 @@ def audit(data):
             entry.update(parent_n=parent["n"], children_sum=total)
             if total != parent["n"]:
                 issue("partition_mismatch", loc, f"{p}: reported {parent['n']}, complete disjoint children total {total}.")
-        if rel == "unit_change":
+        if "rationale" in group:
             entry["rationale"] = group.get("rationale")
         checks.append(entry)
     roots = [k for k in nodes if not parents[k]]
@@ -173,24 +179,30 @@ def audit(data):
     return report
 
 
+# Nominal Helvetica advances in thousandths of an em, ASCII space through ~.
+# Arial shares these metrics for ordinary Latin text; CJK glyphs occupy one em.
+# The SVG still contains live text, not outlines or stretched textLength runs.
+ASCII_ADVANCES = (
+    278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,
+    556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,
+    1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,
+    667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,
+    333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,
+    556,556,333,500,278,556,500,722,500,500,500,334,260,334,584)
+
+
 def measure(s):
-    # Approximate sans-serif advances in em; modest guard space accommodates
-    # font substitution without leaving half-empty lines in English figures.
-    def advance(c):
-        if unicodedata.combining(c):
-            return 0
-        if unicodedata.east_asian_width(c) in "WF":
-            return 1.03
-        if c.isspace() or c in "ilI!.,:;'|":
-            return .29
-        if c in "frt()[]-/":
-            return .37
-        if c in "mwMW@%":
-            return .92
-        if c.isupper():
-            return .74
-        return .58
-    return sum(map(advance, s))
+    total = 0
+    for c in unicodedata.normalize("NFD", s):
+        if 32 <= ord(c) <= 126:
+            total += ASCII_ADVANCES[ord(c)-32]
+        elif unicodedata.combining(c) or unicodedata.category(c) == "Cf":
+            continue
+        elif unicodedata.east_asian_width(c) in "WF" or c in "—…":
+            total += 1000
+        else:
+            total += 278 if c.isspace() else 600
+    return total / 1000
 
 
 def wrap(s, width):
@@ -209,6 +221,40 @@ def wrap(s, width):
         if line.strip():
             out.append(line.rstrip())
     return out or [""]
+
+
+def unit_is_named(unit, *labels):
+    """Suppress a redundant legend only for recognizable unit wording."""
+    unit = unit.casefold().strip()
+    if not unit.isascii():
+        # A single Han character such as 人 also occurs in unrelated words.
+        # For such counters require a delimited or numeric use, not 人工….
+        if len(unit) == 1:
+            return any(re.search(r"(?:^|[\s（(：:\d])" + re.escape(unit) +
+                                 r"(?:$|[\s）)，。,:：])", s) for s in labels)
+        return any(unit in s.casefold() for s in labels)
+    words = unit.split()
+    last = words[-1]
+    pairs = (("child","children"), ("person","people"), ("woman","women"), ("man","men"),
+             ("analysis","analyses"), ("tooth","teeth"), ("foot","feet"))
+    forms = {last}
+    for pair in pairs:
+        if last in pair:
+            forms.update(pair)
+            break
+    else:
+        if last.endswith("ies"):
+            forms.add(last[:-3]+"y")
+        elif last.endswith(("ches", "shes", "xes", "sses")):
+            forms.add(last[:-2])
+        elif last.endswith("s") and not last.endswith(("ss", "is", "us")):
+            forms.add(last[:-1])
+        elif last.endswith("y") and len(last) > 1 and last[-2] not in "aeiou":
+            forms.add(last[:-1]+"ies")
+        else:
+            forms.add(last+("es" if last.endswith(("ch", "sh", "x", "ss")) else "s"))
+    pattern = r"(?<!\w)(?:" + "|".join(re.escape(" ".join(words[:-1]+[x])) for x in forms) + r")(?!\w)"
+    return any(re.search(pattern, s.casefold()) for s in labels)
 
 
 class LayoutError(ValueError):
@@ -277,41 +323,55 @@ def svg(data, draft=False):
     unconfirmed = "（待确认）" if zh else " (unconfirmed)"
     draft_label = "草稿：不可投稿" if zh else "DRAFT — NOT FOR SUBMISSION"
     teaching_label = "虚构数据示例" if zh else "SYNTHETIC EXAMPLE"
-    w, margin, gap = 280, 22, 32
+    margin, gap, size, leading, pad = 22, 32, 15, 20, 14
+    Line = namedtuple("Line", "number label number_end label_start")
+
+    def number(item):
+        return str(item["n"]) if item.get("n") is not None else "?"
+
+    def advance(s):
+        return size * measure(s)
+
+    # One column measure for the entire figure, including short solitary stages.
+    # Leave room for a long reported count instead of ever truncating its digits.
+    w = max(280, 2*pad+size*6+max(advance(number(i)) for n in nodes for i in [n, *n.get("reasons", [])]))
 
     def entries(n):
-        # The label hangs from the bold number, with no redundant second count line.
         result = []
-        def numbered(item, size, indent):
-            number = str(item["n"]) if item.get("n") is not None else "?"
+        reasons = n.get("reasons", [])
+        reason_indent = 12
+        def numbered(item, count_end, item_unit):
             label = item["label"]
-            node_unit = item.get("unit", unit)
-            if node_unit != unit and node_unit.casefold() not in label.casefold():
-                label = node_unit + ("，" if zh else " — ") + label
+            if item_unit != unit and item_unit.casefold() not in label.casefold():
+                label = item_unit + ("，" if zh else " — ") + label
             if item.get("confirmed") is not True:
                 label += unconfirmed
-            hang = size*(measure(number)+.45)
-            lines = wrap(label, max(5, (w-24-indent-hang)/size))
-            for i, line in enumerate(lines):
-                result.append((number if i == 0 else None, line, size,
-                               indent if i == 0 else indent+hang))
-        numbered(n, 15, 0)
+            start = count_end + advance(" ")
+            for i, line in enumerate(wrap(label, (w-2*pad-start)/size)):
+                result.append(Line(number(item) if i == 0 else None, line, count_end, start))
+        node_unit = n.get("unit", unit)
+        numbered(n, advance(number(n)), node_unit)
         if n.get("reason_relation") == "subsets":
-            result.extend((None, s, 13, 14) for s in wrap(
-                "原因可重叠或未列全：" if zh else "Reasons may overlap or be incomplete:", (w-40)/13))
-        for r in n.get("reasons", []):
-            numbered(r, 14, 15)
+            for s in wrap("原因可重叠或未列全：" if zh else "Reasons may overlap or be incomplete:",
+                          (w-2*pad-reason_indent)/size):
+                result.append(Line(None, s, 0, reason_indent))
+        if reasons:
+            count_end = reason_indent + max(advance(number(r)) for r in reasons)
+            for r in reasons:
+                # All counts share a right edge, including 1 vs. 3 digits;
+                # wrapped labels continue under their own word, not the number.
+                numbered(r, count_end, r.get("unit", node_unit))
         return result
 
     lines = {n["id"]: entries(n) for n in nodes}
-    heights = {k: 15 + sum(size+4 for _,_,size,_ in vals) for k, vals in lines.items()}
-    cols = {c:i for i,c in enumerate(sorted({n["col"] for n in nodes}))}
+    heights = {k: 36 + leading*(len(vals)-1) for k, vals in lines.items()}
     row_rank = {r:2*i for i,r in enumerate(sorted({n["row"] for n in nodes}))}
     row = {n["id"]:row_rank[n["row"]] for n in nodes}
     occupied = {(row[k], by_id[k]["col"]) for k in by_id}
-    outgoing = defaultdict(list)
+    outgoing, parent_of = defaultdict(list), {}
     for g in data["groups"]:
         outgoing[g["parent"]].extend(g["children"])
+        parent_of.update((k, g["parent"]) for k in g["children"])
     # Put a side exclusion between its source and the next retained stage even
     # for older ledgers that positioned it on the source or destination row.
     tee_candidates = defaultdict(list)
@@ -333,44 +393,76 @@ def svg(data, draft=False):
     bands = defaultdict(list)
     for k in by_id:
         bands[row[k]].append(k)
-    # Where only the two outer lanes share a row, the center column is an
-    # anchor for the stem, not another full-width unused column of space.
-    stride = w/2 + gap
-    for ks in bands.values():
-        ranks = sorted(cols[by_id[k]["col"]] for k in ks)
-        for a,b in zip(ranks,ranks[1:]):
-            stride = max(stride, (w+gap)/(b-a))
-    plot = w + (len(cols)-1)*stride
-    width = max(500, int(2*margin + plot + .5))
+    # A ledger column orders siblings; it is not the physical center of an
+    # upstream population. Anchor every single-retained-stage chain on the
+    # downstream fork's midpoint, even when its input col equals a child's.
+    # Work from the leaves up so a nested split has room for its own exits.
+    def subtree(p):
+        centers = {p: 0}
+        kids = sorted(outgoing.get(p, ()), key=lambda k: (by_id[k]["col"], row[k], k))
+        retained = [k for k in kids if by_id[k]["kind"] != "exclusion"]
+        sides = [k for k in kids if by_id[k]["kind"] == "exclusion"]
+        positions, branches = [], []
+        for k in retained:
+            branch = subtree(k)
+            x = (positions[-1] + max(branches[-1].values()) - min(branch.values()) + w + gap
+                 if branches else 0)
+            positions.append(x); branches.append(branch)
+        if positions:
+            middle = (positions[0] + positions[-1])/2
+            for x, branch in zip(positions, branches):
+                centers.update((k, x+dx-middle) for k,dx in branch.items())
+        for k in sides:
+            branch = subtree(k)
+            x = w+gap
+            # A right-hand exit may occupy the space above its downstream
+            # arm, but it must not share a band with any overlapping frame.
+            # If a later exclusion lies between a retained parent and child,
+            # also leave that direct vertical lane clear.
+            for v, dx in branch.items():
+                for other, ox in centers.items():
+                    if row[other] == row[v]:
+                        x = max(x, ox+w+gap-dx)
+                    par = parent_of.get(other)
+                    if (par in centers and row[par] < row[v] < row[other]
+                            and centers[par] == ox and by_id[other]["kind"] != "exclusion"):
+                        x = max(x, ox+w+gap-dx)
+            centers.update((v, x+dx) for v,dx in branch.items())
+        return centers
+
+    root_id = next(k for k in by_id if k not in parent_of)
+    centers = subtree(root_id)
+    left, right = min(centers.values())-w/2, max(centers.values())+w/2
+    width = max(500, int(2*margin + right-left + .99))
+    origin = (width-right-left)/2
     top = wrap(data["title"], (width-2*margin)/20)
     mixed_units = any(n.get("unit", unit) != unit for n in nodes)
-    unit_caption = ("计数单位：" if zh else "Counts: ") + unit
+    unit_caption = ""
+    if mixed_units or not unit_is_named(unit, data["title"], by_id[root_id]["label"]):
+        unit_caption = ("计数单位：" if zh else "Counts: ") + unit
     if mixed_units:
         unit_caption += "（另有注明者除外）" if zh else " unless otherwise specified"
-    meta = wrap(" · ".join(filter(None, [draft_label if draft else "",
-                teaching_label if data.get("synthetic") else "", data["design"],
-                unit_caption])), (width-2*margin)/12)
+    metadata = " · ".join(filter(None, [draft_label if draft else "",
+                         teaching_label if data.get("synthetic") else "", unit_caption]))
+    meta = wrap(metadata, (width-2*margin)/12) if metadata else []
     pos = 26 + 25*len(top) + 17*len(meta) + 7
-    boxes, compact = {}, set()
+    boxes = {}
     for band in sorted(bands):
-        h = max(heights[k] for k in bands[band])
-        # Equal-depth arm panels share top and bottom edges even when one has
-        # more lines. This keeps the two allocation arrows truly symmetric.
-        parallel = len(bands[band]) > 1 and all(by_id[k]["kind"] != "exclusion" for k in bands[band])
+        # Top-align retained siblings for equal downward legs. If an exit must
+        # sit beside its source in this band, align their text/box midpoints.
+        def offset(k):
+            p = parent_of.get(k)
+            if p is not None and row[p] == band:
+                return offset(p) + (heights[p]-heights[k])/2
+            return 0
+        offsets = {k:offset(k) for k in bands[band]}
+        minimum = min(offsets.values())
+        h = max(offsets[k]+heights[k] for k in bands[band]) - minimum
         for k in bands[band]:
-            x = (width-plot)/2 + cols[by_id[k]["col"]]*stride
-            hh = h if parallel else heights[k]
-            ww = w
-            # Fit a short, solitary stage to its count + label. Keep parallel
-            # panels and detailed lists aligned, and keep the stage on its lane.
-            if len(bands[band]) == 1 and by_id[k]["kind"] != "exclusion" and len(lines[k]) == 1:
-                count, label, size, _ = lines[k][0]
-                ww = min(w, max(64, round(26 + size*(1.08*measure(count) + measure(" " + label)))))
-                compact.add(k)
-            boxes[k] = (x+(w-ww)/2, pos + (h-hh)/2, ww, hh)
+            boxes[k] = (origin+centers[k]-w/2, pos+offsets[k]-minimum, w, heights[k])
         pos += h+24
 
-    foot = []
+    foot = wrap(data["caption"], (width-2*margin)/12) if data.get("caption") else []
     for g in data["groups"]:
         if g["relation"] == "subsets":
             name = by_id[g["parent"]]["label"]
@@ -380,13 +472,11 @@ def svg(data, draft=False):
             p = by_id[g["parent"]]
             start = p.get("unit",unit)
             end = ", ".join(dict.fromkeys(by_id[k].get("unit",unit) for k in g["children"]))
-            desc = g.get("rationale") or ("转换方式待确认。" if zh else "Mapping unconfirmed.")
-            scope = (f"单位转换（{start} → {end}）：{desc}" if zh else f"Unit change ({start} → {end}): {desc}")
+            scope = (f"计数单位由{start}变为{end}，不能相减。" if zh else
+                     f"Counts change from {start} to {end}; the difference is not attrition.")
         else:
             continue
         foot.extend(wrap(scope,(width-2*margin)/12))
-    for note in data.get("notes", []):
-        foot.extend(wrap(note, (width-2*margin)/12))
     height = int(pos + 16*len(foot) + 5)
     root = ET.Element("svg", {"xmlns":"http://www.w3.org/2000/svg", "lang":"zh" if zh else "en", "width":str(width), "height":str(height),
                              "viewBox":f"0 0 {width} {height}", "role":"img", "aria-labelledby":"figure-title figure-desc"})
@@ -409,7 +499,16 @@ def svg(data, draft=False):
 
     # Give retained children a common stem before the horizontal fork. Take
     # side exits off this stem only if the line really meets the retained path.
-    forks, tees = {}, {}
+    def wire(p, points, child=None, role=None):
+        attrs = {"data-from":p, "points":" ".join(f"{u:g},{v:g}" for u,v in points),
+                 "fill":"none", "stroke":"#444", "stroke-width":1.05, "stroke-linejoin":"round"}
+        if child is not None:
+            attrs.update({"data-to":child, "marker-end":"url(#tip)"})
+        if role:
+            attrs["data-role"] = role
+        el(canvas,"polyline",attrs)
+
+    forks, tees, legs = {}, {}, {}
     for p, kids in outgoing.items():
         retained = [k for k in kids if by_id[k]["kind"] != "exclusion"]
         if not retained:
@@ -427,13 +526,26 @@ def svg(data, draft=False):
         if clear_segment(a,fork,boxes,{p}):
             forks[p] = fork
             tees.update(side_exits)
+            # Draw the bar and upper stem ONCE, without arrowheads. The only
+            # arrowheads are at actual dispositions, never at a junction.
+            tops = [(boxes[k][0]+boxes[k][2]/2, boxes[k][1]) for k in retained]
+            ends = [(b[0], fork[1]) for b in tops]
+            if (len(retained) >= 2 and len({b[1] for b in tops}) == 1
+                    and clear_segment(min(ends),max(ends),boxes,set())
+                    and all(clear_segment(end,b,boxes,{k}) for k,end,b in zip(retained,ends,tops))):
+                wire(p, [a,fork], role="stem")
+                wire(p, [min(ends),max(ends)], role="bus")
+                for k,end,b in zip(retained,ends,tops):
+                    legs[p,k] = [end,b]
 
     for g in data["groups"]:
         p = g["parent"]
         x,y,bw,bh = boxes[p]
         for k in g["children"]:
             xx,yy,cw,ch = boxes[k]
-            if by_id[k]["kind"] == "exclusion":
+            if (p,k) in legs:
+                points = legs[p,k]
+            elif by_id[k]["kind"] == "exclusion":
                 a, b = (x+bw,y+bh/2), (xx,yy+ch/2)
                 if (p,k) in tees:
                     points = tees[p,k]
@@ -456,38 +568,41 @@ def svg(data, draft=False):
                         # End with a vertical segment even when boxes obstruct
                         # the usual fork; never replace it with a diagonal.
                         points = [a,*ortho(fork,(b[0],b[1]-8),boxes.values(),(p,k)),b]
-            el(canvas,"polyline",{"data-from":p,"data-to":k,
-                  "points":" ".join(f"{u:g},{v:g}" for u,v in points), "fill":"none",
-                  "stroke":"#444","stroke-width":1.05,"stroke-linejoin":"round","marker-end":"url(#tip)"})
+            wire(p, points, child=k)
 
     for n in nodes:
         k = n["id"]; x,y,ww,hh = boxes[k]
         box = el(canvas,"g",{"data-node":k})
         el(box,"rect",{"x":x,"y":y,"width":ww,"height":hh,"fill":"none","stroke":"#555","stroke-width":1})
-        if k in compact:
-            number, label, size, _ = lines[k][0]
+        if len(lines[k]) == 1:
+            item = lines[k][0]
             # Anchor the complete text chunk (not its spans) at the box center
             # so the viewer uses the actual advances of its bold and plain fonts.
             t = el(box,"text",{"x":x+ww/2,"y":y+hh/2,"font-size":size,
                                "text-anchor":"middle","dominant-baseline":"central",
                                "{http://www.w3.org/XML/1998/namespace}space":"preserve"})
-            el(t,"tspan",{"font-weight":"bold"},number).tail = " "
-            el(t,"tspan",{},label)
+            el(t,"tspan",{"font-weight":"bold"},item.number).tail = " "
+            el(t,"tspan",{},item.label)
             continue
-        line_y = y+6
-        for number, line, size, indent in lines[k]:
-            line_y += size
-            t = el(box,"text",{"x":x+12+indent,"y":line_y,"font-size":size,
+        # Center the bounding block, not a guessed-width column and not each
+        # line separately. Counts, labels and continuations stay aligned inside it.
+        rows = lines[k]
+        left = min(item.number_end-advance(item.number) if item.number else item.label_start for item in rows)
+        right = max(item.label_start+advance(item.label) for item in rows)
+        block_x = x+(ww-left-right)/2
+        first_y = y+(hh-(len(rows)-1)*leading)/2
+        for i,item in enumerate(rows):
+            count_start = block_x+item.number_end-advance(item.number) if item.number is not None else None
+            t = el(box,"text",{"x":count_start if count_start is not None else block_x+item.label_start,
+                               "y":first_y+i*leading,
+                               "dominant-baseline":"central", "font-size":size,
                                "{http://www.w3.org/XML/1998/namespace}space":"preserve"})
-            if number is not None:
-                el(t,"tspan",{"font-weight":"bold"},number).tail = " "
-                # An explicit label anchor also fixes the hanging indent if
-                # the viewer substitutes a wider or narrower numeric font.
-                anchor = x+12+indent+size*(measure(number)+.45)
-                el(t,"tspan",{"x":anchor},line)
-            else:
-                el(t,"tspan",{},line)
-            line_y += 4
+            if item.number is not None:
+                # Align the end of the tabular digits using their advances.
+                # Mixing end/start anchoring inside one editable text element
+                # can make SVG importers apply the end anchor to its labels.
+                el(t,"tspan",{"x":count_start,"font-weight":"bold"},item.number).tail = " "
+            el(t,"tspan",{"x":block_x+item.label_start},item.label)
     for i,s in enumerate(foot):
         el(canvas,"text",{"x":margin,"y":pos+16*i,"font-size":12,"fill":"#444"},s)
     return ET.tostring(root, encoding="unicode", xml_declaration=True) + "\n"

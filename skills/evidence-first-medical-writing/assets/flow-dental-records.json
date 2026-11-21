@@ -1,0 +1,108 @@
+{
+  "title": "Sealant records at year end",
+  "design": "School dental cohort",
+  "synthetic": true,
+  "unit": "children",
+  "nodes": [
+    {
+      "id": "screen",
+      "label": "Screened",
+      "n": 847,
+      "row": 0,
+      "col": 0,
+      "kind": "main",
+      "confirmed": true,
+      "source": "Synthetic log, row screen"
+    },
+    {
+      "id": "removed",
+      "label": "Not enrolled",
+      "n": 83,
+      "row": 1,
+      "col": 2,
+      "kind": "exclusion",
+      "confirmed": true,
+      "source": "Synthetic log, row removed",
+      "reason_relation": "partition",
+      "reasons": [
+        {
+          "label": "Moved",
+          "n": 6,
+          "source": "SYNTH_LOC_MOVED",
+          "confirmed": true
+        },
+        {
+          "label": "Declined",
+          "n": 77,
+          "source": "SYNTH_LOC_DECLINED",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "entry",
+      "label": "Enrolled",
+      "n": 764,
+      "row": 2,
+      "col": 0,
+      "kind": "main",
+      "confirmed": true,
+      "source": "Synthetic log, row entry"
+    },
+    {
+      "id": "analyzed",
+      "label": "Year-end analysis",
+      "n": 764,
+      "row": 3,
+      "col": 0,
+      "kind": "analysis",
+      "confirmed": true,
+      "source": "Synthetic log, row analyzed"
+    },
+    {
+      "id": "recorded",
+      "label": "Sealant recorded",
+      "n": 438,
+      "row": 4,
+      "col": 0,
+      "kind": "analysis",
+      "confirmed": true,
+      "source": "Synthetic log, row recorded"
+    },
+    {
+      "id": "absent",
+      "label": "No sealant record",
+      "n": 326,
+      "row": 4,
+      "col": 1,
+      "kind": "analysis",
+      "confirmed": true,
+      "source": "Synthetic log, row absent"
+    }
+  ],
+  "groups": [
+    {
+      "parent": "screen",
+      "children": [
+        "entry",
+        "removed"
+      ],
+      "relation": "partition"
+    },
+    {
+      "parent": "entry",
+      "children": [
+        "analyzed"
+      ],
+      "relation": "partition"
+    },
+    {
+      "parent": "analyzed",
+      "children": [
+        "absent",
+        "recorded"
+      ],
+      "relation": "partition"
+    }
+  ]
+}
