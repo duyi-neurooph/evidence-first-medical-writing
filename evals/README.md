@@ -6,6 +6,7 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 
 See:
 
+- [Clinical-writing contrast card probes](clinical-contrast-card-probes.md) for held-out checks of no-edit decisions, missing evidence, clean manuscript wording, and separately labeled teaching examples;
 - [Title and abstract reader checks](title-abstract-reader-checks.md) for staged title-only assessment, source reconciliation, a synthetic wrong-outcome rewrite, and the chat-only version boundary;
 
 - [test_participant_flow.py](../tests/test_participant_flow.py) exercises randomized and observational flowchart examples, compact centered milestones, partition and overlap semantics, changing units, missing counts, source confirmation, and draft/output protections;

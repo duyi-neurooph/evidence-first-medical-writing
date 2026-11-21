@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.10.0 — Unreleased
+## 1.0.1 — Unreleased
 
+- Added bundled [writing example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) for use on demand, including offline. Positive and negative examples show when to keep sound wording and how to correct wording that misleads. All examples are synthetic; they do not supply evidence or facts for a manuscript.
 - Added a title-only reader check: record what the title alone leads a reader to expect, then read the abstract on its own. Compare both readings with the actual study design and available results. Suggest the smallest correction only where the wording misleads; preserve supported facts, numbers, uncertainty and conclusions.
 - Report the version of the skill actually loaded once per task in chat, separately from any update notice. Keep the version out of manuscripts and submission files.
 

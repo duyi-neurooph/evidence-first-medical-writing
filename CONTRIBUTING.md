@@ -23,3 +23,7 @@ Do not contribute copied book or article passages, identifiable cases, private s
 By contributing to this repository, you agree that your contribution is licensed under the repository's [PolyForm Noncommercial License 1.0.0](LICENSE.md), and you represent that you have the right to submit it.
 
 Commercial licensing proposals and private rights concerns should be sent to `duyinapoleon@gmail.com`.
+
+## Version numbering
+
+The current local candidate is **1.0.1**. For the next change, the maintainer plans to use **1.0.2** for a smaller update or **1.2.0** for a larger one. These are alternatives for planning, not published releases. See the [changelog](CHANGELOG.md) for release status.

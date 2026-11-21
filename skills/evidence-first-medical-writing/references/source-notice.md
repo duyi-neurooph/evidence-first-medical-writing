@@ -23,6 +23,8 @@ Do not:
 
 ## License boundary
 
+The [offline teaching cards](writing-example-cards.md) are original, fictional instructional pairs. To add one, start from a general editorial decision and construct the facts, wording, correction and explanation independently. Do not disguise an existing case by changing a disease, numbers, names or language, or offer links to private source collections or social-media originals for further reading. Keep source collections out of the package and keep evaluation prompts separate from examples shown to users. This does not remove required software notices or replace authoritative reporting-guideline references.
+
 The repository is made available under the PolyForm Noncommercial License 1.0.0. The license applies only to rights that Yi can license in the public package. It does not grant rights in third-party works, names, marks, logos, or other excluded materials.
 
 For commercial licensing questions or rights concerns, contact `duyinapoleon@gmail.com`.

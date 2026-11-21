@@ -24,6 +24,8 @@ Decide **keep / minimally revise / author confirmation**. For a substantive issu
 
 ## Published examples for calibration, not templates
 
+For an offline illustration of a misleading design, comparator or endpoint, use the [synthetic paired examples](writing-example-cards.md). No external reading is needed to use those cards.
+
 - [JAMA: screening outreach](https://jamanetwork.com/journals/jama/fullarticle/2652650). Naming outreach and completion keeps the title from implying a comparison of the tests' diagnostic accuracy.
 - [The Lancet: DiRECT](https://pubmed.ncbi.nlm.nih.gov/29221645/). Primary care, diabetes remission and cluster randomization identify the question; the operational definition of remission belongs in the abstract.
 - [NEJM: early Alzheimer's disease](https://doi.org/10.1056/NEJMoa2212948). The short drug-and-disease title does not identify randomization. Learn from the abstract's scale direction and arm-specific changes, not from that omission: less decline is not recovery.
