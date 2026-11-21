@@ -272,6 +272,8 @@ Apply the retrieved checklists item by item using [reporting-guideline-retrieval
 
 Use the [title-only and abstract-only readings](title-and-abstract.md) on the frozen version when available. Capture the ambiguous words before reconciliation; do not circulate that reading as a hint to the other reviewers. The editor rechecks adjudicated repairs after revision.
 
+For human quantitative results, apply the [abstract participant-profile check](title-and-abstract.md#who-do-the-results-describe) within the relevant reviewer's remit. When adjudicating, distinguish an omitted description from figures taken from the wrong population.
+
 Check the abstract, main text, figure legends, tables, and supplements for:
 
 - explicit subjects, objects, comparison directions, populations, interventions/exposures, comparators, time windows, and outcomes;

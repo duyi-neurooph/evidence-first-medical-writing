@@ -261,12 +261,12 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Evidence-First Medical Writing 1.0.1 includes seven original, offline teaching cards and separate title and abstract reader checks.
+Version 1.0.2 checks who the abstract's results describe. In original quantitative studies of people, drafting, simulated review and final submission checks match baseline age and recorded sex or gender to the stated participant count. Missing data are flagged, not inferred.
 
-Published release: [1.0.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.1).
+Published release: [1.0.2](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.2).
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 1.0.1 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.1/evidence-first-medical-writing-1.0.1-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.2 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.2/evidence-first-medical-writing-1.0.2-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

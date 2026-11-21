@@ -257,12 +257,12 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-1.0.1 新增 7 张可离线使用的原创虚构教学卡，并把题目单独读、摘要独立读接入写作与审稿。
+1.0.2 在摘要写作、模拟审稿和投稿前终审时检查：对于以人为对象的定量原创研究，摘要中的人数、实际年龄和性别构成是否描述同一批人。缺少资料时提醒核实，不替作者补数。
 
-已发布版本：[1.0.1](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.1)。
+已发布版本：[1.0.2](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.2)。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [1.0.1 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.1/evidence-first-medical-writing-1.0.1-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.2 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.2/evidence-first-medical-writing-1.0.2-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

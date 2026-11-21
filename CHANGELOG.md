@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 — 2026-11-21
+
+- Abstract drafting, simulated peer review and final submission checks now match actual baseline age and recorded sex/gender to the participant count in human quantitative studies. The check respects the target journal, unavailable data and justified omissions.
+- Distinguish eligibility from observed age, enrollment from analysis, and a nested count from a full-cohort percentage. Request the matching aggregate data instead of inferring missing values or group membership.
+
 ## 1.0.1 — 2026-11-21
 
 - Added bundled [writing example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) for use on demand, including offline. Positive and negative examples show when to keep sound wording and how to correct wording that misleads. All examples are synthetic; they do not supply evidence or facts for a manuscript.
