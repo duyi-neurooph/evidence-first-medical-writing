@@ -10,6 +10,8 @@
 
 ## Public provenance boundary
 
+The personal maintainer credit in the [main skill](../SKILL.md) identifies the maintainer's affiliation, not an institutional publisher, source or endorsement. Keep that credit and all product messages separate from users' manuscripts.
+
 The public package intentionally does not identify private editorial source materials or their authors. This boundary does not conceal third-party software attribution: keep the [Aperivue source and MIT notice](../third-party/aperivue-verify-refs.md) with the bundled verifier, including in standalone copies. Technical attribution is not endorsement.
 
 Do not:

@@ -6,6 +6,8 @@ Once at the start of a new writing/review task, before freezing the manuscript a
 
 For a local installation with Python 3, run the bundled `scripts/update_skill.py` using the actual loaded skill folder. The default is a read-only release-metadata check; it does not download a ZIP or transmit manuscript text, raw data, prompts, or AI-use history. Update preferences contain only the installation path, mode, pinned version and update consent. Ordinary network requests still disclose normal connection metadata to GitHub. The helper uses the Python standard library only.
 
+The JSON describes the installation on disk (`installed_version`) and, if checked, the official stable release (`latest_version`). Neither field establishes which instructions are loaded in this chat. For the task notice, compare the version captured when this skill was loaded with the verified stable release. If the loaded version is newer than the official stable release, say so; do not call it the latest official release. A pin limits installation, not the availability of a newer release. If the check was skipped or could not be verified, say so in the user's language.
+
 ```text
 python3 -B /absolute/path/to/evidence-first-medical-writing/scripts/update_skill.py
 ```
@@ -31,6 +33,17 @@ The helper checks the pinned official repository, stable version order, exact re
 Backups are kept in the sibling hidden directory `.evidence-first-medical-writing-backups/`; each ZIP contains the exact prior skill files. Do not automatically prune them. Restore only with the user's permission, into a separate folder first, and preserve any current customizations. A stale `.evidence-first-medical-writing.update-lock` requires checking that no update is running before removing it; do not silently defeat the lock.
 
 If an update succeeds, report the old/new versions and backup location. The current assistant context may still contain old instructions: reload/reinvoke the skill in a fresh task (restart the host if required) before claiming to use the new version. Do not switch instructions midway through a frozen manuscript review or between independent reviewers. If an ongoing task has already begun, defer installation until it ends.
+
+## Installation completion message
+
+In the chat or installer that completes a **verified first installation or actual version upgrade**, give one short wish in the user's language, once for that operation. The bundled updater's success event is `updated_reload_required`, including when an older copy of the updater performed the upgrade. For a manual or host-managed installation, rely on the installer confirming a new install/upgrade, or verify that the intended target went from absent to installed or from an older to a newer version. A download, a directory that happens to exist, a first conversation, a reinstall of the same version, a release check (including “current” or “update available”), configuring preferences, a failure or a rollback is not such an event.
+
+Use the following wording or its natural equivalent in the user's language:
+
+- 中文：愿你始终对未知好奇，也珍惜那些出乎意料的答案——今天如实写下的发现，也许能让明天的病人少走一段弯路。这个工具帮你把研究写得清楚、规范；写下什么，怎样解释，仍由你把关。
+- English: May you stay curious, especially when a result surprises you—what you report honestly today may help a patient tomorrow. This tool helps you write clearly; what you report and how you interpret it remain your decisions.
+
+This is a completion message, not a first-use banner. Show it in one place only; do not repeat it on reload, during ordinary writing, or in a submission artifact. If an installation completes in the same chat as a writing task, use just the first sentence of the wish alongside the task's separate responsibility reminder. Hosts with no observable installation event or completion UI cannot guarantee this message; do not guess or set up background tracking.
 
 ## Capability fallbacks
 

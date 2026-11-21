@@ -6,11 +6,11 @@
 
 [中文说明](README.zh-CN.md)
 
-A bilingual Codex skill for planning, diagnosing, revising, and checking medical research manuscripts with evidence boundaries and research credibility first.
+A bilingual Codex skill for drafting, revising, and reviewing medical research manuscripts.
 
-Published and maintained by **Yi**. Contact: [duyinapoleon@gmail.com](mailto:duyinapoleon@gmail.com).
+This tool is informed by international medical publishing standards and helps authors report their research clearly and accurately. Authors must follow the target journal’s policies on AI use and disclosure and are responsible for the submitted work.
 
-This project is independent. It is not affiliated with, authorized by, or endorsed by any author, publisher, journal, institution, platform, or other third party.
+This skill is maintained in a personal capacity by Professor Yi Du of the neuro-ophthalmology team, Department of Ophthalmology, First Affiliated Hospital of Guangxi Medical University. The affiliation identifies the maintainer only: neither the hospital nor the team publishes, authorizes, or endorses the project. The project is independent of publishers, journals, platforms, and other third parties. Contact: [duyinapoleon@gmail.com](mailto:duyinapoleon@gmail.com).
 
 Method provenance: the workflow distills transferable principles, workflows, and checklists from diverse medical research-writing and editorial practice. Private editorial sources are not identified. Third-party software components are credited under their own licenses.
 
@@ -18,6 +18,8 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Submission layout and statistical tables (1.0.3):** Unless the journal specifies a template, use black headings, type size and white space rather than decorative rules (including inherited Word heading borders), colored bands or shading. Preserve informative table rules, legends and author footnotes. Make each reported P value traceable to its actual, author-confirmed test in the table itself: use journal-permitted superscripts keyed to notes for mixed methods, or one note explicitly covering the whole table if the method is the same. Put an omnibus test on the variable row, not on each category; keep test identifiers distinct from significance stars. Never guess the test or run a new one to supply a label.
+- **P-value precision (1.0.3):** Follow the target journal first. Otherwise choose the display from the *unrounded* value: below 0.001, write `P < 0.001`; from 0.001 through 0.999 inclusive, use an equals sign and three decimals (including trailing zeros); above 0.999 but below 1, write `P > 0.999`. Use `P = 1.000` only for a confirmed exact 1. If the only output is a rounded `1.000` or a threshold such as `P < 0.05`, ask for more precision when needed; do not invent it.
 - **Writing examples (1.0.1):** The bundled [example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) are available offline. When a writing decision calls for an example, the skill consults the relevant card: positive examples show what to keep, and negative examples show what can mislead a reader and how to fix it. All examples are synthetic, not evidence or a source of facts for your manuscript.
 - **Title and abstract (1.0.1):** What study would you expect from the title alone? What would the abstract tell you on its own? The skill records those readings separately, then checks both against the actual design and available results. If the wording misleads, it suggests the smallest change that fixes the reader’s inference without changing facts, numbers or conclusions. An accurate title or abstract can stay as written.
 - **Participant flow (0.9.1):** Say “Draw a flowchart from my data” and supply your study counts. No journal name is needed. [Patient groups branch downward; only exclusions point right](skills/evidence-first-medical-writing/references/participant-flow.md). Try the [synthetic randomized trial](skills/evidence-first-medical-writing/assets/flow-community-bp.json).
@@ -92,7 +94,9 @@ result, impact on the conclusion, and manuscript location.
 
 ### Release checks and optional automatic updates
 
-Starting in 1.0.1, a chat notice identifies the skill version actually loaded once per task, independently of the network update check. The notice is not part of the manuscript or any submission file.
+At the start of each writing task, the skill reports once, in your language and in chat, the version actually loaded for that task. If the official stable version was verified, the notice says “up to date” or “update available: vX” as applicable; if not, it says the check could not be verified. A download or on-disk update does not change the active session. The notice briefly reminds you that interpretation is yours and that the target journal sets AI-use and disclosure requirements. Neither the version nor the reminder belongs in a submission file.
+
+A different message marks a verified first installation or actual upgrade: one or two sentences in your language, shown once in chat or in the installer’s completion message. It is not a first-use message, and it is not repeated after a version check, an unchanged or failed installation, or in routine writing. Not all hosts display installation messages. An installer or assistant that confirms the outcome can use the [bundled completion guidance](skills/evidence-first-medical-writing/references/updates.md); it should not stack the two reminders.
 
 From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
 
@@ -261,12 +265,24 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Version 1.0.2 checks who the abstract's results describe. In original quantitative studies of people, drafting, simulated review and final submission checks match baseline age and recorded sex or gender to the stated participant count. Missing data are flagged, not inferred.
-
-Published release: [1.0.2](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.2).
+Version [1.0.3](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.3) adds the submission layout and statistical-table defaults above. It preserves the 1.0.2 abstract check: in original quantitative studies of people, match the reported age and recorded sex or gender to the stated participant count; flag missing data rather than inferring them.
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md).
 
-Download the [complete 1.0.2 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.2/evidence-first-medical-writing-1.0.2-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.3 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.3/evidence-first-medical-writing-1.0.3-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+
+The complete ZIP includes the repository-level `tests/` directory; an installed standalone skill does not. To rerun the offline unit tests, run this command from the extracted ZIP’s root (the directory containing `tests/`):
+
+```bash
+python3 -B -m unittest discover -s tests -v
+```
+
+The release validator also checks protected files against historical tags. Run it from a full Git checkout of this release with its tags, not from the extracted ZIP:
+
+```bash
+python3 -B scripts/validate_release.py --require-release
+```
+
+The first command tests the bundled helpers and package rules; the second checks the dated release metadata, links, protected files and checksums. Add `--archive /path/to/release.zip` to the second command to compare a ZIP with that checkout. These checks do not exercise a writing session. To test the skill’s behavior, run the relevant [synthetic evaluation prompts](evals/README.md) in fresh sessions and score the actual responses.
 
 Copyright © 2026 Yi. See [NOTICE.md](NOTICE.md).

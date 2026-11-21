@@ -6,6 +6,8 @@ Use for substantive statistical/Methods writing, quantitative Results or table r
 
 This extends the existing design/integrity checks and [journal-guidance.md](journal-guidance.md); it is not a second intake, reporting checklist, or statistical certification. Reuse the Design Confirmation Card and Manuscript Contract. Do not ask again for facts already confirmed.
 
+For P-value editing or a table that reports tests, go directly to [P-value display and table notes](#p-value-display-and-table-notes). A formatting request alone does not authorize new analyses.
+
 ## Two separate judgments
 
 1. **Methodological assessment:** use [design-and-integrity.md](design-and-integrity.md), the protocol/SAP, actual analysis outputs, and the local review prompts below. These checks can proceed offline. A well-reported analysis can still be invalid; a missing description is not proof the method was wrong.
@@ -33,7 +35,26 @@ These are operational questions, not a demand to redo every study:
 - **Baseline Table 1:** distinguish randomized-group comparisons from observational balance assessment. Neither a significant nor nonsignificant baseline P value establishes successful randomization or adequate confounding control. Do not extend a randomized-trial display rule into an alleged universal ban for all study types. Do not insert observational baseline P values merely for symmetry; justify the diagnostic used.
 - **Causal wording:** a design label, regression or propensity score is not enough. An observational causal estimand requires appropriate identification assumptions, methods and diagnostics, with residual limitations. A target journal may still impose narrower wording: apply the JAMA profile's target-specific rule separately from the NEJM profile's conditional methodological allowance. Do not strengthen a claim or change the author's scientific meaning on their behalf.
 - **P values and multiplicity:** do not impose NEJM's display restrictions on every journal or delete a valid primary result wholesale. Distinguish confirmatory, secondary, exploratory, safety and sequential analyses. Preserve all verified results in author materials; proposed manuscript display changes need a stated policy basis and author review.
-- **Precision:** journal formatting is not a new analysis. Preserve exact underlying outputs; never write `P=0.000`, infer significance from a rounded `.05`, or change an inferential decision by rounding. Flag boundary cases and special designs instead of inventing extra digits. Do not present an ordinary unadjusted CI as simultaneous coverage.
+- **Precision:** preserve underlying outputs. Never infer significance from a rounded `.05` or change an inferential decision by rounding. Do not present an ordinary unadjusted CI as simultaneous coverage.
+
+## P-value display and table notes
+
+First decide which P values are appropriate to report under the design and target policy. A different journal rule takes precedence over this skill's default, in prose, tables and figures alike. Otherwise, report the specific P value where available. Classify using the **unrounded** output, then format; keep three decimal places, including trailing zeros:
+
+| Verified value before rounding | Display |
+|---|---|
+| Below 0.001 | `P < 0.001` (never `P = 0.000`) |
+| 0.001 through 0.999, **both endpoints included** | Equality to three decimals, e.g. `P = 0.001`, `P = 0.040`, `P = 0.999` |
+| Above 0.999 but below 1 | `P > 0.999`, even if the value would round to 0.999 or 1.000 |
+| Exactly 1, confirmed from the analysis | `P = 1.000` |
+
+Rounding is a display choice, not a new statistical decision. For example, a raw 0.0496 displays as `P = 0.050`; do not use that display to reinterpret the prespecified test or replace its estimate and interval.
+
+A software display of `1.000` does not establish that the underlying value is exactly one, or that it is strictly below one. If only a rounded output or an inequality such as `P < 0.05` is available, preserve what is known; ask for higher-precision output or confirmation when needed. Never invent an equality, extra precision or an analysis. For verified unrounded decimal strings only, the optional [formatter](../scripts/format_p_value.py) applies this default offline: `python3 scripts/format_p_value.py --unrounded 0.99901`. Add `--exact-one` only if the analysis confirms exact equality to one.
+
+Read each statistical table on its own: can the reader identify the **actual test for each reported P value**, without consulting Methods? Use the author's confirmed analysis record. If methods differ, mark each P-value cell with a journal-permitted superscript letter or symbol keyed to a note naming its test (including the variant when it matters). If the journal disallows such markers, use an explicit test label beside each value or another permitted one-to-one mapping. If every P value comes from the same test, one note explicitly covering **all** P values suffices. Keep method markers distinct from significance stars; an unkeyed list of tests is not a mapping.
+
+For a multicategory variable, place its omnibus P value and method marker on the variable row; leave the category rows without that test. Do not imply pairwise comparisons. If the source does not establish which method or contrast produced a value, ask for that mapping; never infer it from the P value or variable type, or run a test just to fill a footnote.
 
 ## Findings and independent review
 

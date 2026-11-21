@@ -6,12 +6,11 @@
 
 [English README](README.md)
 
-这是一个由 Yi 发布和维护的双语 Codex skill，用于以研究可信度和证据边界为先，规划、诊断、修改和检查医学科研论文。
+这是一个用于起草、修改和审阅医学科研论文的双语 Codex skill。
 
-发布者及维护者：**Yi**  
-联系邮箱：[duyinapoleon@gmail.com](mailto:duyinapoleon@gmail.com)
+本工具参照国际医学出版规范设计，帮助作者更清楚、准确地报告研究；作者须遵守目标期刊的 AI 使用与披露政策，并对提交内容负责。
 
-本项目为独立产品，不隶属于、不代表、未获得任何作者、出版社、期刊、机构、平台或其他第三方的授权、认可或背书。
+本 skill 由广西医科大学第一附属医院眼科神经眼科团队的 Yi Du 教授维护。机构和团队仅用于说明个人所属，不代表医院或团队官方发布、授权或背书。本项目独立于出版社、期刊、平台及其他第三方。联系邮箱：[duyinapoleon@gmail.com](mailto:duyinapoleon@gmail.com)
 
 方法来源说明：本工作流基于多来源医学科研写作与编辑实践，提炼可迁移的方法原则、工作流与检查表，不公开私人写作资料的具体来源。复用的软件组件单独注明来源，并保留其许可证。
 
@@ -19,6 +18,8 @@
 
 ## 主要能力
 
+- **投稿排版和统计表（1.0.3）**：期刊未指定模板时，标题优先用黑字、字号和留白区分，不加装饰横线（含 Word 标题样式继承的底边框）、色带或底纹；保留有信息作用的表线、图例和作者脚注。单看统计表即可知道每个报告的 P 值对应哪种实际检验：混用方法时用期刊允许的上标符号或字母逐值对应表注；确实同一方法时，一条表注明确覆盖全表即可。多分类变量的总体检验标在变量行，不当成各类别的两两比较；方法标记不与显著性星号混用。以作者确认的分析为准，不猜方法，也不为标注新增检验。
+- **P 值精度（1.0.3）**：以目标期刊要求为先；期刊无不同要求时，按**未舍入值**判断：小于 0.001 写 `P < 0.001`；0.001 至 0.999（含两端）用等号并保留三位小数（含末尾零）；大于 0.999 但小于 1 写 `P > 0.999`；仅确认精确等于 1 时可写 `P = 1.000`。软件舍入显示的 `1.000` 不代表精确等于 1，已有 `P < 0.05` 也不能反推具体数值；必要时向作者索取更高精度的输出。
 - **写作示例（1.0.1）**：遇到具体写作问题时，按需查阅随包附带的[正反例卡片](skills/evidence-first-medical-writing/references/writing-example-cards.md)，离线也能用。正例说明哪些准确的表述值得保留；反例说明读者可能误解什么，以及怎样修正。示例均为虚构，不是研究证据，不能用来补写稿件事实。
 - **标题与摘要（1.0.1）**：只看标题，读者会以为这是一项什么研究？单读摘要，又能得出什么结论？先分别记录两次阅读的判断，再用实际研究设计和已有结果核对。只有可能引起误解时才建议最小修改；不改事实、数字或结论，原文准确就保留。
 - **患者流程图（0.9.1）**：提供研究的汇总人数，只说“按我给你的数据画 flowchart”即可，不用提 JAMA。[患者分组向下，只有排除才向右](skills/evidence-first-medical-writing/references/participant-flow.md)。可用这组[英文虚拟试验数据](skills/evidence-first-medical-writing/assets/flow-community-bp.json)试画。
@@ -93,7 +94,9 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ### 使用时检查更新与可选自动更新
 
-从 1.0.1 起，每个任务只在对话中提示一次实际加载的 skill 版本，不依赖联网检查。版本提示不写入稿件或任何投稿文件。
+每个写作新任务开始时，只在对话中用你惯用的语言提示一次**当前任务实际加载的版本**。联网核实了官方稳定版，才根据结果明确说“已是最新版”或“有可用更新：vX”；未能核实时直接说明。从网上下载或更新到磁盘的版本，不等于本次对话已加载的版本。提示也会简短提醒：数据如何解释由你把关；投稿前请遵守目标期刊的 AI 使用与披露政策。版本和提醒均不写入投稿文件。
+
+只有在确认首次安装成功或实际升级成功时，才在对话或安装完成提示中，用你的惯用语言给出一两句寄语。仅查询版本、无需更新、安装失败或日常写作时都不发寄语；不与写作提醒重复叠加。并非所有平台都会自动显示安装提示；能确认安装结果的助手或安装程序可读取[随包说明](skills/evidence-first-medical-writing/references/updates.md)。
 
 从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
@@ -257,12 +260,24 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-1.0.2 在摘要写作、模拟审稿和投稿前终审时检查：对于以人为对象的定量原创研究，摘要中的人数、实际年龄和性别构成是否描述同一批人。缺少资料时提醒核实，不替作者补数。
-
-已发布版本：[1.0.2](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.2)。
+[1.0.3](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.3) 新增上述投稿排版和统计表呈现规则，并保留 1.0.2 的摘要核查：对于以人为对象的定量原创研究，摘要中的人数、实际年龄和性别构成应描述同一批人。缺少资料时提醒核实，不替作者补数。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。
 
-下载 [1.0.2 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.2/evidence-first-medical-writing-1.0.2-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.3 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.3/evidence-first-medical-writing-1.0.3-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+
+完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
+
+```bash
+python3 -B -m unittest discover -s tests -v
+```
+
+发布校验还需对照历史标签核对受保护文件。请在带有历史标签、已检出该发布版本的完整 Git 仓库根目录运行以下命令；仅解压 ZIP 不足以运行这一步：
+
+```bash
+python3 -B scripts/validate_release.py --require-release
+```
+
+第一条命令测试随包脚本与打包规则；第二条核对发布元数据、链接、受保护文件与校验和，追加 `--archive /path/to/release.zip` 可逐项比对发布包。两者都不验证实际写作表现；行为测试需在新的对话中运行相应的[虚拟案例](evals/README.md)，按实际输出评分。
 
 Copyright © 2026 Yi。详见 [NOTICE.md](NOTICE.md)。

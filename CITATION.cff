@@ -5,12 +5,12 @@ type: software
 authors:
   - family-names: "Yi"
     email: "duyinapoleon@gmail.com"
-version: "1.0.2"
+version: "1.0.3"
 date-released: 2026-11-21
 license: "PolyForm-Noncommercial-1.0.0"
 url: "https://github.com/duyi-neurooph/evidence-first-medical-writing"
 repository-code: "https://github.com/duyi-neurooph/evidence-first-medical-writing"
-abstract: "A bilingual, evidence-first Codex workflow for planning, diagnosing, revising, and auditing medical research manuscripts."
+abstract: "This tool is informed by international medical publishing standards and helps authors report their research clearly and accurately. Authors must follow the target journal’s policies on AI use and disclosure and are responsible for the submitted work."
 keywords:
   - medical writing
   - scientific writing

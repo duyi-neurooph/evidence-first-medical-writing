@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.3 — 2026-11-21
+
+### English
+
+- Default to plain submission headings, retaining informative table rules, legends and author footnotes. In statistical tables, link each reported P value to its confirmed test; place an omnibus result on the variable row. A journal’s own template or reporting rules take precedence.
+- Choose P-value notation before rounding: `P < 0.001` below 0.001, three decimals from 0.001 through 0.999, and `P > 0.999` above that range but below 1. Reserve `P = 1.000` for a confirmed exact 1; ask for adequate precision rather than guessing from a threshold or rounded output.
+- Report the loaded version, verified update status (or inability to check), and a brief author-responsibility reminder once per new writing task in chat. Reserve a separate localized greeting for a verified first installation or actual upgrade. Neither message goes into submission materials.
+- Identify Professor Yi Du as the personal maintainer in the distributed skill. The listed affiliation does not imply institutional publication, authorization, or endorsement.
+
+### 中文
+
+- 投稿标题默认朴素排版，保留有信息作用的表线、图例和作者脚注。统计表中每个报告的 P 值均可对应到已确认的检验；多分类变量的总体检验标在变量行。目标期刊的模板和报告要求优先。
+- 先按未舍入的 P 值选择写法：小于 0.001 写 `P < 0.001`，0.001 至 0.999（含两端）统一保留三位小数，大于 0.999 但小于 1 写 `P > 0.999`。仅在确认精确等于 1 时写 `P = 1.000`；不从阈值或软件舍入结果推测精确值。
+- 每个写作新任务只在对话中提示一次实际加载版本、已核实的更新状态（或说明未能核实）及简短的作者责任提醒。确认首次安装或实际更新成功时，才另给用户惯用语言的寄语；两者都不写入投稿文件。
+- 随包主说明注明 Yi Du 教授为个人维护者；机构与团队仅用于说明个人所属，不代表机构发布、授权或背书。
+
 ## 1.0.2 — 2026-11-21
 
 - Abstract drafting, simulated peer review and final submission checks now match actual baseline age and recorded sex/gender to the participant count in human quantitative studies. The check respects the target journal, unavailable data and justified omissions.

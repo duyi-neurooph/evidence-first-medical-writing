@@ -443,11 +443,14 @@ def run(root, force_check=False, apply=False, consent=False, fetcher=fetch):
         return dict(result, status="update_available", action="Ask once before enabling automatic installation; otherwise provide the official release link.")
     writable_installation(root)
     old_files = read_installation(root)
+    if metadata(old_files["version.json"])["version"] != current:
+        raise UpdateError("Installed version changed during the release check; no update performed by this invocation.")
     blob = fetcher(asset["browser_download_url"], MAX_ARCHIVE, asset=True)
     new_files = unpack_archive(blob, asset, latest)
     backup = install(root, old_files, new_files)
     return dict(result, status="updated_reload_required", installed_version=latest, previous_version=current, backup=backup,
-                action="Start a fresh task/reload the skill before using the new instructions; do not mix versions within a review.")
+                action="Give the user the localized installation completion message from references/updates.md once. "
+                       "Start a fresh task/reload the skill before using the new instructions; do not mix versions within a review.")
 
 
 def main(argv=None):

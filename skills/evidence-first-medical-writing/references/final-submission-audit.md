@@ -62,6 +62,8 @@ Check first use and consistent later use within each relevant reading unit: abst
 
 ### F7 — Statistical descriptions match the actual summaries
 
+Read each table on its own: can the reader trace each reported P value to the actual test and comparison? Apply the [P-value display and test-footnote rules](statistical-policy-router.md); check the footnotes against the Methods or verified analysis output, not just against manuscript typography. When a formatted manuscript is supplied, also check the [plain submission layout](section-playbooks.md#plain-submission-layout), preserving informative rules, keys and notes.
+
 Check that Methods descriptions, values, column labels, and footnotes describe the same summaries. Use mean with standard deviation or median with interquartile range when appropriate to the actual analysis and journal conventions. Clearly distinguish standard deviation, standard error, confidence interval, quartile bounds, IQR width, and minimum–maximum range. If clinically relevant extremes are reported, label them explicitly; a range is not universally prohibited. Never relabel minimum–maximum values as IQR, infer quartiles from extrema, or convert summary measures without the necessary data and analysis authorization. Request the required output when a preferred display is unavailable.
 
 ### F8 — Eligibility criteria are justified and consistently applied

@@ -56,6 +56,30 @@ Request: “Only correct ‘teh trial’ in a narrative Perspective. Do not revi
 
 Pass: returns “the trial”; no forced statistics intake, NEJM download, full audit, history questionnaire, AI-use ledger or automatic disclosure draft. A release check, if possible, does not expand the manuscript task or expose its content.
 
+## SP10 — Choose the interval before rounding
+
+Request: “No journal-specific rule. Format these verified unrounded P values: .0009999, .001, .04, .99899, .999, .99901, .99999999, and a final value confirmed exactly equal to one.”
+
+Pass: in order, `P < 0.001`, `P = 0.001`, `P = 0.040`, `P = 0.999`, `P = 0.999`, `P > 0.999`, `P > 0.999`, `P = 1.000`. Does not replace SP07's different target-journal convention with this default.
+
+## SP11 — Rounded display and threshold-only records
+
+Request: “The exported table shows 1.000 (rounded by the software), and the old report says only P < 0.05 for another endpoint. Please make both exact to three decimals.”
+
+Pass: does not infer `P = 1.000` or `P > 0.999` for the first; retains the known bound for the second. Asks for higher-precision results or confirmation of exact equality as applicable, without reanalysis or invented digits.
+
+## SP12 — Self-contained table of mixed tests
+
+Request: “Prepare a table. The analyst confirms: score .0241, Welch's two-sample t test; three-category status .26, Pearson's chi-square test comparing the overall distribution. The value .0416 for change is confirmed but its method is missing. Superscript letters are allowed. No pairwise analyses were done.”
+
+Pass: maps the displayed score and status values individually to notes naming the confirmed tests. Places the overall `0.260` and its marker on the status variable row only. Flags the missing test for change and asks the author to identify it; does not select a method from the value or variable name. Does not mix test markers with significance stars, imply pairwise tests or create new P values.
+
+## SP13 — One test really does cover the whole table
+
+Request: “All four P values in this table come from author-confirmed two-sided Fisher exact tests. A separate note names the units. Is a different superscript needed for every value?”
+
+Pass: a single note explicitly stating that all P values used the two-sided Fisher exact test suffices. Preserves the units note; does not invent four distinct tests or repetitive method markers.
+
 ## Static integration regressions
 
 - Keep the five gates, F1–F10, optional data scope, design confirmation, runtime EQUATOR retrieval, reviewer isolation and dated capability reminder.

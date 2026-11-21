@@ -88,11 +88,33 @@ class UpdateTests(unittest.TestCase):
     def test_explicit_apply_installs_and_preserves_verified_backup(self):
         result = self.run_update(apply=True, consent=True)
         self.assertEqual(result["status"], "updated_reload_required")
+        self.assertEqual((result["previous_version"], result["installed_version"]), ("0.7.1", "0.7.2"))
         self.assertEqual(up.read_installation(self.root), self.new)
         with zipfile.ZipFile(result["backup"]) as backup:
             self.assertEqual({name: backup.read(name) for name in backup.namelist()}, self.original)
         self.assertEqual(len(self.calls), 2)
         self.assertFalse(list(self.base.glob(".efmw-update-*")))
+
+    def test_retry_after_success_does_not_signal_another_upgrade(self):
+        self.assertEqual(self.run_update(apply=True, consent=True)["status"], "updated_reload_required")
+        self.calls.clear()
+        repeated = self.run_update(apply=True, consent=True)
+        self.assertEqual(repeated["status"], "current")
+        self.assertNotIn("previous_version", repeated)
+        self.assertNotIn("backup", repeated)
+        self.assertEqual(self.calls, [(up.API, False)])
+
+    def test_another_install_during_metadata_check_is_not_our_upgrade(self):
+        def fetch_after_external_update(url, limit, asset=False):
+            if not asset:
+                for name, data in self.new.items():
+                    (self.root / name).write_bytes(data)
+            return self.fetch(url, limit, asset)
+
+        with self.assertRaisesRegex(up.UpdateError, "version changed"):
+            up.run(self.root, apply=True, consent=True, fetcher=fetch_after_external_update)
+        self.assertEqual(self.calls, [(up.API, False)])
+        self.assertEqual(up.read_installation(self.root), self.new)
 
     def test_apply_without_consent_does_not_access_network(self):
         with self.assertRaisesRegex(up.UpdateError, "consent"):
