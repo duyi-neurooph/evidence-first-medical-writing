@@ -18,6 +18,7 @@
 
 ## 主要能力
 
+- **统计分析材料交付（1.0.6）**：若作者另行委托，且可用工具确实计算了论文数值，作者应得到能重跑的文件。参见[哪些计算要留、什么时候共享](skills/evidence-first-medical-writing/references/statistical-policy-router.md#handoff-for-an-authorized-analysis-run)。纯排版不触发，本 skill 不内置统计引擎。
 - **投稿细节（1.0.5）**：核对原分析者实际使用的统计软件及关键包版本，不新增统计分析功能，也不推断是否用过 AI。按目标期刊统一参考文献中的文章题名大小写，将格式问题与文献错引分开。投稿信优先称呼负责该稿的编辑；未指定时核实主编或共同主编。
 - **投稿排版和统计表（1.0.3）**：期刊未指定模板时，标题优先用黑字、字号和留白区分，不加装饰横线（含 Word 标题样式继承的底边框）、色带或底纹；保留有信息作用的表线、图例和作者脚注。单看统计表即可知道每个报告的 P 值对应哪种实际检验：混用方法时用期刊允许的上标符号或字母逐值对应表注；确实同一方法时，一条表注明确覆盖全表即可。多分类变量的总体检验标在变量行，不当成各类别的两两比较；方法标记不与显著性星号混用。以作者确认的分析为准，不猜方法，也不为标注新增检验。
 - **P 值精度（1.0.3）**：以目标期刊要求为先；期刊无不同要求时，按**未舍入值**判断：小于 0.001 写 `P < 0.001`；0.001 至 0.999（含两端）用等号并保留三位小数（含末尾零）；大于 0.999 但小于 1 写 `P > 0.999`；仅确认精确等于 1 时可写 `P = 1.000`。软件舍入显示的 `1.000` 不代表精确等于 1，已有 `P < 0.05` 也不能反推具体数值；必要时向作者索取更高精度的输出。
@@ -261,11 +262,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-[1.0.5](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.5) 改进统计软件与关键包版本核查、参考文献题名大小写以及投稿信称呼。
+[1.0.6](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.6) 补充了作者另行委托统计分析时，如何留存并交付可复现材料的规则。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。 另见[虚拟学校牙科项目](assets/participant-flow/dental-records.svg)：有记录与无记录均保留在分析分母里。
 
-下载 [1.0.5 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.5/evidence-first-medical-writing-1.0.5-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.6 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.6/evidence-first-medical-writing-1.0.6-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
 

@@ -25,6 +25,8 @@ Use read-only inspection and preserve originals. If computation needs working fi
 
 ## Bounded, reproducible checks
 
+An audit-only cross-check belongs in the ledger below. If the user separately commissions an analysis and the tool actually produces numbers to be reported, apply the [author handoff rules](statistical-policy-router.md#handoff-for-an-authorized-analysis-run); never silently replace a manuscript value with a check result.
+
 Prioritize the agreed outcomes and a manageable set of high-impact tables/figures. State coverage rather than claiming an exhaustive audit. When authorized tools and inputs permit a simple check, actually calculate it; otherwise describe the proposed check and mark it `Not performed` or `Cannot assess`. Never imply that visual inspection, a suggested formula, or an unexecuted script is a computed result.
 
 For every computation, retain the input version, exact file/sheet/range or record keys and variable names, selection/filter and grouping rules, formula/code, missing-value handling, software/version where relevant, and output. Specify rounding tolerance and any matching tolerance before interpreting discrepancies; do not tune them to produce a desired finding. Preserve unrounded calculations for comparison.

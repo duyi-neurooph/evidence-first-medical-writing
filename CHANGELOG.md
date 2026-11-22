@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.6 — 2026-11-22
+
+### English
+
+- When the author explicitly requests an analysis and an available tool actually runs it to produce manuscript values, give the author the runnable analysis files, input and execution instructions, software and key package versions, and seeds for random steps. For GUI-only runs, keep exported syntax or a replayable operation record. Do not pass a reconstruction off as the original.
+- Prefer established statistical implementations that fit the question and model assumptions. Explain and validate any necessary custom method. This release adds handoff rules, not a statistical engine; writing or reviewing a manuscript does not authorize analysis.
+- Retain calculations behind text, tables and figures, not styling-only code. Keep reproducibility materials private by default. If the journal, protocol or funder requires sharing, prepare a separate copy checked for identifiers, cached output and local paths.
+
+### 中文
+
+- 仅当作者明确委托、可用工具确实运行分析并产生论文数值时，才向作者交付可重跑的分析文件、输入与运行说明、实际软件和关键包版本，以及随机步骤的种子。图形界面分析留存导出的语法或可复现的操作记录；事后重建不冒充原始代码。
+- 优先选择符合研究问题和模型假设的成熟实现；确需自定义方法时，说明原因并验证。本次补充的是交付规则，不新增统计引擎，写作或审稿不等于授权分析。
+- 留存决定正文、图表数值的计算，纯排版代码无需交付。复现材料默认由作者私下留存；期刊、方案或资助方要求共享时，另行准备并检查身份信息、缓存输出及本机路径。
+
 ## 1.0.5 — 2026-11-22
 
 ### English
