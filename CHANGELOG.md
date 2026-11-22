@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.7 — 2026-11-22
+
+### English
+
+- Lay out clinical tables so readers can distinguish variables from their categories and match each value to its column and note. Follow the target journal's template when one is supplied.
+- Start each later Word revision from the last author-approved layout. After making edits, check the rendered tables against that version: column widths, indentation, line breaks and footnotes can change even when the numbers do not.
+- Keep participant-flow diagrams focused on how participants entered, left or remained in each analysis population. Retain the counts and reasons needed to follow the denominator; put unrelated clinical detail in the text or a table. The public package contains no patient material.
+
+### 中文
+
+- 临床表格应让读者一眼区分变量与下属类别，看清每个数值属于哪一列、对应哪条表注。目标期刊有模板时，以模板为准。
+- 后续修改 Word 稿时，以作者最近确认的排版为起点。改完后对照该版本检查表格的实际显示效果：即使数值不变，列宽、缩进、换行和表注也可能走样。
+- 纳排流程图聚焦各分析人群是如何形成的。保留解释分母所必需的人数和原因，与纳排无关的临床细节放在正文或表格。公开发布包不含患者材料。
+
 ## 1.0.6 — 2026-11-22
 
 ### English

@@ -106,6 +106,8 @@ Check the defining comparison before polishing routine procedural detail: what i
 
 ## 图表
 
+表格写作、排版或沿用作者修改后的 Word 版本时，按[表格排版与修订继承](table-layout-and-revision.md)检查行列标签、缩进、表注及改版前后的一致性；只要求排版时，不扩展为研究内容审查。
+
 表格包含 P 值时，按[统计报告规则](statistical-policy-router.md)把每个 P 值与产生它的检验对应起来，使读者不必翻回方法部分猜测。表格使用上标脚注不是装饰，不要在简化排版时一起删去。
 
 - 每张图或表有一个主要任务；可以同时展示为回答该任务所必需的紧密相关结果。

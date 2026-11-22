@@ -7,6 +7,7 @@ Run each prompt in a fresh context with `$evidence-first-medical-writing`. Score
 See:
 
 - [cover-letter-addressee.md](cover-letter-addressee.md) covers initial submission, resubmission, co-editors, journal templates and unverified names (synthetic examples).
+- [Table layout, ordinary Word revision and participant flow](table-layout-revision-and-flow.md) checks what readers can recover from a compact table, what survives a later revision, and which details belong in a flow figure.
 - [Submission presentation and host messages](submission-presentation-and-messages.md) for narrow checks of table footnotes, inherited title rules, and the distinction between a writing task and an installation event;
 - [Clinical-writing contrast card probes](clinical-contrast-card-probes.md) for held-out checks of no-edit decisions, missing evidence, clean manuscript wording, and separately labeled teaching examples;
 - [Title and abstract reader checks](title-abstract-reader-checks.md) for staged title-only assessment, source reconciliation, a synthetic wrong-outcome rewrite, and the chat-only version boundary;

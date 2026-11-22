@@ -14,6 +14,8 @@ Give the brief presubmission reminder in [ai-use-and-disclosure.md](ai-use-and-d
 
 ## Ten checks
 
+For included Word tables, apply the [layout and revision check](table-layout-and-revision.md) alongside the relevant checks below. Verify that author-approved formatting survived and addressed editorial annotations are absent from the clean copy. A formatting-only request does not itself trigger this full audit.
+
 ### F1 — Abstract, text, tables, and supplements agree
 
 Run or reuse the [separate title and abstract checks](title-and-abstract.md) for this exact version before reconciling the text. An internally consistent number does not rescue a title that implies a different outcome.

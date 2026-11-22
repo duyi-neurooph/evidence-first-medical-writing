@@ -18,6 +18,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Clinical tables and participant flow (1.0.7):** Make variable and category rows easy to distinguish, and preserve the approved table layout through later Word revisions. In participant-flow diagrams, show what explains a change in denominator; leave unrelated clinical details in the text or tables.
 - **Analysis handoff (1.0.6):** If a separately authorized tool actually computes reported numbers, return the runnable files to the author. [What to retain and what to share](skills/evidence-first-medical-writing/references/statistical-policy-router.md#handoff-for-an-authorized-analysis-run) applies to calculations, not formatting. No statistical engine is included.
 - **Submission checks (1.0.5):** Verify the statistical software and key package versions actually used by the analyst; no analysis engine or inferred AI involvement. Apply the target style to journal-article titles without changing reference identity. Address the cover letter to the assigned editor or, when none is assigned, the verified editor(s)-in-chief.
 - **Submission layout and statistical tables (1.0.3):** Unless the journal specifies a template, use black headings, type size and white space rather than decorative rules (including inherited Word heading borders), colored bands or shading. Preserve informative table rules, legends and author footnotes. Make each reported P value traceable to its actual, author-confirmed test in the table itself: use journal-permitted superscripts keyed to notes for mixed methods, or one note explicitly covering the whole table if the method is the same. Put an omnibus test on the variable row, not on each category; keep test identifiers distinct from significance stars. Never guess the test or run a new one to supply a label.
@@ -267,11 +268,11 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Version [1.0.6](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.6) adds reproducibility and author-handoff rules for separately authorized analysis runs.
+Version [1.0.7](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.7) covers clinical table layout, preserving approved formatting in later Word drafts, and deciding what belongs in participant-flow diagrams.
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md). Compare [record present vs absent in a fictional dental program](assets/participant-flow/dental-records.svg); both groups remain in the analysis.
 
-Download the [complete 1.0.6 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.6/evidence-first-medical-writing-1.0.6-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.7 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.7/evidence-first-medical-writing-1.0.7-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 The complete ZIP includes the repository-level `tests/` directory; an installed standalone skill does not. To rerun the offline unit tests, run this command from the extracted ZIP’s root (the directory containing `tests/`):
 
