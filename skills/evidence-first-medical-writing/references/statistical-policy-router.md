@@ -17,6 +17,14 @@ Load the local profiles first. Do not require repeated JAMA/NEJM downloads for e
 
 Record selected profiles in the existing Guideline Manifest: profile version, preparation/check date, official URL, original source coverage, supplied-copy provenance when applicable, currency, and role. A profile's preparation date is not the publisher's policy date. Do not attach or redistribute private source copies.
 
+## Verify the software that produced the reported results
+
+During Methods drafting, statistical review and presubmission checks, identify the software and version used for the reported analysis, regardless of who ran it (author, collaborating statistician, external service or another team). Identify the analysis-defining extensions and their versions when applicable: for example, the R package fitting the primary model or the Python library estimating its intervals, not the manuscript editor, plotting tools or every installed dependency. If different tools produced different results, map each to its analysis. Follow the target journal's instructions about placement, manufacturer and required details. Reporting key package versions is this skill's reproducibility default, not necessarily a journal mandate.
+
+Use evidence tied to the original run: a dated session report or package log, an environment lockfile confirmed for that run, an output header, or the analyst's confirmation. A version installed on the writer's computer today, an available update or an analysis plan alone cannot establish which version produced a result. If the evidence is missing or contradictory, retain what is known and send a precise query to the author/analyst for the unresolved item. Do not fill it from memory, infer the package from a test name, or rerun a model to guess its provenance. Ordinary software, external statistical expertise and AI assistance with the writing are **not evidence of AI-assisted statistical analysis**.
+
+This is a reporting check, not a statistical analysis service. For local reproducibility, advise keeping the original analysis script/syntax and version record when they exist; a GUI-only analysis may instead have a saved project, output log and record of settings. Do not invent code, collect patient data, or request file-generation scripts just to document software. When an analyst asks about implementation, prefer an established, fit-for-purpose statistical package over an unnecessary hand-coded implementation; never rewrite the history of what the study used. Retention is distinct from submission: do not automatically attach code or logs; follow the actual journal's code-sharing policy and any authorized sharing arrangements.
+
 ## Local review prompts
 
 These are operational questions, not a demand to redo every study:

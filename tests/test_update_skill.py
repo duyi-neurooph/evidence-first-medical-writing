@@ -132,6 +132,62 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(self.run_update()["status"], "updated_reload_required")
         self.assertEqual(up.read_installation(self.root), self.new)
 
+    def test_legacy_auto_preferences_keep_verified_backup(self):
+        legacy = {"schema": 1, "installation": str(self.root), "mode": "auto",
+                  "automatic_updates_authorized": True, "pinned_version": None}
+        up.config_path(self.root).write_text(json.dumps(legacy), encoding="utf-8")
+        with zipfile.ZipFile(self.run_update()["backup"]) as archive:
+            self.assertEqual({p: archive.read(p) for p in archive.namelist()}, self.original)
+
+    def test_cli_opt_out_auto_and_leave_old_archives_untouched(self):
+        backup_dir = self.base / ("." + up.NAME + "-backups")
+        backup_dir.mkdir()
+        previous = backup_dir / "historical.zip"
+        previous.write_bytes(b"Existing archive")
+        with mock.patch("sys.stdout", new_callable=io.StringIO):
+            up.main(["--root", str(self.root), "--configure", "auto", "--consent", "--no-backup"])
+        up.configure(self.root, "check", None, False)
+        self.assertIs(up.read_config(self.root)["keep_backup"], False)
+        up.configure(self.root, "auto", None, True)
+        result = self.run_update()
+        self.assertEqual(result["status"], "updated_reload_required")
+        self.assertIsNone(result["backup"])
+        self.assertEqual(up.read_installation(self.root), self.new)
+        self.assertEqual(list(backup_dir.iterdir()), [previous])
+        self.assertEqual(previous.read_bytes(), b"Existing archive")
+        self.assertFalse(list(self.base.glob(".efmw-update-*")))
+        with mock.patch("sys.stdout", new_callable=io.StringIO):
+            up.main(["--root", str(self.root), "--configure", "check", "--keep-backup"])
+        self.assertIs(up.read_config(self.root)["keep_backup"], True)
+
+    def test_no_backup_still_rolls_back_failed_swap(self):
+        up.configure(self.root, "check", None, False, keep_backup=False)
+        replace = os.replace
+        def failing_replace(source, target):
+            if Path(source).name == "next":
+                raise PermissionError("simulated failure after moving original")
+            return replace(source, target)
+        with mock.patch.object(up.os, "replace", side_effect=failing_replace):
+            with self.assertRaisesRegex(PermissionError, "simulated failure"):
+                self.run_update(apply=True, consent=True)
+        self.assert_original()
+        self.assertFalse((self.base / ("." + up.NAME + "-backups")).exists())
+        self.assertFalse(list(self.base.glob(".efmw-update-*")))
+
+    def test_no_backup_reports_and_keeps_original_on_failed_rollback(self):
+        replace = os.replace
+        def failing_replace(source, target):
+            if Path(source).name in ("next", "previous"):
+                raise PermissionError("simulated failure")
+            return replace(source, target)
+        with mock.patch.object(up.os, "replace", side_effect=failing_replace):
+            with self.assertRaisesRegex(up.UpdateError, "no persistent backup") as caught:
+                up.install(self.root, self.original, self.new, keep_backup=False)
+        previous, = self.base.glob(".efmw-update-*/previous")
+        self.assertIn(str(previous), str(caught.exception))
+        self.assertEqual(up.read_installation(previous), self.original)
+        self.assertFalse((self.base / ("." + up.NAME + "-backups")).exists())
+
     def test_force_check_overrides_auto(self):
         up.configure(self.root, "auto", None, True)
         self.assertEqual(self.run_update(force_check=True)["status"], "update_available")

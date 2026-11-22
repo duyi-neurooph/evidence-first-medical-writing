@@ -18,6 +18,7 @@
 
 ## 主要能力
 
+- **投稿细节（1.0.5）**：核对原分析者实际使用的统计软件及关键包版本，不新增统计分析功能，也不推断是否用过 AI。按目标期刊统一参考文献中的文章题名大小写，将格式问题与文献错引分开。投稿信优先称呼负责该稿的编辑；未指定时核实主编或共同主编。
 - **投稿排版和统计表（1.0.3）**：期刊未指定模板时，标题优先用黑字、字号和留白区分，不加装饰横线（含 Word 标题样式继承的底边框）、色带或底纹；保留有信息作用的表线、图例和作者脚注。单看统计表即可知道每个报告的 P 值对应哪种实际检验：混用方法时用期刊允许的上标符号或字母逐值对应表注；确实同一方法时，一条表注明确覆盖全表即可。多分类变量的总体检验标在变量行，不当成各类别的两两比较；方法标记不与显著性星号混用。以作者确认的分析为准，不猜方法，也不为标注新增检验。
 - **P 值精度（1.0.3）**：以目标期刊要求为先；期刊无不同要求时，按**未舍入值**判断：小于 0.001 写 `P < 0.001`；0.001 至 0.999（含两端）用等号并保留三位小数（含末尾零）；大于 0.999 但小于 1 写 `P > 0.999`；仅确认精确等于 1 时可写 `P = 1.000`。软件舍入显示的 `1.000` 不代表精确等于 1，已有 `P < 0.05` 也不能反推具体数值；必要时向作者索取更高精度的输出。
 - **写作示例（1.0.1）**：遇到具体写作问题时，按需查阅随包附带的[正反例卡片](skills/evidence-first-medical-writing/references/writing-example-cards.md)，离线也能用。正例说明哪些准确的表述值得保留；反例说明读者可能误解什么，以及怎样修正。示例均为虚构，不是研究证据，不能用来补写稿件事实。
@@ -100,7 +101,7 @@ skills/evidence-first-medical-writing/SKILL.md
 
 从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
 
-默认只检查和提示。经你明确选择自动更新后，内置的 Python 3 标准库程序可更新未被修改、可写入的独立 skill 文件夹：核对官方附件身份、SHA-256 和文件清单，保留备份，不覆盖自定义改动。源码仓库、插件包及平台管理的缓存使用各自更新方式。缺少工具、权限不足、版本锁定、离线或验证失败时，只提示或提供手动下载链接，不强行安装。更新后请在新任务中重新调用；同一轮审稿不会中途换版本。
+默认只检查和提示。经你明确选择自动更新后，内置的 Python 3 标准库程序可更新未被修改、可写入的独立 skill 文件夹：核对官方附件身份、SHA-256 和文件清单，默认保留旧版 ZIP（可单独为本安装关闭），不覆盖自定义改动。源码仓库、插件包及平台管理的缓存使用各自更新方式。缺少工具、权限不足、版本锁定、离线或验证失败时，只提示或提供手动下载链接，不强行安装。更新后请在新任务中重新调用；同一轮审稿不会中途换版本。
 
 开启、关闭、仅检查及锁定版本的操作见[更新说明](skills/evidence-first-medical-writing/references/updates.md)。也可以直接对 AI 说：
 
@@ -260,11 +261,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-[1.0.4](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.4) 更新了患者流程图的绘制和图注规则。原有的稿件、摘要及统计表核查仍然保留。
+[1.0.5](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.5) 改进统计软件与关键包版本核查、参考文献题名大小写以及投稿信称呼。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。 另见[虚拟学校牙科项目](assets/participant-flow/dental-records.svg)：有记录与无记录均保留在分析分母里。
 
-下载 [1.0.4 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.4/evidence-first-medical-writing-1.0.4-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.5 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.5/evidence-first-medical-writing-1.0.5-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
 

@@ -4,7 +4,7 @@
 
 Once at the start of a new writing/review task, before freezing the manuscript and reviewer package, check the official repository's latest stable release if network access and the host's tools permit. Do not run a background service, install a scheduled task, retry a failed check repeatedly, or check separately in each reviewer subagent. A user request for offline work or no update checks overrides this default. A failed/unavailable check must not block manuscript work or be described as "up to date."
 
-For a local installation with Python 3, run the bundled `scripts/update_skill.py` using the actual loaded skill folder. The default is a read-only release-metadata check; it does not download a ZIP or transmit manuscript text, raw data, prompts, or AI-use history. Update preferences contain only the installation path, mode, pinned version and update consent. Ordinary network requests still disclose normal connection metadata to GitHub. The helper uses the Python standard library only.
+For a local installation with Python 3, run the bundled `scripts/update_skill.py` using the actual loaded skill folder. The default is a read-only release-metadata check; it does not download a ZIP or transmit manuscript text, raw data, prompts, or AI-use history. Update preferences contain only the installation path, mode, pinned version, update consent and backup-retention choice. Ordinary network requests still disclose normal connection metadata to GitHub. The helper uses the Python standard library only.
 
 The JSON describes the installation on disk (`installed_version`) and, if checked, the official stable release (`latest_version`). Neither field establishes which instructions are loaded in this chat. For the task notice, compare the version captured when this skill was loaded with the verified stable release. If the loaded version is newer than the official stable release, say so; do not call it the latest official release. A pin limits installation, not the availability of a newer release. If the check was skipped or could not be verified, say so in the user's language.
 
@@ -20,6 +20,15 @@ python3 -B /absolute/path/to/evidence-first-medical-writing/scripts/update_skill
 
 The same ordinary on-use invocation then attempts an update only when all safety checks pass. The helper cannot grant filesystem/network permission or change the host's approval rules. A user who requests a one-time update may use `--apply --consent`; that does not opt into future automatic updates. The `--consent` option represents a real user choice, not a flag the assistant may add merely to bypass the default.
 
+By default each update keeps a verified old-version ZIP. Only if the user explicitly requests no retained backups for a particular installation, configure its retention preference. Example for an already authorized auto-updating standalone install (use the actual absolute paths):
+
+```text
+python3 -B /path/to/v1.0.5-or-newer/scripts/update_skill.py --root /path/to/installed/evidence-first-medical-writing --configure auto --consent --no-backup
+python3 -B /path/to/v1.0.5-or-newer/scripts/update_skill.py --root /path/to/installed/evidence-first-medical-writing
+```
+
+Use the newer helper for **both** commands on the first upgrade from an older installation; older helpers do not honor the new preference. Keep the existing mode and repeat any existing `--pin` unless the user wants to change them. For check-only mode configure `--configure check --no-backup`; a one-time authorized `--apply --consent` then respects that preference. To resume archiving, use `--keep-backup` when configuring. Omitting either flag leaves retention unchanged; installations with no setting keep backups. An explicit opt-out affects future updates to that installation only; it never deletes existing archives.
+
 To check without installing even when automatic mode is enabled, add `--check`. To disable checking, use `--configure off`. To return to check-only mode, use `--configure check`. To keep a fixed version, use `--configure check --pin 0.7.1` (replace the version as requested); configuring again without `--pin` clears the pin. Preferences are stored beside, not inside, the skill folder so release replacement cannot reset them.
 
 ## Safe installation boundary
@@ -28,11 +37,11 @@ Automatic installation supports only a writable, unmodified **standalone skill f
 
 Do not edit the skill files concurrently with installation. The update lock excludes other copies of this updater, not arbitrary editors or other programs. A customized standalone copy can still switch to `--configure off` or `--configure check`; pristine-file checks apply to installation and enabling automatic updates, not to opting out.
 
-The helper checks the pinned official repository, stable version order, exact release asset identity, GitHub's asset SHA-256, package and skill manifests, archive paths/file types and conservative size limits. It stages the new skill without running downloaded code, verifies a recoverable ZIP backup, checks the original again, uses a per-installation update lock, replaces the folder, and validates the result. A failed replacement rolls back when possible; if rollback itself fails, the original staging path and backup are reported and retained for manual recovery. It never downgrades. Checksums detect mismatch/corruption; they are not an independent signature or a guarantee that a future publisher release is safe.
+The helper checks the pinned official repository, stable version order, exact release asset identity, GitHub's asset SHA-256, package and skill manifests, archive paths/file types and conservative size limits. It stages the new skill without running downloaded code, creates and verifies the ZIP backup unless opted out, checks the original again, uses a per-installation update lock, and keeps the original temporarily until the replacement is validated. A failed replacement rolls back when possible; if rollback itself fails, the original staging path is reported and retained for manual recovery, with the ZIP if enabled. Without a retained ZIP there is **no archived rollback copy after a successful update**. It never downgrades. Checksums detect mismatch/corruption; they are not an independent signature or a guarantee that a future publisher release is safe.
 
 Backups are kept in the sibling hidden directory `.evidence-first-medical-writing-backups/`; each ZIP contains the exact prior skill files. Do not automatically prune them. Restore only with the user's permission, into a separate folder first, and preserve any current customizations. A stale `.evidence-first-medical-writing.update-lock` requires checking that no update is running before removing it; do not silently defeat the lock.
 
-If an update succeeds, report the old/new versions and backup location. The current assistant context may still contain old instructions: reload/reinvoke the skill in a fresh task (restart the host if required) before claiming to use the new version. Do not switch instructions midway through a frozen manuscript review or between independent reviewers. If an ongoing task has already begun, defer installation until it ends.
+If an update succeeds, report the old/new versions and backup location, or say no old-version ZIP was kept if `backup` is null. The current assistant context may still contain old instructions: reload/reinvoke the skill in a fresh task (restart the host if required) before claiming to use the new version. Do not switch instructions midway through a frozen manuscript review or between independent reviewers. If an ongoing task has already begun, defer installation until it ends.
 
 ## Installation completion message
 

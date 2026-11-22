@@ -42,6 +42,8 @@ Always run the [reference verification audit](reference-verification.md) as part
 
 Build a two-way inventory: every citation must resolve to an entry, and every listed entry must have an allowed citation location. Include main text, tables, legends, and supplements according to the journal's rules for shared or separate reference lists. Flag uncited entries, missing entries, duplicates, and broken citation fields. A source cited only in an allowed legend is not automatically an orphan. This inventory complements, and does not replace, claim-to-citation verification. Do not remove references or renumber a citation-manager library merely because extraction missed field codes.
 
+Check article-title capitalization across the rendered bibliography, including supplementary lists, using the target journal's convention. Report an ordinary case inconsistency as a presentation issue, not a failed identity check.
+
 ### F3 — First mentions, labels, and numbering agree
 
 Check first-mention order separately for tables, figures, and each supplementary series; check panel labels and every cross-reference against the actual object. Confirm that each supplied object is cited and that every callout has a corresponding object. Apply citation-order numbering only when the journal uses it; author-date or alphabetic reference systems need their own rules. Do not require a flow diagram to be Figure 1. Any authorized renumbering must update the objects, legends, all callouts, and relevant response-letter locations together.
@@ -61,6 +63,8 @@ If registration is reported, use the exact public identifier to retrieve the off
 Check first use and consistent later use within each relevant reading unit: abstract, main text, each table, and each figure legend may need separate definitions. Follow journal exceptions for standard abbreviations. Respect a task-specific “always spell out” list when supplied. Avoid unnecessary abbreviations for infrequent terms; do not invent a disease-specific restriction or mechanically replace all later full terms when the text needs to stand alone.
 
 ### F7 — Statistical descriptions match the actual summaries
+
+For a manuscript reporting a statistical analysis, verify the names and versions of the software and key packages used for the submitted results against the original analyst's records. Use the [statistical reporting rules](statistical-policy-router.md) for missing or conflicting versions, including third-party analyses. This check does not require rerunning the analysis or attributing it to AI.
 
 Read each table on its own: can the reader trace each reported P value to the actual test and comparison? Apply the [P-value display and test-footnote rules](statistical-policy-router.md); check the footnotes against the Methods or verified analysis output, not just against manuscript typography. When a formatted manuscript is supplied, also check the [plain submission layout](section-playbooks.md#plain-submission-layout), preserving informative rules, keys and notes.
 
@@ -83,6 +87,8 @@ Describe work actually done. Do not assign more roles to senior/first authors or
 For a resubmission, map each editor/reviewer comment and its subparts to a direct response, actual manuscript action or reasoned disagreement, accurate revised location, and closure status. Check that claimed edits or analyses exist in the current files, that page/line/table references remain valid, and that corresponding abstract/table/supplement changes are synchronized. Respect the Decision Ledger so accepted corrections and deleted material do not regress. A justified disagreement may close a comment without an edit; “we agree” or “done” alone does not prove closure. Without the decision/response files, mark this check pending rather than assuming every comment was answered.
 
 ## Output and closure
+
+If the package includes a cover letter, verify its [addressee](submission-and-review.md#cover-letter-addressee) for this submission or revision. An absent optional letter is not a defect.
 
 Complete the companion [Over-Defensive Writing Audit](anti-defensive-scientific-writing.md) on the same available package. Reuse its findings and Decision Ledger entries if already completed; recheck affected passages after edits. Keep F1–F10 stable and report this companion audit separately, with missing-material limits. Necessary disclosures, negative primary outcomes, safety constraints, and standalone qualifications must survive compression. Do not add another review round merely for stylistic preferences.
 

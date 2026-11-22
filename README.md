@@ -18,6 +18,7 @@ Repository: <https://github.com/duyi-neurooph/evidence-first-medical-writing>
 
 ## What it does
 
+- **Submission checks (1.0.5):** Verify the statistical software and key package versions actually used by the analyst; no analysis engine or inferred AI involvement. Apply the target style to journal-article titles without changing reference identity. Address the cover letter to the assigned editor or, when none is assigned, the verified editor(s)-in-chief.
 - **Submission layout and statistical tables (1.0.3):** Unless the journal specifies a template, use black headings, type size and white space rather than decorative rules (including inherited Word heading borders), colored bands or shading. Preserve informative table rules, legends and author footnotes. Make each reported P value traceable to its actual, author-confirmed test in the table itself: use journal-permitted superscripts keyed to notes for mixed methods, or one note explicitly covering the whole table if the method is the same. Put an omnibus test on the variable row, not on each category; keep test identifiers distinct from significance stars. Never guess the test or run a new one to supply a label.
 - **P-value precision (1.0.3):** Follow the target journal first. Otherwise choose the display from the *unrounded* value: below 0.001, write `P < 0.001`; from 0.001 through 0.999 inclusive, use an equals sign and three decimals (including trailing zeros); above 0.999 but below 1, write `P > 0.999`. Use `P = 1.000` only for a confirmed exact 1. If the only output is a rounded `1.000` or a threshold such as `P < 0.05`, ask for more precision when needed; do not invent it.
 - **Writing examples (1.0.1):** The bundled [example cards](skills/evidence-first-medical-writing/references/writing-example-cards.md) are available offline. When a writing decision calls for an example, the skill consults the relevant card: positive examples show what to keep, and negative examples show what can mislead a reader and how to fix it. All examples are synthetic, not evidence or a source of facts for your manuscript.
@@ -100,7 +101,7 @@ On a verified first installation or upgrade, the installer or assistant can show
 
 From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
 
-The default is **check and notify**. With your explicit opt-in, the bundled Python 3 standard-library helper can update a clean, writable standalone skill installation. It verifies the official asset identity, SHA-256 and manifests, preserves a backup, and protects local edits. Source checkouts and host-managed plugins/caches require their own update process. Missing tools, denied permissions, pins, offline mode or failed verification lead to a notification/manual link, not forced installation. Reinvoke the skill in a fresh task after an update; a frozen review keeps its original version.
+The default is **check and notify**. With your explicit opt-in, the bundled Python 3 standard-library helper can update a clean, writable standalone skill installation. It verifies the official asset identity, SHA-256 and manifests, keeps an old-version ZIP unless you opt out for this installation, and protects local edits. Source checkouts and host-managed plugins/caches require their own update process. Missing tools, denied permissions, pins, offline mode or failed verification lead to a notification/manual link, not forced installation. Reinvoke the skill in a fresh task after an update; a frozen review keeps its original version.
 
 See [update controls and safeguards](skills/evidence-first-medical-writing/references/updates.md) for opt-in, check-only, disable and pin commands. You can simply ask:
 
@@ -265,11 +266,11 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Version [1.0.4](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.4) improves participant-flow diagrams and captions. The existing manuscript, abstract and statistical-table checks remain available.
+Version [1.0.5](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.5) improves statistical software reporting, reference title capitalization and cover-letter salutations.
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md). Compare [record present vs absent in a fictional dental program](assets/participant-flow/dental-records.svg); both groups remain in the analysis.
 
-Download the [complete 1.0.4 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.4/evidence-first-medical-writing-1.0.4-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.5 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.5/evidence-first-medical-writing-1.0.5-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 The complete ZIP includes the repository-level `tests/` directory; an installed standalone skill does not. To rerun the offline unit tests, run this command from the extracted ZIP’s root (the directory containing `tests/`):
 

@@ -5,6 +5,7 @@ Profile: 0.7.1. Prepared and official sections read: 2026-11-15. Source: [JAMA I
 ## Compact source summary
 
 - Describe reproducible analyses, model variables and their scientific rationale, dependence handling, diagnostics, and software details. Pair comparisons with estimates and uncertainty, not P values alone.
+- **Software (Statistical Analysis Subsection, rechecked 2026-11-22):** name the software used, its version and manufacturer, and the extension packages used in the analysis. Describe the method rather than commands. If submitting code, place it in the online supplement; this clause does not by itself require submitting code. The [software provenance check](statistical-policy-router.md#verify-the-software-that-produced-the-reported-results) also recommends documenting the versions of key packages; the cited JAMA clause does not explicitly require a version for every package.
 - Give trial sample-size justification. Fixed-population observational studies need not have a power calculation; investigator-selected sampling requires justification.
 - Report missingness and losses. For exclusions due to incomplete data, compare observed characteristics of complete/incomplete records in supplementary material. Consider imputation; the instructions reject last-observation-carried-forward.
 - Separate prespecified analyses from post hoc work and address multiplicity or label secondary findings exploratory.

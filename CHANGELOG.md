@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.5 — 2026-11-22
+
+### English
+
+- **Statistical reporting:** Check the software and key package versions used for the reported analysis against the original analyst's records, including work done by an independent statistician or with a graphical tool. Flag unknowns; do not substitute local versions or infer AI assistance. No statistical analysis engine was added.
+- **References:** Use the target journal's article-title style consistently; default to sentence case for English journal-article titles when no style is specified. Preserve proper names and scientific notation. Ordinary case differences are formatting issues, not evidence of a wrong citation.
+- **Cover letters:** Follow the journal's instructions. Otherwise address the assigned editor or, if none is assigned, the verified editor-in-chief or all joint editors-in-chief. Use a neutral greeting when names cannot be verified.
+- **Local updates:** An installation can opt out of retaining an old-version ZIP. Package verification and rollback during installation still apply. The default for other installations is unchanged.
+
+### 中文
+
+- **统计报告**：核对原分析者实际使用的软件及关键包版本，包括统计师代做和图形界面软件。缺失就标为待确认，不用本机版本代填，不推断使用过 AI；没有新增统计分析功能。
+- **参考文献**：按目标期刊统一英文期刊论文题名大小写；未指定时采用句首大写，保留专名和科学符号。仅普通大小写不同属于格式问题，不算错引。
+- **投稿信**：期刊有指定则遵从；否则优先称呼负责该稿的编辑。未指定时，称呼经核实的主编或全部共同主编；无法核实姓名时使用中性称呼。
+- **本机更新**：可为单个安装选择不保留旧版 ZIP，仍校验新版并保留安装过程中失败回滚的能力；其他安装的默认设置不变。
+
 ## 1.0.4 — 2026-11-22
 
 ### English

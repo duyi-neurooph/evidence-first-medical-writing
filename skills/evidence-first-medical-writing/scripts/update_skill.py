@@ -179,7 +179,7 @@ def config_path(root):
 def read_config(root):
     path = config_path(root)
     if not path.exists():
-        return {"mode": "check", "pinned_version": None}
+        return {"mode": "check", "pinned_version": None, "keep_backup": True}
     if not path.is_file() or path.stat().st_size > 8192:
         raise UpdateError("Invalid update preferences; use manual checking.")
     try:
@@ -192,10 +192,12 @@ def read_config(root):
         raise UpdateError("Automatic updates have not been explicitly authorized.")
     if data.get("pinned_version") is not None:
         version(data["pinned_version"])
+    if type(data.setdefault("keep_backup", True)) is not bool:
+        raise UpdateError("Invalid backup retention preference.")
     return data
 
 
-def configure(root, mode, pin, consent):
+def configure(root, mode, pin, consent, keep_backup=None):
     writable_installation(root)
     if mode == "auto" and not consent:
         raise UpdateError("Enabling automatic installation requires the user's explicit consent.")
@@ -203,8 +205,13 @@ def configure(root, mode, pin, consent):
         read_installation(root)
     if pin is not None:
         version(pin)
+    if keep_backup is None:
+        keep_backup = read_config(root)["keep_backup"]
+    if type(keep_backup) is not bool:
+        raise UpdateError("Invalid backup retention preference.")
     data = {"schema": 1, "installation": str(root), "mode": mode,
-            "pinned_version": pin, "automatic_updates_authorized": mode == "auto"}
+            "pinned_version": pin, "automatic_updates_authorized": mode == "auto",
+            "keep_backup": keep_backup}
     path = config_path(root)
     fd, temporary = tempfile.mkstemp(prefix=".efmw-preferences-", dir=root.parent)
     try:
@@ -217,7 +224,7 @@ def configure(root, mode, pin, consent):
     finally:
         if os.path.exists(temporary):
             os.unlink(temporary)
-    return {"status": "configured", "mode": mode, "pinned_version": pin}
+    return {"status": "configured", "mode": mode, "pinned_version": pin, "keep_backup": keep_backup}
 
 
 def allowed_url(url, asset):
@@ -347,7 +354,7 @@ def write_tree(root, files):
             stream.write(data)
 
 
-def install(root, old_files, new_files):
+def install(root, old_files, new_files, keep_backup=True):
     lock = root.parent / ("." + NAME + ".update-lock")
     no_symlink_path(lock)
     try:
@@ -355,12 +362,12 @@ def install(root, old_files, new_files):
     except FileExistsError as exc:
         raise UpdateError("Another update or a stale update lock exists; check it manually before retrying.") from exc
     try:
-        return install_locked(root, old_files, new_files)
+        return install_locked(root, old_files, new_files, keep_backup)
     finally:
         lock.rmdir()
 
 
-def install_locked(root, old_files, new_files):
+def install_locked(root, old_files, new_files, keep_backup=True):
     writable_installation(root)
     if read_installation(root) != old_files:
         raise UpdateError("Installation changed during checking; update cancelled.")
@@ -376,15 +383,16 @@ def install_locked(root, old_files, new_files):
         write_tree(staged, new_files)
         if read_installation(staged) != new_files:
             raise UpdateError("Staged installation failed validation.")
-        no_symlink_path(backup_dir)
-        backup_dir.mkdir(mode=0o700, exist_ok=True)
-        backup = backup_dir / (metadata(old_files["version.json"])["version"] + "-" + uuid.uuid4().hex + ".zip")
-        with zipfile.ZipFile(backup, "x", compression=zipfile.ZIP_DEFLATED) as archive:
-            for name, data in old_files.items():
-                archive.writestr(name, data)
-        with zipfile.ZipFile(backup) as archive:
-            if {name: archive.read(name) for name in archive.namelist()} != old_files:
-                raise UpdateError("Backup verification failed.")
+        if keep_backup:
+            no_symlink_path(backup_dir)
+            backup_dir.mkdir(mode=0o700, exist_ok=True)
+            backup = backup_dir / (metadata(old_files["version.json"])["version"] + "-" + uuid.uuid4().hex + ".zip")
+            with zipfile.ZipFile(backup, "x", compression=zipfile.ZIP_DEFLATED) as archive:
+                for name, data in old_files.items():
+                    archive.writestr(name, data)
+            with zipfile.ZipFile(backup) as archive:
+                if {name: archive.read(name) for name in archive.namelist()} != old_files:
+                    raise UpdateError("Backup verification failed.")
         if read_installation(root) != old_files:
             raise UpdateError("Installation changed before replacement; update cancelled.")
         no_symlink_path(root)
@@ -397,7 +405,7 @@ def install_locked(root, old_files, new_files):
         if read_installation(root) != new_files:
             raise UpdateError("Installed files failed validation.")
         committed = True
-        return str(backup)
+        return str(backup) if backup is not None else None
     except BaseException:
         if moved_old:
             try:
@@ -406,7 +414,8 @@ def install_locked(root, old_files, new_files):
                 os.replace(previous, root)
                 moved_old = False
             except OSError as exc:
-                raise UpdateError("Rollback needs manual recovery. Original preserved at " + str(previous) + "; backup: " + str(backup)) from exc
+                detail = "; backup: " + str(backup) if backup is not None else "; no persistent backup was requested"
+                raise UpdateError("Rollback needs manual recovery. Original preserved at " + str(previous) + detail) from exc
         raise
     finally:
         # Remove only the private staging directory created by this call. On a
@@ -447,7 +456,7 @@ def run(root, force_check=False, apply=False, consent=False, fetcher=fetch):
         raise UpdateError("Installed version changed during the release check; no update performed by this invocation.")
     blob = fetcher(asset["browser_download_url"], MAX_ARCHIVE, asset=True)
     new_files = unpack_archive(blob, asset, latest)
-    backup = install(root, old_files, new_files)
+    backup = install(root, old_files, new_files, keep_backup=prefs["keep_backup"])
     return dict(result, status="updated_reload_required", installed_version=latest, previous_version=current, backup=backup,
                 action="Give the user the localized installation completion message from references/updates.md once. "
                        "Start a fresh task/reload the skill before using the new instructions; do not mix versions within a review.")
@@ -462,13 +471,19 @@ def main(argv=None):
     actions.add_argument("--configure", choices=("check", "auto", "off"))
     parser.add_argument("--consent", action="store_true", help="Use only after the user explicitly permits installation/auto-updates.")
     parser.add_argument("--pin", help="Pin a version when configuring; omit to clear an existing pin.")
+    retention = parser.add_mutually_exclusive_group()
+    retention.add_argument("--no-backup", dest="keep_backup", action="store_false", help="Do not retain an old-version ZIP for this installation. Transactional rollback is still available during updates.")
+    retention.add_argument("--keep-backup", dest="keep_backup", action="store_true", help="Retain verified old-version ZIPs for this installation (default).")
+    parser.set_defaults(keep_backup=None)
     args = parser.parse_args(argv)
     if args.pin and not args.configure:
         parser.error("--pin requires --configure")
+    if args.keep_backup is not None and not args.configure:
+        parser.error("--no-backup and --keep-backup require --configure")
     try:
         root = installation_root(args.root)
         if args.configure:
-            result = configure(root, args.configure, args.pin, args.consent)
+            result = configure(root, args.configure, args.pin, args.consent, args.keep_backup)
         else:
             result = run(root, args.check, args.apply, args.consent)
     except (UpdateError, OSError, ValueError, KeyError, TypeError, urllib.error.URLError) as exc:

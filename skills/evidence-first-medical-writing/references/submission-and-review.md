@@ -50,7 +50,18 @@
 4. 论文与该刊范围怎样匹配。
 5. 按要求作出独家投稿、伦理、注册、利益冲突、预印本或相关稿件声明。
 
-不要复制摘要，不夸大创新，不编造“非常适合贵刊”。称呼和 `I/we` 依据实际责任主体及期刊习惯，不把历史材料中的个人偏好写成硬规则。
+不要复制摘要，不夸大创新，不编造“非常适合贵刊”。`I/we` 依据实际责任主体。
+
+### Cover letter addressee
+
+When drafting or reviewing the salutation for an initial submission or resubmission:
+
+1. Follow the **target journal's explicit instructions** for this submission, including a fixed salutation, specific recipient, anonymization or a template that omits the greeting.
+2. Otherwise, if the submission system, invitation or decision letter explicitly identifies the editor handling this manuscript, address that editor. Use the latest applicable correspondence for a revision. A signature from administrative staff is not itself an assignment.
+3. If nobody is assigned, check the **current official masthead** for the exact journal (not its publisher or a sister journal). Address the verified editor-in-chief by name. If it lists several **equal co-editors-in-chief**, address **all** by name, in masthead order. Do not include deputies, the entire board or an editor chosen by guessing the manuscript's specialty.
+4. Copy the names as officially shown, including accents and compound surnames. Use a professional title only if supported; use full names if the surname or honorific is unclear. Do not infer gender, degrees or rank. If names or the current roster cannot be verified (offline, stale or conflicting sources), use a neutral `Dear Editor,` or `Dear Editors,` as appropriate, without guessing or presenting an incomplete roster as complete. Put a brief source/date or verification limit in the author's handoff, not in the letter.
+
+A verified personal greeting is this skill's courtesy preference, **not** a universal journal requirement. Do not flag a journal-required or necessary generic salutation as impolite.
 
 ## 4. 推荐与回避审稿人
 

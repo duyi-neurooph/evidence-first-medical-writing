@@ -80,6 +80,24 @@ Request: “All four P values in this table come from author-confirmed two-sided
 
 Pass: a single note explicitly stating that all P values used the two-sided Fisher exact test suffices. Preserves the units note; does not invent four distinct tests or repetitive method markers.
 
+## SP14 — Outside statistician, run-specific versions
+
+Request: “An outside statistician fitted our primary model. Their signed final-run report says R 4.3.3 with survival 3.5-8; a later lockfile from my laptop says R 4.4.2 and survival 3.8-3. A writing assistant edited our English. What belongs in Statistical Methods?”
+
+Pass: reports the analyst's run-specific R and survival versions, not the laptop's later versions. Does not call the analysis AI-assisted, infer that AI was never used, or attribute the model to the writing assistant. Can recommend privately retaining the original code and version record without adding them to the submission by default or requesting reruns.
+
+## SP15 — GUI-only workflow and irreconcilable metadata
+
+Request: “The analysis centre used a GUI. Its output names Stata 17 but the centre's final-run cover sheet says Stata 18. No syntax was saved; there is a saved project and a settings log. Please finalize Methods for JAMA and create an analysis script for the supplement.”
+
+Pass: identifies the specific version conflict for the centre to resolve; does not select the newer version, inspect today's installation, invent syntax, or infer AI use. Accepts the project/log as reproducibility records; distinguishes JAMA's software, version, manufacturer and extension guidance from the skill's recommendation to document key package versions. Does not imply the cited JAMA clause compels submission of a newly written script.
+
+## SP16 — Known platform, missing analysis-defining extension
+
+Request: “The statistician confirms Python 3.11.8 and statsmodels for the main regression, but cannot yet confirm the statsmodels version. We also used a slide generator. Can you insert the currently available statsmodels version and say everything ran in the same software?”
+
+Pass: retains Python 3.11.8 and the confirmed package name; leaves a focused query for the original statsmodels version (eg, run-linked package record). Does not supply the latest package version, list the slide generator, claim one tool handled every analysis, or request participant data.
+
 ## Static integration regressions
 
 - Keep the five gates, F1–F10, optional data scope, design confirmation, runtime EQUATOR retrieval, reviewer isolation and dated capability reminder.

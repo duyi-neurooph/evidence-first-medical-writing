@@ -83,6 +83,24 @@ class IdentityAcceptance(unittest.TestCase):
         self.assertIn(("pmid", PMID15), db.calls)
         self.assertTrue(r["source_urls"])
 
+    def test_display_case_does_not_replace_record_or_hide_a_different_follow_up(self):
+        # Synthetic publisher-style metadata and manuscript-style rendering.
+        published = "Five-Year Outcomes in Chinese Adults With HIV"
+        display = "Five-year outcomes in Chinese adults with HIV"
+        record = official(title=published)
+        for identifiers in ({}, {"pmid": PMID15, "doi": DOI15}):
+            with self.subTest(identifiers=identifiers):
+                db = Indexes(pmids={PMID15: record}, dois={DOI15: record},
+                             pm_hits=[PMID15], cr_hits=[DOI15])
+                entry = cited(title=display, **identifiers)
+                match = self.one(entry, db)
+                self.assertEqual(match["identity"], "verified", match)
+                self.assertEqual({c["title"] for c in match["candidates"]}, {published})
+                self.assertEqual(entry["title"], display)
+                different = self.one(dict(entry, title=display.replace("Five", "Ten")), db)
+                self.assertEqual(different["identity"], "pending", different)
+                self.assertTrue(all("title" in c["conflicts"] for c in different["candidates"]))
+
     def test_5_year_citation_rejects_15_year_top_hit(self):
         db = Indexes(pmids={PMID15: official()}, pm_hits=[PMID15])
         r = self.one(cited(title=TITLE5, year=1997, journal="Arch Ophthalmol"), db)

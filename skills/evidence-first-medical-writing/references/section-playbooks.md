@@ -145,6 +145,8 @@ For each proposed remedy, trace `limitation → affected inference → appropria
 
 ## Cover letter
 
+起草或核查称呼时，先按[投稿信收件人规则](submission-and-review.md#cover-letter-addressee)确定应称呼谁；不要直接套用上一封信的姓名。
+
 用极短篇幅回答：
 
 1. 研究解决什么问题。
