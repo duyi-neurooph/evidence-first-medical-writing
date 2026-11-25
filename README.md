@@ -101,7 +101,7 @@ At the start of each writing task, the skill reports once, in your language and 
 
 On a verified first installation or upgrade, the installer or assistant can show a short wish in your language. If the host was silent or delivery is unknown, the first writing task with that version can show it beside the version notice in chat. Do not repeat it when already shown, show it on a version check, or insert it in any deliverable. See the [bundled guidance](skills/evidence-first-medical-writing/references/updates.md).
 
-From 0.7.1, the skill checks for a newer official stable release once when a new task starts, if its host permits network/tools. It is not a background service. Install 0.7.1 or later once to gain this behavior; older copies cannot update themselves retroactively.
+On use, the helper checks online at most once in a rolling seven-day period per installation, including failed attempts. In between, it reports the loaded version locally. Any previous result is dated, not a fresh verification. There is no background service.
 
 The default is **check and notify**. With your explicit opt-in, the bundled Python 3 standard-library helper can update a clean, writable standalone skill installation. It verifies the official asset identity, SHA-256 and manifests, keeps an old-version ZIP unless you opt out for this installation, and protects local edits. Source checkouts and host-managed plugins/caches require their own update process. Missing tools, denied permissions, pins, offline mode or failed verification lead to a notification/manual link, not forced installation. Reinvoke the skill in a fresh task after an update; a frozen review keeps its original version.
 
@@ -268,11 +268,11 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Version [1.0.7](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.7) covers clinical table layout, preserving approved formatting in later Word drafts, and deciding what belongs in participant-flow diagrams.
+Version [1.0.8](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.8) limits automatic update checks to once per rolling seven days, keeps cover letters brief, and distinguishes declarations required in a file from those requested only in the submission form. The chat-only note from the creator uses the respectful “您” in Chinese.
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md). Compare [record present vs absent in a fictional dental program](assets/participant-flow/dental-records.svg); both groups remain in the analysis.
 
-Download the [complete 1.0.7 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.7/evidence-first-medical-writing-1.0.7-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.8 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.8/evidence-first-medical-writing-1.0.8-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 The complete ZIP includes the repository-level `tests/` directory; an installed standalone skill does not. To rerun the offline unit tests, run this command from the extracted ZIP’s root (the directory containing `tests/`):
 

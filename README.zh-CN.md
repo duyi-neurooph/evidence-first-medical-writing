@@ -101,7 +101,7 @@ skills/evidence-first-medical-writing/SKILL.md
 
 确认首次安装或升级成功后，可用你的惯用语言给出一两句寄语。如果平台静默安装或无法确认是否显示，在实际用该版本写作时可随首次版本提示补发；已显示就不重复。只查版本不发，也不写入稿件、图及其他交付文件。详见[随包说明](skills/evidence-first-medical-writing/references/updates.md)。
 
-从 0.7.1 起，在每个新任务开始时，若平台允许联网及相应工具，会检查官方最新正式版。这不是后台常驻服务；**0.7.1 之前的用户需要先手动安装 0.7.1 或更新版本**，旧副本不会凭空获得更新能力。
+同一安装自动联网检查更新最多每 7 天一次；即便上次检查失败，也不在 7 天内重试。期间照常从本机报告实际加载版本；若提及上次核实的结果，会注明日期。这不是后台定时任务。
 
 默认只检查和提示。经你明确选择自动更新后，内置的 Python 3 标准库程序可更新未被修改、可写入的独立 skill 文件夹：核对官方附件身份、SHA-256 和文件清单，默认保留旧版 ZIP（可单独为本安装关闭），不覆盖自定义改动。源码仓库、插件包及平台管理的缓存使用各自更新方式。缺少工具、权限不足、版本锁定、离线或验证失败时，只提示或提供手动下载链接，不强行安装。更新后请在新任务中重新调用；同一轮审稿不会中途换版本。
 
@@ -263,11 +263,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-[1.0.7](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.7) 补充临床表格排版要求，说明后续修改 Word 稿如何保留已确认的格式，以及哪些内容应放进纳排流程图。
+[1.0.8 正式版](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.8)：同一安装任意连续七天内最多自动联网检查一次更新；投稿信从简，投稿声明按期刊要求放入指定文件或在系统填写。中文“制作者寄语”使用敬称“您”，只在对话中展示。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。 另见[虚拟学校牙科项目](assets/participant-flow/dental-records.svg)：有记录与无记录均保留在分析分母里。
 
-下载 [1.0.7 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.7/evidence-first-medical-writing-1.0.7-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.8 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.8/evidence-first-medical-writing-1.0.8-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
 

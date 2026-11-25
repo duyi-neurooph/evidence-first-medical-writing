@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.8 — 2026-11-25
+
+### English
+
+- Each new writing task reports the version it actually loaded. Across chats, an installation automatically checks for a stable release at most once per rolling seven days. A failed attempt counts; cached results are dated, and automatic checks are skipped if the attempt cannot be recorded reliably. No background task is scheduled.
+- Keep cover letters brief and omit routine attachment counts. Confirm concurrent submission, prior publication or overlap, and all authors’ approval of the final version and target journal separately before making declarations.
+- Handle CRediT author contributions and data/code availability separately. Use the location required for each item; when only the submission form asks for it, remind the author there rather than adding text to a file. Do not invent roles or sharing commitments.
+- Label the chat-only greeting as a note from the creator and use the respectful “您” in Chinese.
+
+### 中文
+
+- 每个新写作任务都报告实际加载的版本。同一安装跨对话共用检查记录，任意连续七天内最多自动联网检查一次；失败也计一次。沿用上次结果时注明核实日期，无法可靠记录时就跳过自动检查，不设后台定时任务。
+- 投稿信不再默认罗列图表或附件数。分别确认有无一稿多投、有无既往发表或内容重叠，以及全体作者是否批准最终稿并同意投往本刊，再据实作出声明。
+- 分别判断 CRediT 作者贡献声明与数据、代码可用性声明应放在哪里。期刊只要求在投稿系统填写时，仅提醒作者填写，不在文件中重复；不代作者推断贡献或承诺共享。
+- 中文提示标明“制作者寄语”，使用敬称“您”，只在对话中展示。
+
 ## 1.0.7 — 2026-11-22
 
 ### English

@@ -15,7 +15,7 @@ Report the loaded version **once per new task**, in the user's language, in a vi
 
 Alongside the status, briefly and warmly remind the author who makes the scientific decisions. For example: “This tool helps you report your research clearly. You know the study best: the interpretation is yours, and the target journal's rules guide how to use and disclose AI assistance.” Tailor this once, not per paragraph, reviewer or round; combine it with a relevant submission reminder rather than repeating it. Keep the version, status, reminder, maintainer credit and installation greeting out of the manuscript, tracked comments, cover letter, reviewer reports and other submission files. For output-only requests, use a separate chat/status channel when possible; never corrupt a clean artifact.
 
-Once per new user task, before substantive work or reviewer dispatch, read [updates.md](references/updates.md). When tools and permissions allow, check the latest official stable release using the bundled helper or its read-only fallback. Respect offline, disabled and pinned-version choices. Automatic installation requires explicit opt-in, a clean supported installation, verified package checks and rollback protection. Keep a recoverable backup unless the user has explicitly opted out for this installation; never overwrite customizations or managed plugin caches. A failed/unavailable check does not block the writing task. After an update, reload in a fresh task before claiming to use it; never switch versions mid-review or ask reviewer subagents to update. Versions before 0.7.1 need one manual/host installation to gain this mechanism.
+Once per new user task, before substantive work or reviewer dispatch, read [updates.md](references/updates.md). Use the bundled helper's weekly gate: at most one automatic online check per installation per rolling seven days, including failed attempts. A cached result is historical; date it if mentioned. Do not bypass the gate via a browser or connector. Respect offline, disabled and pinned-version choices. Automatic installation requires explicit opt-in, a clean supported installation, verified package checks and rollback protection. Keep a recoverable backup unless the user has explicitly opted out for this installation; never overwrite customizations or managed plugin caches. A failed/unavailable check does not block the writing task. After an update, reload in a fresh task before claiming to use it; never switch versions mid-review or ask reviewer subagents to update. Versions before 0.7.1 need one manual/host installation to gain this mechanism.
 
 Give the [localized wish](references/updates.md#installation-completion-message) once on verified installation or upgrade. If the host was silent or delivery is unknown, show it alongside the chat-only version receipt on the first actual writing task with this version, without claiming a new installation. Do not repeat it for the same version when already shown, send it for checks or failures, or put it in any deliverable.
 
@@ -43,6 +43,8 @@ Professor Yi Du of the Neuro-Ophthalmology Team, Department of Ophthalmology, Th
 - Do not treat writing guidance as a clinical decision, statistical sign-off, ethics approval, or legal opinion. Recommend review by the appropriate professional for high-risk issues.
 
 Mark missing information as `[Author to provide / 待作者补充: specific content / 具体内容]` and explain why it is needed. Ask the user a question only when the missing information would materially change the direction of the work.
+
+Do not insert boilerplate CRediT authorship or data/code availability sections, even as placeholders, in a manuscript or other submission files. For drafting, revision and final checks, follow the [declaration placement rule](references/submission-and-review.md#declaration-placement); keep outstanding questions in the author handoff.
 
 ## Load references by task
 
@@ -128,7 +130,7 @@ Then check the whole manuscript against four questions: Why was the study done? 
 
 Check, in order:
 
-- whether the timeline, ethics, consent/waiver, registration, and protocol versions are internally consistent;
+- whether the timeline, ethics, consent/waiver, registration, and protocol versions are internally consistent (do not insert the [ethics approval date](references/design-and-integrity.md#ethics-approval-date) by default, even if supplied);
 - whether the design can answer the research question;
 - whether the primary endpoint, sample size, randomization/blinding, analysis sets, missing-data handling, multiplicity, and models are reported truthfully;
 - whether participant flow from enrollment through each analysis set is traceable, with explainable counts and exclusions; do not mechanically add overlapping analysis sets;

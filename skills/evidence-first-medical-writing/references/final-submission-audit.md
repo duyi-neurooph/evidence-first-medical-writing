@@ -80,7 +80,7 @@ Compare inclusion and exclusion criteria across Methods, protocol/registration, 
 
 ### F9 — Contributions are truthful and authorship requirements checked
 
-If a contribution statement is missing, flag the journal requirement and ask for a factual account. Compare named contributors and roles with the byline and other supplied statements; flag ambiguity, unsupported roles, or contradictions for confirmation.
+Apply the [declaration placement rule](submission-and-review.md#declaration-placement) separately to contributions and data/code availability. Absence from the manuscript is not itself a deficiency. For a required file statement that is missing, identify the file and ask for confirmed facts outside the clean manuscript; an unseen portal entry is unverified, not a missing manuscript section. Compare supplied roles with the byline and other statements; flag unsupported roles or contradictions for confirmation.
 
 When permitted, check current journal rules and [ICMJE authorship recommendations](https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html), recording source and date. Where the ICMJE framework applies, check evidence for all four elements: substantive research contribution, drafting or substantive critical revision, final approval, and accountability. The author group must confirm these; an absent sentence does not prove a person is ineligible. [CRediT roles](https://credit.niso.org/contributor-roles/) describe contributions and do not alone establish authorship eligibility or author order.
 

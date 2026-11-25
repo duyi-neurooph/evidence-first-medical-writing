@@ -60,6 +60,9 @@ class UpdateTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="efmw-updater-tests-")
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name).resolve()
+        self.enter_receipt_patch = mock.patch.object(up, "receipt_dir", return_value=self.base / "local-state")
+        self.enter_receipt_patch.start()
+        self.addCleanup(self.enter_receipt_patch.stop)
         self.root = self.base / up.NAME
         self.root.mkdir()
         self.original = skill_files()
@@ -84,6 +87,41 @@ class UpdateTests(unittest.TestCase):
         self.assertEqual(self.calls, [(up.API, False)])
         self.assert_original()
         self.assertFalse(up.config_path(self.root).exists())
+
+    def test_cooldown_starts_at_attempt_and_expires_at_seven_days(self):
+        start = 1700000000
+        with mock.patch.object(up.time, "time", return_value=start) as clock:
+            self.assertEqual(self.run_update()["status"], "update_available")
+            clock.return_value = start + up.WEEK - 1
+            cached = self.run_update(force_check=True)
+            self.assertEqual(cached["status"], "weekly_check_skipped")
+            self.assertEqual(cached["last_attempt_utc_epoch"], start)
+            self.assertEqual(cached["last_checked_version"], "0.7.2")
+            self.assertEqual(self.calls, [(up.API, False)])
+            clock.return_value += 1
+            self.assertEqual(self.run_update()["status"], "update_available")
+            self.assertEqual(self.calls, [(up.API, False)] * 2)
+
+    def test_failed_attempt_is_not_retried_in_the_same_window(self):
+        with self.assertRaises(OSError):
+            up.run(self.root, fetcher=mock.Mock(side_effect=OSError("offline")))
+        result = self.run_update()
+        self.assertEqual(result["status"], "weekly_check_skipped")
+        self.assertIsNone(result["last_checked_version"])
+        self.assertFalse(self.calls)
+
+    def test_overlapping_tasks_cannot_start_two_checks(self):
+        def during_fetch(*args):
+            self.assertEqual(self.run_update()["status"], "weekly_check_skipped")
+            return self.fetch(*args)
+        self.assertEqual(up.run(self.root, fetcher=during_fetch)["status"], "update_available")
+        self.assertEqual(self.calls, [(up.API, False)])
+
+    def test_unavailable_receipt_never_falls_back_to_network(self):
+        up.receipt_dir().write_text("not a directory")
+        with self.assertRaises(OSError):
+            self.run_update()
+        self.assertFalse(self.calls)
 
     def test_explicit_apply_installs_and_preserves_verified_backup(self):
         result = self.run_update(apply=True, consent=True)

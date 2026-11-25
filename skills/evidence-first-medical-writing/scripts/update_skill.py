@@ -22,6 +22,7 @@ import urllib.request
 import uuid
 import zipfile
 import zlib
+from contextlib import closing
 
 NAME = "evidence-first-medical-writing"
 REPO = "duyi-neurooph/" + NAME
@@ -34,6 +35,7 @@ MAX_EXPANDED = 64 * 1024 * 1024
 MAX_FILES = 3000
 TIMEOUT = 8
 DEADLINE = 20
+WEEK = 7 * 24 * 60 * 60
 
 
 class UpdateError(Exception):
@@ -424,6 +426,40 @@ def install_locked(root, old_files, new_files, keep_backup=True):
             shutil.rmtree(temporary)
 
 
+def receipt_dir():
+    return Path.home() / ("." + NAME)
+
+
+def weekly_release(root, fetcher):
+    """Reserve the next lookup before I/O. Other tasks see a dated receipt, never a fresh check."""
+    try:
+        import sqlite3
+    except ImportError as exc:
+        raise UpdateError("No persistent release-check storage; automatic lookup skipped.") from exc
+    folder = receipt_dir()
+    path = folder / "release-checks.sqlite3"
+    no_symlink_path(path)
+    folder.mkdir(mode=0o700, parents=True, exist_ok=True)
+    key = digest(os.fsencode(os.path.normcase(str(root))))
+    try:
+        with closing(sqlite3.connect(str(path), timeout=1)) as db:
+            with db:
+                db.execute("BEGIN IMMEDIATE")
+                db.execute("CREATE TABLE IF NOT EXISTS checks (id TEXT PRIMARY KEY, attempted INTEGER NOT NULL, latest TEXT)")
+                now = int(time.time())
+                row = db.execute("SELECT attempted, latest FROM checks WHERE id=?", (key,)).fetchone()
+                if row and now - row[0] < WEEK:
+                    return None, {"status": "weekly_check_skipped", "last_attempt_utc_epoch": row[0],
+                                  "last_checked_version": row[1]}
+                db.execute("INSERT OR REPLACE INTO checks VALUES (?, ?, NULL)", (key, now))
+            info = release_info(json.loads(fetcher(API, 1024 * 1024)))
+            with db:
+                db.execute("UPDATE checks SET latest=? WHERE id=? AND attempted=?", (info[0], key, now))
+            return info, None
+    except sqlite3.Error as exc:
+        raise UpdateError("Cannot use weekly release-check storage; do not retry via another tool.") from exc
+
+
 def run(root, force_check=False, apply=False, consent=False, fetcher=fetch):
     root = installation_root(root)
     no_symlink_path(root / "version.json")
@@ -437,7 +473,13 @@ def run(root, force_check=False, apply=False, consent=False, fetcher=fetch):
         return dict(result, status="disabled")
     if apply and not consent:
         raise UpdateError("A one-time update requires explicit user consent (--apply --consent).")
-    latest, asset, url = release_info(json.loads(fetcher(API, 1024 * 1024)))
+    if apply:  # A user-requested installation still verifies fresh release metadata.
+        info = release_info(json.loads(fetcher(API, 1024 * 1024)))
+    else:
+        info, cached = weekly_release(root, fetcher)
+        if cached is not None:
+            return dict(result, **cached)
+    latest, asset, url = info
     result.update(latest_version=latest, release_url=url)
     if version(latest) <= version(current):
         return dict(result, status="current" if latest == current else "newer_local_version_preserved")

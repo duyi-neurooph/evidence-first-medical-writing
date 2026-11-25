@@ -40,17 +40,32 @@
 
 格式与拼写错误本身未必决定科学价值，但数字不一致、低级错误密集和不遵守稿约会削弱可信度。
 
+### Declaration placement
+
+Treat **CRediT authorship contributions** and **data and code availability** as separate placement decisions. By default, add neither heading, stock sentence nor author-to-provide placeholder to the manuscript, title page, cover letter or supplements. Do not create separate declaration files just in case. If placement is unknown, leave the clean files unchanged and note the question in chat or the author's private checklist when relevant; do not assert that a portal field exists or was completed.
+
+Use the current target journal's instructions, required template or actual submission fields for this article type. For a portal-only item, remind the author in the handoff to complete the field; do not duplicate it in files. If the journal requires a statement in a named file (or in both that file and the portal), use the specified location(s) for that item only. If the author explicitly requests wording, supply it in the requested location, distinguishing text for pasting into a form from text for a manuscript. Flag conflicts with journal instructions rather than quietly overriding them.
+
+Use only author-confirmed roles, permissions and sharing terms. Never infer roles from byline order or promise access “on reasonable request”, a repository deposit or code release without confirmation. Missing facts for a required statement are an outstanding author action, not copy-ready prose or a compliance pass. This default is not permission to delete existing substantive declarations, change the byline or suppress other required disclosures.
+
 ## 3. Cover letter
 
-先查目标期刊是否给出必需声明或模板。正文通常用短段回答：
+先按目标期刊本次投稿的稿约、模板或系统提示，区分哪些信息要写入信中、哪些只在系统填写。用短段回答：
 
 1. 研究解决什么具体问题。
 2. 使用什么设计，主要发现是什么。
 3. 该发现为什么与该刊读者相关。
 4. 论文与该刊范围怎样匹配。
-5. 按要求作出独家投稿、伦理、注册、利益冲突、预印本或相关稿件声明。
 
-不要复制摘要，不夸大创新，不编造“非常适合贵刊”。`I/we` 依据实际责任主体。
+除非期刊要求或确需向编辑解释某项材料，不罗列正文图表、补充文件的件数或清单。不要复制摘要，不夸大创新。`I/we` 依据实际责任主体。
+
+准备投稿声明时，分别核实以下事实，不能用其中一项代替另一项：
+
+- 本稿目前是否也在其他期刊审理。
+- 有无既往发表、公开预印本或内容重叠的相关稿件。预印本不等同于另一刊在审；按期刊要求如实说明。
+- 全体作者是否均已批准**本次最终稿**，并同意投往**本目标期刊**。认可早期稿、列在署名中或同意投稿但未指定期刊，不能替代这两项确认。
+
+按要求简短写入已确认的事实；伦理、注册、利益冲突等亦同。必要事实尚未确认时，在信外向作者指出待核项，不用模板代替作者作出保证。
 
 ### Cover letter addressee
 

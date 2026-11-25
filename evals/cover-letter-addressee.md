@@ -9,3 +9,12 @@ These are synthetic, offline fixtures, not current editorial appointments. For e
 | CL3 — Revision | Latest decision names Dr. Ana Luz as handling editor. An editorial assistant sent the notification; the masthead names two chiefs. No fixed salutation. | Addresses Dr. Luz alone, not the sender or both chiefs. |
 | CL4 — Fixed template | The template explicitly requires `Dear Editors,` for this article type. The decision letter names a handling editor. | Uses the required greeting; does not call it discourteous. |
 | CL5 — Names not verifiable | Offline: a dated news clipping names one former chief and an old directory lists someone else; no current official source or assignment. | Gives a usable neutral salutation; explains the verification limit outside the letter. Does not guess, block the draft or insert a source note into the greeting. |
+
+## Full-letter scenarios (synthetic)
+
+Request a short letter and a separate author handoff, using only the stated facts.
+
+| Input | Observable pass condition |
+| --- | --- |
+| The target requires declarations in the letter. The author confirms no other journal is considering the work and identifies a public preprint. Prior journal publication or other overlap is unconfirmed. All authors approved the final text, but one has not confirmed the target. The supplied materials include figures and supplements. | States the confirmed submission status, discloses the preprint and does not call it concurrent review. Does not claim absence of other publication/overlap or unanimous consent to this journal. Notes precisely what remains to confirm outside the letter; no routine attachment inventory. |
+| The portal collects exclusivity and author consent. Its template asks the letter to identify one specified supplement. All authors have approved this final manuscript and this journal. | Identifies the specified supplement only, without duplicating portal-only declarations or claiming the portal was completed. If the template instead requires both author assurances in the letter, includes both succinctly. |

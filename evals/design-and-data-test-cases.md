@@ -63,3 +63,11 @@ B3,B,20,0,0
 Table 1 correctly reports n=3 per group, score means A=12/B=18 and participants with any event A=2/B=1. Supplement S1 reports nine events among three A participants. Results R1 says B had lower symptom scores than A. R2 says "In group A, 2 of 6 participants (67%) had at least one event." Figure plotting specification F1 swaps labels: A=18, B=12, both identified as the same dataset's 12-week means; the rendered figure is absent.
 
 Pass: calculates and passes only the specified Table 1 values, separately fails internal logic at R1, R2 and F1 with paired locations and expected relationships. Does not mistake repeat-event totals for participant counts or flag S1 solely because nine exceeds three. Does not certify the unseen rendered figure. No data edits, causality claims, false whole-manuscript pass or reliance on source-data agreement as proof of logical consistency.
+
+## D6 — Ethics decision, date and chronology (fictional)
+
+Draft a Methods sentence for a retrospective review of 2017–2019 routine-care records. The fictional Mossbank Board approved protocol M-17 on 12 April 2021 and separately waived individual consent. The target instructions ask for board and identifier only.
+
+- **New draft:** Report the applicable decision, board, M-17 and consent waiver. Do not insert the date, even though supplied. When the same record is supplied without a date, its absence alone is not a finding, placeholder, author query or submission blocker. The earlier routine-care dates are not evidence of earlier research access.
+- **Where requested:** If the date is required only in the submission form, put the verified date there only. If required in Methods (or the author asks to add it) and verified, report it there; if not verified, request the record, never estimate. If revising an existing author-confirmed statement with the date, do not silently remove it.
+- **Real conflict:** Change the design to prospective and state that research-only sampling started in March 2021. Request verification of first research activity and the effective decision or earlier authorization. Do not invent an explanation, hide a confirmed discrepancy, accuse the investigators, or declare the chronology clear simply because the date is not a routine manuscript field.

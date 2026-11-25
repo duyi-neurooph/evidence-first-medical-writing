@@ -605,7 +605,8 @@ def svg(data, draft=False):
             el(t,"tspan",{"x":block_x+item.label_start},item.label)
     for i,s in enumerate(foot):
         el(canvas,"text",{"x":margin,"y":pos+16*i,"font-size":12,"fill":"#444"},s)
-    return ET.tostring(root, encoding="unicode", xml_declaration=True) + "\n"
+    # Keep the gallery's XML declaration byte-identical across Python versions.
+    return ET.tostring(root, encoding="UTF-8", xml_declaration=True).decode("utf-8") + "\n"
 
 
 def main(argv=None):

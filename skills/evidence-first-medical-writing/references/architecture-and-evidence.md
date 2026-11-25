@@ -36,7 +36,7 @@ For substantive drafting or revision, apply [anti-defensive-scientific-writing.m
 - 它是否解释主要发现或适用边界？
 - 它是否属于当前章节的职责？
 
-五问均否时通常删除或移至补充材料；伦理、注册、资助、利益冲突、数据共享、作者贡献和其他强制报告项不得因“不服务叙事”而删除。
+五问均否时通常删除或移至补充材料；伦理、注册、资助、利益冲突等强制报告项不得因“不服务叙事”而删除。作者贡献及数据/代码可用性按[声明位置规则](submission-and-review.md#declaration-placement)办理：核对义务不等于在稿件添加章节。
 
 优先删除：
 

@@ -182,6 +182,12 @@
 - 图像调整必须保留科学含义和审计轨迹；不得选择性擦除、拼接或重复使用图像以误导读者。
 - 怀疑伪造、篡改或剽窃时先保全证据，经期刊、机构、资助方等正式渠道报告；在没有正式调查结论时不公开点名。
 
+### Ethics approval date
+
+Report the actual ethics decision (approval, exemption or other applicable determination), reviewing body and identifier as applicable; describe consent or its waiver separately. Do not insert the calendar date of approval in new prose by default, even when it appears in an approval letter. Absent a specific requirement or timing concern, omission of the date warrants no placeholder, author query, adverse review finding or submission blocker. Do not silently remove or change an existing author-supplied date.
+
+Include the verified date when the author requests it or applicable instructions explicitly require it, and only in the specified location (a portal field is not a manuscript requirement). If needed but unverified, ask for the decision record rather than estimating a date. If there is a concrete timing discrepancy, verify the chronology privately against the applicable research activity; this does not itself require publishing the date. In a retrospective review, routine care may predate approval for research access. Do not dismiss an apparent conflict, infer approval from missing dates, or equate a consent waiver with exemption from review. Registration dates follow their own requirements.
+
 ## 9. 方法时效性护栏
 
 使用历史或通用写作经验时：
