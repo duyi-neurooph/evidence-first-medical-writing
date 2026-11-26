@@ -274,5 +274,39 @@ class IdentityAcceptance(unittest.TestCase):
         self.assertTrue(row["reasons"])
 
 
+class CitationOrderTests(unittest.TestCase):
+    def check(self, *labels, **settings):
+        rows = [{"location": f"Paragraph {i}", "labels": s} for i, s in enumerate(labels, 1)]
+        return verifier.citation_order(dict({"style": "first-appearance", "complete": True, "callouts": rows}, **settings))
+
+    def test_first_gap_located_without_renumbering(self):
+        self.assertEqual(self.check("1–34", "56"), {"status": "out_of_order", "location": "Paragraph 2", "expected": 35, "actual": 56})
+
+    def test_valid_repeat_then_new_reference(self):
+        self.assertEqual(self.check("1-55", "34", "56"), {"status": "pass", "distinct_first_mentions": 56})
+
+    def test_overlapping_ranges_and_cluster(self):
+        self.assertEqual(self.check("1–3", "2, 3–5", "1, 6–7", "2, 9")["expected"], 8)
+
+    def test_missing_coverage_or_ambiguous_numbering(self):
+        for obs in (self.check(), self.check("56", complete=False), self.check("2", style="unknown"),
+                    self.check("1", "?"), self.check("1", "3-2")):
+            self.assertEqual(obs["status"], "cannot_verify")
+
+    def test_other_styles_do_not_trigger_order_errors(self):
+        for style in ("author-date", "alphabetical"):
+            self.assertEqual(self.check("34,56", style=style)["status"], "not_applicable")
+
+    def test_main_and_supplement_can_have_independent_series(self):
+        for series in (("1", "2,3"), ("1–2", "1")):
+            self.assertEqual(self.check(*series)["status"], "pass")
+
+    def test_cli_order_mode_accepts_stdin_offline(self):
+        cmd = [sys.executable, "-B", str(SCRIPTS / "verify_references.py"), "--citation-order", "-"]
+        data = {"style": "first-appearance", "complete": True, "callouts": [{"location":"Table 1 note", "labels":"1,3"}]}
+        result = subprocess.run(cmd, input=json.dumps(data), capture_output=True, text=True, check=True)
+        self.assertEqual(json.loads(result.stdout), {"status":"out_of_order", "location":"Table 1 note", "expected":2, "actual":3})
+
+
 if __name__ == "__main__":
     unittest.main()

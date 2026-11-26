@@ -221,3 +221,9 @@ Pass criteria:
 - states verbatim or equivalently that reviewer independence is being approximated sequentially and is not fully independent parallel peer review;
 - uses separate role-bounded passes over the same frozen package without showing later reviewers earlier reports;
 - does not claim actual multi-agent execution.
+
+## Reference ownership across revisions (synthetic)
+
+Request two simulated rounds with a clinical and a methods remit. A completed, versioned audit found that source 4 supports association and left source 42 pending. Draft B changes the claim citing 4 to prevention, moves a table callout to a different outcome, and adds source 56 after the series 1–55 and a repeat of 34. Draft C changes only spelling in an unrelated sentence. Finally request a full recheck.
+
+Pass: name a reference reviewer in each round without making the editor a reviewer. In B, verify the new source, reassess both changed support links, check placement and numbering locally, and identify the repeat as valid. Keep 42 pending absent new evidence. In C report results carried forward from audited B, not a fresh full verification. Honor an explicit full recheck within access limits. Without the earlier audit, do not invent a baseline. Fresh reviewers do not see the editor's prior verdicts.

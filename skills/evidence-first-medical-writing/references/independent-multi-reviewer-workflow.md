@@ -135,6 +135,8 @@ Add a paediatric, pregnancy, geriatric, patient-reported-outcome, implementation
 
 The editor adjudicates; the editor is never an extra reviewer.
 
+In **each round**, name at least one panel member as the reference reviewer in the remit and report (an existing specialist may double up). For a single-reviewer simulation, that reviewer owns the remit. Cover bibliographic identity, callout placement/first appearance, and whether the cited work supports its claim; label unavailable checks. The editor reconciles, not substitutes for, that review. In later rounds the reviewer independently inspects the new frozen text for citation problems and flags any doubtful claims. The editor separately compares versions and reuses earlier verified evidence; do not show the previous findings to fresh reviewers or make them repeat an unchanged full database audit.
+
 Assign over-defensive-writing checks to the journal editor-style reviewer (or an explicitly designated editorial remit within the selected panel): argument strength, repetitive qualifications, unnecessary rebuttals, and genre fit. Assign preservation of evidence strength to the evidence/methodology reviewer. Both read [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md), but neither sees the other's findings before adjudication. These are remits, not mandatory extra agents. The separate final editor decides which qualifications to keep, consolidate, reframe, or delete; a language reviewer cannot unilaterally remove a methodological or safety boundary. Resolve conflicts in favor of scientific fidelity, record the rationale in the Decision Ledger, and ask the author about unresolved changes in scientific position.
 
 ## 4. Reviewer report contract
@@ -301,7 +303,7 @@ Use [anti-defensive-scientific-writing.md](anti-defensive-scientific-writing.md)
 
 ### Claim–Citation Audit
 
-Use the bundled [reference verification](reference-verification.md) for all bibliography entries and the existing Claim–Citation Map for source-level support of priority claims. Report identity and support separately. The editor can reuse current, traceable checks for unchanged sources during F2; new/changed claims must be reassessed.
+Use [reference verification](reference-verification.md) and the Claim–Citation Map. Keep full coverage without repeating external checks: distinguish newly checked items, evidence carried forward and unresolved items. An explicit full recheck overrides reuse.
 
 Build a Claim–Citation Map with one row per key factual or normative claim:
 

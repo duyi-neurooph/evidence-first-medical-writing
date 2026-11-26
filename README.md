@@ -268,11 +268,11 @@ If you believe repository content affects rights you hold, use the **Rights conc
 
 ## Release
 
-Version [1.0.8](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.8) limits automatic update checks to once per rolling seven days, keeps cover letters brief, and distinguishes declarations required in a file from those requested only in the submission form. The chat-only note from the creator uses the respectful “您” in Chinese.
+Version [1.0.9](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.9) checks first-citation order, assigns a reference reviewer in every simulated round, and reuses verified citation evidence across revisions.
 
 The participant-flow module draws and audits editable SVG diagrams from aggregate counts. View the English synthetic examples: [randomized trial](assets/participant-flow/randomized-trial.svg), [cohort](assets/participant-flow/cohort.svg), and [case-control](assets/participant-flow/case-control.svg). Missing or conflicting counts are flagged, not invented. See [CHANGELOG.md](CHANGELOG.md). Compare [record present vs absent in a fictional dental program](assets/participant-flow/dental-records.svg); both groups remain in the analysis.
 
-Download the [complete 1.0.8 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.8/evidence-first-medical-writing-1.0.8-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
+Download the [complete 1.0.9 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.9/evidence-first-medical-writing-1.0.9-github-global.zip). The archive includes the skill, supporting references, documentation, license and required notices.
 
 The complete ZIP includes the repository-level `tests/` directory; an installed standalone skill does not. To rerun the offline unit tests, run this command from the extracted ZIP’s root (the directory containing `tests/`):
 

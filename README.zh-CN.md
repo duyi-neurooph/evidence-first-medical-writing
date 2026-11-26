@@ -263,11 +263,11 @@ skills/evidence-first-medical-writing/SKILL.md
 
 ## 版本
 
-[1.0.8 正式版](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.8)：同一安装任意连续七天内最多自动联网检查一次更新；投稿信从简，投稿声明按期刊要求放入指定文件或在系统填写。中文“制作者寄语”使用敬称“您”，只在对话中展示。
+[1.0.9 正式版](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/tag/v1.0.9)：整稿核查首次引用顺序，每轮模拟审稿指定引文审稿人，多轮修改只复核受影响的引文。
 
 也可从汇总人数绘制并核查可编辑的患者纳排流程图。查看英文虚拟示例：[随机试验](assets/participant-flow/randomized-trial.svg)、[队列研究](assets/participant-flow/cohort.svg)、[病例对照研究](assets/participant-flow/case-control.svg)。人数缺失或矛盾时标为待核实，不替作者补数。详见 [CHANGELOG.md](CHANGELOG.md)。 另见[虚拟学校牙科项目](assets/participant-flow/dental-records.svg)：有记录与无记录均保留在分析分母里。
 
-下载 [1.0.8 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.8/evidence-first-medical-writing-1.0.8-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
+下载 [1.0.9 完整 ZIP](https://github.com/duyi-neurooph/evidence-first-medical-writing/releases/download/v1.0.9/evidence-first-medical-writing-1.0.9-github-global.zip)，内含 skill、配套参考文件、使用说明、许可证和必要声明。
 
 完整 ZIP 包含仓库级 `tests/` 目录，安装后的独立 skill 不含此目录。解压完整 ZIP 后，在含 `tests/` 的根目录运行以下命令，即可复现离线单元测试：
 

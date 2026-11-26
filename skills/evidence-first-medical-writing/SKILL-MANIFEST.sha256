@@ -1,5 +1,5 @@
 1c681ba84426c38431fc0b983b5cb383d01ba8e6a3c7856721be0d0a3d0c185f  ./NOTICE.md
-bfe281699764bc7b0b27d82024e24e92f1b673ac809b8d9e8e9375dc6f9f20a0  ./SKILL.md
+cf235db438f7a24d4126b4633a01a16aa397272c0deb7869483aea2119305130  ./SKILL.md
 3f31647f16383937c52bf92dac93c4b95d7d3f8b0fd314e38b605daed94afefc  ./agents/openai.yaml
 ae55126a31e2f728ae4ce311985b27aad83a9c61cb0c030b3f81a663ccea0932  ./assets/flow-case-control.json
 4325ce111f11b6c5f14ed37f199219ef29ace091aa2372af5c67a78290919525  ./assets/flow-cohort.json
@@ -12,8 +12,8 @@ ae55126a31e2f728ae4ce311985b27aad83a9c61cb0c030b3f81a663ccea0932  ./assets/flow-
 0852c6f14f22a6e0b53012779d55157e6c0ce733bea1a514e240a6a781fe1caf  ./references/architecture-and-evidence.md
 23d581c3c786271fad12b1d839511d6fa765d229eed24e93e1e6f1fa566c2d85  ./references/audit-checklists.md
 191937d92d1e3a86c3b4910183801ef3585a16c4a3b184bb6dbec5b818be2d26  ./references/design-and-integrity.md
-d48d7b74571c8b8c3e570bf77083c8ab53ebdf64d6aa6af4d37bf20958c8e440  ./references/final-submission-audit.md
-bba4cd6fbb5dbf1609780c22460d42b7a9aabc0af946d8a7673c2612efd36cf0  ./references/independent-multi-reviewer-workflow.md
+475c9254a8eff4f493b4039f90755740f3e3f735eb0477381260aa1917bd2cdb  ./references/final-submission-audit.md
+83a5d55d240b466738117d967bf1efdab0813e8f80aff9d2d194feebe4ef119c  ./references/independent-multi-reviewer-workflow.md
 810a9c7a51fc550dc99cb0527b16d89f1acdf8350b45edc2b01a14f7805eeedf  ./references/jama-statistical-reporting.md
 6abb2f6a4dbddc86f98635b9d83211219868b882f1ff3b4e5fcaaf62033772eb  ./references/journal-guidance.md
 84dde36a80ed36341da2bcf4c530460a6860b570c18e89732ee05f2509030f54  ./references/language-and-logic.md
@@ -21,7 +21,7 @@ bba4cd6fbb5dbf1609780c22460d42b7a9aabc0af946d8a7673c2612efd36cf0  ./references/i
 222a7b7533da01f0b85d3b4010ef3fbcbdcaf111adde99dbabd24864b6e60cd8  ./references/optional-data-integrity-audit.md
 25060d10727619148fe2d9db83517107d76fa7acf70b95606ca07f953a666501  ./references/participant-flow.md
 b1aa0f8e9d243c93fb3636d147eae823517026f33b17f0c029e3cd8471afc53d  ./references/principles.md
-6f07e5f47047a84c72e2eca6c3f2c95a16b0c86dc9fdd05da7442221678486a3  ./references/reference-verification.md
+be73959aef1a7ee2ef5df82e36622d49466ee56839335b62c4aff579171be6c5  ./references/reference-verification.md
 58fc3f23f332c832ae4e8c26ff3378ee206b7d2c8b7f18aca8590d97efb2f442  ./references/reporting-guideline-retrieval.md
 ca0021579de7284be31fc83f2aecbcadb440c3512c114497e3e980894ce584aa  ./references/section-playbooks.md
 4dc2b23019d249b01aae5d3a1becc9ad78bbe2c57fdad7b34b1c17c8a02b4ecf  ./references/source-notice.md
@@ -36,6 +36,6 @@ a5375da1a06a66920efa664800a087af204b39f2458e442a7f88c9a4e17aae7f  ./references/s
 6c120abce24d97dd3a53a74f35028e672d9d336f09d9a9a8b2bb39ccdae055e6  ./scripts/format_p_value.py
 d0a017596f2f562725919f4afce10458209fe4d88b7a1bb399f6fc561150d3d6  ./scripts/participant_flow.py
 1110bb8f7d99c2a4944fbbdcd3cb8c53eaf062a7ee6df050fabc5c5f5f571c59  ./scripts/update_skill.py
-505ec525ba880be69528298ad9a91b431c8871a4a08b331f798c06a2259b68fa  ./scripts/verify_references.py
+0ec9563087985328c4ade344faff9e6b1e3167e9f302b44660086519c282e42c  ./scripts/verify_references.py
 0418786fd69f96f0d87c98648bd703524ff06931f45463ac9bd931ac186bc41f  ./third-party/aperivue-verify-refs.md
-d1ac9190d77d4dc1d0125b019eadc84300f20bfb2ed851ef463bf8a86321160f  ./version.json
+4a5ddf6fad657aed1182f6e47e8ea4f4b1c8395795a124dca752ffb28548eef5  ./version.json

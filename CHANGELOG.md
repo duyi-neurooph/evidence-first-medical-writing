@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.9 — 2026-11-26
+
+## English
+
+- Whole-manuscript reference checks now report the first out-of-order new citation under a first-appearance numbering system. Repeat citations are valid; a bibliography alone cannot establish text order.
+- Each simulated review round assigns reference checks to a named reviewer, who may also cover a subject specialty.
+- Revisions reuse traceable findings for unchanged references. Recheck affected entries, placements, numbering or claims; keep unresolved items visible. Authors can still request a full recheck.
+
+## 中文
+
+- 整稿核查参考文献时，如期刊按首次引用顺序编号，报告第一处跳号的位置、预期编号和实际编号。正常回引不报错，只有文末书目时不判断正文顺序。
+- 每轮模拟审稿都明确指定至少一名审稿人负责引文核查，可由专业审稿人兼任。
+- 多轮改稿沿用有记录的核查结果，只复核受变动影响的文献、引文位置、编号或论断。未核实项不自动通过；作者仍可要求全量重查。
+
 ## 1.0.8 — 2026-11-25
 
 ### English

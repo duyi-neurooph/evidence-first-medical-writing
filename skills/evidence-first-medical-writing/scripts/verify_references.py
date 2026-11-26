@@ -419,10 +419,47 @@ def verify_batch(entries, backend=None, offline=False):
             "results": rows, "duplicates": duplicates, "claim_support": "not assessed by bibliographic lookup"}
 
 
+def citation_order(inventory):
+    """Audit one journal-defined numbering series, in reading order, without lookups."""
+    if not isinstance(inventory, dict):
+        raise ValueError("Expected a callout inventory object")
+    style = inventory.get("style")
+    if style in ("author-date", "alphabetical"):
+        return {"status": "not_applicable", "reason": style}
+    if style != "first-appearance":
+        return {"status": "cannot_verify", "reason": "numbering convention not established"}
+    if inventory.get("complete") is not True:
+        return {"status": "cannot_verify", "reason": "full ordered manuscript callouts unavailable"}
+    rows = inventory.get("callouts")
+    if not isinstance(rows, list) or not rows:
+        return {"status": "cannot_verify", "reason": "no ordered citation callouts supplied"}
+    # All values below 'expected' have already appeared; seeing one again is a back-citation.
+    expected = 1
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get("location"), str) or not row["location"].strip():
+            raise ValueError("Each callout needs an exact manuscript location")
+        loc, expression = row["location"], row.get("labels")
+        if not isinstance(expression, str):
+            return {"status": "cannot_verify", "location": loc, "reason": "unreadable callout"}
+        for token in expression.split(","):
+            match = re.fullmatch(r"\s*([1-9][0-9]{0,5})(?:\s*[-–]\s*([1-9][0-9]{0,5}))?\s*", token)
+            if not match:
+                return {"status": "cannot_verify", "location": loc, "reason": "unreadable callout"}
+            lo = int(match[1])
+            hi = int(match[2] or lo)
+            if hi < lo:
+                return {"status": "cannot_verify", "location": loc, "reason": "descending citation range"}
+            if lo > expected:
+                return {"status": "out_of_order", "location": loc, "expected": expected, "actual": lo}
+            expected = max(expected, hi + 1)
+    return {"status": "pass", "distinct_first_mentions": expected - 1}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--offline", action="store_true", help="never query external databases")
-    ap.add_argument("input", help="JSON bibliography file; use - for stdin")
+    ap.add_argument("--citation-order", action="store_true", help="check an ordered callout inventory offline instead of looking up references")
+    ap.add_argument("input", help="JSON bibliography or callout inventory; use - for stdin")
     args = ap.parse_args()
     try:
         if args.input == "-":
@@ -430,7 +467,8 @@ def main():
         else:
             with open(args.input, encoding="utf-8-sig") as stream:
                 entries = json.load(stream)
-        print(json.dumps(verify_batch(entries, offline=args.offline), ensure_ascii=False, indent=2))
+        report = citation_order(entries) if args.citation_order else verify_batch(entries, offline=args.offline)
+        print(json.dumps(report, ensure_ascii=False, indent=2))
     except (ValueError, OSError) as ex:
         ap.exit(2, f"Input error: {ex}\n")
 
